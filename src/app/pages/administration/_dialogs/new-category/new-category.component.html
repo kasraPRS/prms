@@ -1,0 +1,95 @@
+<div class="card w-650px mw-100 mh-100 new-category">
+    <!-- #region Header -->
+    <div class="card-header">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1">New Category</span>
+        </h3>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" [disabled]="submitSpnStatus"
+                (click)="ref.close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body border-top p-0 h-300px overflow-auto">
+
+        <!-- #region name -->
+        <div class="py-5 px-9 border-bottom d-flex align-items-center justify-content-between">
+
+            <div>Category Name</div>
+            <div style="width: 60%;">
+                <input type="text" class="form-control form-control-solid" placeholder="Name"
+                    [(ngModel)]="categoryName">
+            </div>
+
+        </div>
+        <!-- #endregion name -->
+
+        <!-- #region marketers -->
+        <div class="py-5 px-9">
+
+            <!-- #region add maeketer -->
+            <div class="d-flex align-items-start justify-content-between mb-5">
+                <div>Add Marketer</div>
+                <div style="width: 60%;">
+                    <ng-select [searchable]="true" [multiple]="true"
+                        class="custom-select w-100 border-0 custom-ng-select" [searchWhileComposing]="false"
+                        notFoundText="search Marketers, ..."
+                        placeholder="search Marketers, ..." (change)="onChangeMarketersSelect()"
+                        (search)="onSlctAddMarketerSearch($event)" [(ngModel)]="selectedMarketers">
+                        <ng-option [value]="user.id" *ngFor="let user of marketersList">
+                            {{user.fullName}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+            <!-- #endregion add maeketer -->
+
+            <!-- #region marketers -->
+            <!-- <div class="d-flex align-items-center justify-content-between">
+                <div>Marketers</div>
+                <div class="d-flex align-items-center" style="width: 60%;">
+                    <div class="symbol-group symbol-hover">
+                        <div class="symbol symbol-circle symbol-40px" placement="bottom" ngbTooltip="Jack Daniels">
+                            <img src="assets/media/avatars/300-6.jpg" alt="" />
+                        </div>
+
+                        <div class="symbol symbol-circle symbol-40px" placement="bottom" ngbTooltip="Jack Daniels">
+                            <img src="assets/media/avatars/300-1.jpg" alt="" />
+                        </div>
+
+                        <div class="symbol symbol-circle symbol-40px" placement="bottom" ngbTooltip="Jack Daniels">
+                            <img src="assets/media/avatars/300-2.jpg" alt="" />
+                        </div>
+                    </div>
+                    <span class="text-muted">
+                        + 15 more
+                    </span>
+                </div>
+            </div> -->
+            <!-- #endregion marketers -->
+
+        </div>
+        <!-- #endregion marketers -->
+
+    </div>
+    <!-- #endregion Body -->
+
+    <!-- #region footer -->
+    <div class="card-footer text-end py-5">
+        <button class="btn btn-primary btn-sm" (click)="onBtnDoneClick()" [disabled]="submitSpnStatus">
+            <ng-container *ngIf="!submitSpnStatus">Done</ng-container>
+            <ng-container *ngIf="submitSpnStatus">
+                <span clas="indicator-progress" [style.display]="'block'">
+                    Please Wait...{{ " " }}
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                </span>
+            </ng-container>
+        </button>
+    </div>
+    <!-- #endregion footer -->
+
+</div>

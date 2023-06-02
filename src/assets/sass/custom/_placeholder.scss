@@ -1,0 +1,62 @@
+// 
+// Placeholder Styles
+// 
+
+/* Variables */
+$fw: (
+  'lighter': $font-weight-lighter,
+  'light': $font-weight-light,
+  'normal': $font-weight-normal,
+  'bold': $font-weight-bold,
+  'bolder': $font-weight-bolder,
+  'boldest': $font-weight-boldest,
+);
+
+/* Mixins */
+@mixin placeholder() {
+  &::-webkit-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    @content;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    @content;
+  }
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    @content;
+  }
+}
+
+/* Set Theme */
+.placeholder-italic {
+  @include placeholder {
+    font-style: italic!important;
+  }
+}
+
+/* Set Theme */
+@each $name, $value in $fw {
+  .placeholder-#{$name} {
+    @include placeholder {
+      font-weight: $value!important;
+    }
+  }
+}
+
+/* Set Theme */
+@each $name, $value in $theme-colors {
+  .placeholder-#{$name} {
+    @include placeholder {
+      color: $value!important;
+      opacity: 1; /* Firefox */
+    }
+  } 
+
+  // Light
+  @if (theme-light-color($name)) {
+    .placeholder-light-#{$name} {
+      @include placeholder {
+        color: theme-light-color($name)!important;
+        opacity: 1; /* Firefox */
+      }
+    }
+  }	
+}

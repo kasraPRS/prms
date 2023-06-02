@@ -1,0 +1,226 @@
+<!-- #region Administration -->
+<div
+  class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown"
+  data-kt-menu-trigger="click"
+  data-kt-menu-placement="bottom-start"
+  *ngIf="user.access.administration?.allowed"
+>
+  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/administration')">
+    <span class="menu-title">
+      <span>Administration</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.administration}"
+      ></ng-container>
+    </span>
+    <span class="menu-arrow d-lg-none"></span>
+  </span>
+  <div
+    class="
+      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
+      py-lg-4
+      min-w-lg-225px
+    "
+    data-kt-menu-dismiss="true"
+    data-popper-placement="bottom-start"
+  >
+    <div class="menu-item me-lg-1" *ngFor="let link of AdministrationLinks">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        [routerLink]="link.routerLink"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">{{link.title}}</span></a>
+    </div>
+  </div>
+</div>
+<!-- #endregion Administration -->
+
+<!-- #region Management -->
+<div
+  class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown"
+  data-kt-menu-trigger="click"
+  data-kt-menu-placement="bottom-start"
+  *ngIf="user.access.management?.allowed"
+>
+  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/management')">
+    <span class="menu-title">
+      <span>Management</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.management}"
+      ></ng-container>
+    </span>
+    <span class="menu-arrow d-lg-none"></span>
+  </span>
+  <div
+    class="
+      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
+      py-lg-4
+      w-lg-225px
+    "
+    data-kt-menu-dismiss="true"
+    data-popper-placement="bottom-start"
+  >
+    <ng-container *ngFor="let link of ManagementLinks">
+      <div class="menu-item me-lg-1" *ngIf="checkCondition(link.condition)">
+        <a
+          class="menu-link py-3"
+          routerLinkActive="active"
+          [routerLink]="link.routerLink"
+        ><span class="menu-bullet"
+        ><span class="bullet bullet-dot"></span></span
+        ><span class="menu-title">{{link.title}}</span></a
+        >
+      </div>
+    </ng-container>
+  </div>
+</div>
+<!-- #endregion Management -->
+
+<!-- #region Activities -->
+<div
+  class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown"
+  data-kt-menu-trigger="click"
+  data-kt-menu-placement="bottom-start"
+  *ngIf="user.access.activities?.allowed"
+>
+  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/activities')">
+    <span class="menu-title">
+      <span>Activities</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.activities}"
+      ></ng-container>
+    </span>
+    <span class="menu-arrow d-lg-none"></span>
+  </span>
+  <div
+    class="
+      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
+      py-lg-4
+      min-w-lg-225px
+    "
+    data-kt-menu-dismiss="true"
+    data-popper-placement="bottom-start"
+  >
+    <div class="menu-item me-lg-1" *ngFor="let link of ActivitiesLinks">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        [routerLink]="link.routerLink"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">{{link.title}}</span></a
+      >
+    </div>
+  </div>
+</div>
+<!-- #endregion Activities -->
+
+<!-- #region Reports -->
+<div
+  class="menu-item menu-lg-down-accordion me-lg-1 menu-dropdown"
+  data-kt-menu-trigger="click"
+  data-kt-menu-placement="bottom-start"
+  *ngIf="user.access.reports?.allowed"
+>
+  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/reports')">
+    <span class="menu-title">
+      <span>Reports</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.reports}"
+      ></ng-container>
+    </span>
+    <span class="menu-arrow d-lg-none"></span>
+  </span>
+  <div
+    class="
+      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
+      py-lg-4
+      min-w-lg-225px
+    "
+    data-kt-menu-dismiss="true"
+    data-popper-placement="bottom-start"
+  >
+    <div class="menu-item me-lg-1" *ngFor="let link of ReportsLinks">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        [routerLink]="link.routerLink"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">{{link.title}}</span></a
+      >
+    </div>
+  </div>
+</div>
+<!-- #endregion Reports -->
+
+<!-- #region Analytics -->
+<div class="menu-item me-lg-1" *ngIf="user.access.analytics?.allowed">
+  <a class="menu-link py-3" routerLink="/analytics" [ngClass]="calculateMenuItemCssClass('/analytics')"
+  ><span class="menu-title">
+    <span>Analytics</span>
+    <ng-container 
+      [ngTemplateOutlet]="tooltip" 
+      [ngTemplateOutletContext]="{context:tooltips.analytics}"
+    ></ng-container></span
+  ></a>
+</div>
+<!-- #endregion Analytics -->
+
+<!-- #region Tickets -->
+<div class="menu-item me-lg-1" *ngIf="user.access.tickets?.allowed">
+  <a class="menu-link py-3" routerLink="/tickets" [ngClass]="calculateMenuItemCssClass('/tickets')"
+  ><span class="menu-title">
+    <span>Tickets</span>
+    <ng-container 
+      [ngTemplateOutlet]="tooltip" 
+      [ngTemplateOutletContext]="{context:tooltips.tickets}"
+    ></ng-container></span
+  ></a>
+</div>
+<!-- #endregion Tickets -->
+
+<!-- #region Tasks -->
+<div class="menu-item me-lg-1" *ngIf="user.access.tasks?.allowed">
+  <a class="menu-link py-3" routerLink="/tasks" [ngClass]="calculateMenuItemCssClass('/tasks')"
+  ><span class="menu-title">
+    <span>Tasks</span>
+    <ng-container 
+      [ngTemplateOutlet]="tooltip" 
+      [ngTemplateOutletContext]="{context:tooltips.tasks}"
+    ></ng-container></span
+  ></a>
+</div>
+<!-- #endregion Tasks -->
+
+<!-- #region Analytics -->
+<div class="menu-item me-lg-1" *ngIf="user.access.myAccount?.allowed">
+  <a class="menu-link py-3" routerLink="/account" [ngClass]="calculateMenuItemCssClass('/account')"
+  ><span class="menu-title">
+    <span>My Account</span>
+    <ng-container 
+      [ngTemplateOutlet]="tooltip" 
+      [ngTemplateOutletContext]="{context:tooltips.myAccount}"
+    ></ng-container></span
+  ></a>
+</div>
+<!-- #endregion Analytics -->
+
+<ng-template 
+  #tooltip 
+  let-context="context"
+>
+  <span style="width: 13px; height: 13px;" class="
+    bg-primary rounded-circle ms-3
+    d-flex align-items-center justify-content-center"
+    [ngbTooltip]="context" tooltipsRef="ngbTooltip"
+    (click)="$event.stopPropagation();$event.preventDefault()"
+  >
+    <i class="fa-solid fa-question fs-8 text-white"></i>
+  </span>
+</ng-template>

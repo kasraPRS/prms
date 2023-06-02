@@ -1,0 +1,31 @@
+<div class="card w-400px mw-100 mh-100">
+
+    <!-- #region body -->
+    <div class="card-body text-center">
+
+        <div class="fw-bolder mb-7 fs-5">
+            You are creating a team, please choose a name for it.
+        </div>
+
+        <div>
+            <input type="text" class="form-control form-control-solid text-dark form-control-sm"
+                placeholder="Type a Name" [(ngModel)]="name" [disabled]="submitting" />
+        </div>
+
+    </div>
+    <!-- #endregion body -->
+
+    <!-- #region footer -->
+    <div class="card-footer text-center p-3">
+        <button type="button" class="btn btn-danger btn-sm me-3" (click)="ref.close()" [disabled]="submitting">
+            Cancel
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="onBtnDoneClick()"
+            [disabled]="!name || submitting">
+            <ng-container *ngIf="!submitting">Done</ng-container>
+            <ng-container *ngIf="submitting">Please wait...</ng-container>
+        </button>
+    </div>
+    <!-- #endregion footer -->
+
+</div>

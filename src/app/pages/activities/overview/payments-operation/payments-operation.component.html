@@ -1,0 +1,27 @@
+<!-- #region Header -->
+<div class="card-header border-0">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-normal fs-3">Payments per Operation</span>
+  </h3>
+</div>
+<!-- #endregion Header -->
+<!-- #region Body -->
+<div class="card-body p-0">
+  <!-- #region Payments List -->
+  <div class="scroll-y px-9" style="max-height: 330px">
+
+    <!-- #region List Item -->
+    <div class="d-flex flex-column" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <div class="mb-2">
+        <span class="text-primary me-1">1000$</span>for
+        <span class="text-primary ms-1">3000 Link Entry</span>
+      </div>
+      <div class="text-muted fs-8">By Allen</div>
+      <div class="separator mt-3 mb-4"></div>
+    </div>
+    <!-- #endregion List Item -->
+    
+  </div>
+  <!-- #endregion Payments List -->
+</div>
+<!-- #endregion Body -->

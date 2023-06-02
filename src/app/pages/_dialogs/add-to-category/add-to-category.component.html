@@ -1,0 +1,122 @@
+<div class="card position-relative verflow-hidden w-800px mw-100 mh-100" *ngIf="true">
+  <!-- #region Header -->
+  <div class="card-header">
+    <div class="card-title d-flex flex-column m-0">
+      <h3 class="fw-bolder m-0">Add to Category</h3>
+      <!-- <span class="text-muted fs-8">{{currentUserCategories.length}} Categories</span> -->
+    </div>
+    <div class="card-toolbar">
+      <button 
+        type="button" 
+        (click)="close()"
+        class="btn btn-icon btn-sm bg-hover-light-danger text-hover-danger"
+      >
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div class="card-body scroll-y border-top p-9 h-400px mh-400px">
+    <!-- #region Select Category -->
+    <div class="row mb-6">
+      <label class="col-lg-4 col-form-label fw-bold fs-6">Select Category</label>
+      <div class="col-lg-8 fv-row">
+        <div class="position-relative">
+          <ng-select 
+            #selectCategory
+            [multiple]="true"
+            [closeOnSelect]="false"
+            [(ngModel)]="selectedCategories"
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark has-icon">
+            <ng-option 
+              [value]="category.id" 
+              *ngFor="let category of categories.items"
+            >{{category.name}}</ng-option>
+          </ng-select>
+          <label 
+            (click)="selectCategory.open()"
+            class="ng-select-icon top"
+            [class.text-color]="selectCategory.isOpen"
+            style="margin-top: 1px">
+            <i class="bi bi-search icon"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+    <!-- #endregion Select Category -->
+
+    <!-- #region User Categories -->
+    <div class="row">
+      <label class="col-lg-4 col-form-label fw-bold fs-6">Categories</label>
+      <div class="col-lg-8 fv-row">
+        <div 
+          style="min-height: 53px"
+          class="
+            d-flex align-items-center justify-content-between 
+            form-control form-control-solid form-control-lg
+            py-2 mb-6
+          "
+          (click)="onClickCategory(category.id)"
+          *ngFor="let category of currentUserCategories"
+        >
+          <!-- #region Category Name -->
+          <div>{{category.name}}</div>
+          <!-- #endregion Category Name -->
+          <!-- #region Users -->
+          <div class="d-flex align-items-center">
+            <div class="symbol-group symbol-hover ms-2">
+              <div 
+                class="symbol symbol-30px symbol-circle border-2 border-gray-100 ms-n2" 
+                *ngFor="let user of category.userCategoryUsers|slice:0:3"
+                [ngbTooltip]="user.fullName">
+                <ng-container *ngIf="!user.profileImageUrl">
+                  <span class="text-white bg-primary symbol-label fs-5 fw-bolder"
+                  >{{ user.fullName?.charAt(0) }}</span>
+                </ng-container> 
+                <ng-container *ngIf="user.profileImageUrl">
+                  <img alt="" [src]="user.profileImageUrl">
+                </ng-container>
+              </div>
+            </div>
+            <div class="fs-7 text-muted" *ngIf="category.totalUsers>3">+{{category.totalUsers - 3}} more</div>
+          </div>
+          <!-- #endregion Users -->
+        </div>
+
+        <div class="text-muted fs-8 py-3" *ngIf="!currentUserCategories.length">
+          This User does not belong to any Category</div>
+      </div>
+    </div>
+    <!-- #endregion User Categories -->
+  </div>
+  <!-- #endregion Body -->
+
+  <!-- #region Card Footer -->
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      
+      <!-- #region Done -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="done()"
+        [disabled]="(isLoading$ | async)"
+      >
+        <ng-container *ngIf="!(isLoading$ | async)">
+          <span class="indicator-label">Done</span>
+        </ng-container>
+        <ng-container *ngIf="isLoading$ | async">
+          <span class="indicator-progress" [style.display]="'block'">
+            Please Wait...
+            <span
+              class="spinner-border spinner-border-sm align-middle ms-2"
+            ></span>
+          </span>
+          </ng-container>
+      </button>
+      <!-- #endregion Done -->
+
+    </div>
+    <!-- #endregion Card Footer -->
+</div>

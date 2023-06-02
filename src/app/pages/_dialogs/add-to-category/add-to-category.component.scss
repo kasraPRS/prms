@@ -1,0 +1,19 @@
+.ng-select-container {
+  border: none;
+  min-height: 50px;
+  background-color: red;
+  box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+  .ng-value-container {
+    display: flex;
+    align-items: center;
+    .ng-placeholder{
+      top: 50% !important;
+      transform: translate(0, -50%) !important;
+      padding-bottom: 0;
+    }
+    .ng-input {
+      top: 50% !important;
+      // transform: translate(0, -50%) !important;
+    }
+  }
+}

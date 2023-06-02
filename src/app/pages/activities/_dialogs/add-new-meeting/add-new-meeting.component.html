@@ -1,0 +1,157 @@
+<div class="card w-700px mw-100 mh-100">
+
+    <!-- #region Header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">New Meeting</h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- #region Body -->
+        <div class="card-body p-9 h-400px overflow-auto">
+
+            <!-- #region Meeting Title -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    Meeting Title
+                </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                        placeholder="Type a Title" formControlName="title" />
+                </div>
+            </div>
+            <!-- #endregion Meeting Title -->
+
+            <!-- #region Description -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    Description
+                </label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                        placeholder="Description" formControlName="description" />
+                </div>
+            </div>
+            <!-- #endregion Description -->
+
+            <!-- #region date -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    Date
+                </label>
+                <div class="col-lg-4">
+                    <input type="datetime-local" class="form-control form-control-solid text-primary"
+                        placeholder="Pick date rage" formControlName="date" />
+                </div>
+            </div>
+            <!-- #endregion date -->
+
+            <!-- #region Duration -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    Duration
+                </label>
+                <div class="col-lg-4">
+                    <select class="form-select form-select-solid fw-bold text-primary" formControlName="duration">
+                        <option value="1">1 Hour</option>
+                        <option value="2">2 Hour</option>
+                        <option value="3">3 Hour</option>
+                        <option value="4">4 Hour</option>
+                    </select>
+                </div>
+            </div>
+            <!-- #endregion Duration -->
+
+            <!-- #region participantes -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6 d-flex align-items-center">
+                    Participants
+                    <prms-tool-tip containerIsNotBody="true" [context]="tooltips.participants" class="ms-1"></prms-tool-tip>
+                </label>
+                <div class="col-lg-8">
+
+                    <div class="symbol-group symbol-hover">
+                        <div class="symbol symbol-circle symbol-40px" placement="bottom"
+                            *ngFor="let participant of participantes.slice(0, 4)" [ngbTooltip]="participant.name">
+
+                            <img [src]="participant.profileImageUrl" alt="user image"
+                                [hidden]="!participant.profileImageUrl" />
+
+                            <div class="symbol-label fs-2 fw-bold text-primary" [hidden]="participant.profileImageUrl">
+                                {{participant.name?.substring(0,1)}}
+                            </div>
+
+                        </div>
+                        <div class="fs-8 text-muted" *ngIf="participantes.length>4">
+                            +{{participantes.length-4}} more
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- #endregion participantes -->
+
+            <!-- #region third party participantes -->
+            <div class="row">
+                <label class="col-lg-4 col-form-label fw-bold fs-6 d-flex align-items-center">
+                    Third-Party Participants
+                    <prms-tool-tip containerIsNotBody="true" [context]="tooltips.thirdPartyParticipants" class="ms-1"></prms-tool-tip>
+                </label>
+                <div class="col-lg-8 d-flex align-items-center text-nowrap text-overflow-ellipsis">
+                    <ng-container *ngFor="let tp_participant of thirdPartyParticipants; index as i;">
+                        {{tp_participant.fullName}}{{ i + 1 != thirdPartyParticipants.length ? ','
+                        : ''}}
+                    </ng-container>
+                </div>
+            </div>
+            <!-- #endregion third party participantes -->
+
+        </div>
+        <!-- #endregion Body -->
+
+        <!-- #region Card Footer -->
+        <div class="card-footer py-5">
+            <div class=" d-flex justify-content-between">
+
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-light me-3 btn-sm" (click)="addOtherMarketersDialog()">
+                        Add Other Marketers
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm" (click)="addThirdPartyPerticipants()">
+                        Add Third-Party Participants
+                    </button>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-danger me-3 btn-sm" [disabled]="submitting"
+                        *ngIf="dialogType == 'edit'">
+                        Delete
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-sm"
+                        [disabled]="(isLoading$ | async) || form.invalid">
+                        <ng-container *ngIf="!(isLoading$ | async)">Done</ng-container>
+                        <ng-container *ngIf="(isLoading$ | async)">
+                            <span class="indicator-progress" [style.display]="'block'">
+                                Please Wait...
+                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                        </ng-container>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- #endregion Card Footer -->
+
+    </form>
+
+</div>

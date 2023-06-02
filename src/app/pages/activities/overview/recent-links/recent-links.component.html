@@ -1,0 +1,74 @@
+<!-- #region Header -->
+<div class="card-header">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-normal fs-3">Recent Links</span>
+  </h3>
+  <div class="card-toolbar">
+    <a class="btn btn-sm btn-primary cursor-pointer" (click)="createNewLink()">
+      Create New Link
+    </a>
+  </div>
+</div>
+<!-- #endregion Header -->
+<!-- #region Body -->
+<div class="card-body p-0">
+  <!-- #region Table container -->
+  <div class="table-responsive mh-350px py-3 px-9">
+    <!-- #region Table -->
+    <table class="table align-middle gs-0 gy-4">
+      <!-- #region Table body -->
+      <tbody>
+        <tr *ngFor="let link of tableDataSource.items">
+
+          <td class="min-w-200px">
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark mb-1 fs-6">
+                  {{link.name}}
+                </a>
+                <span class="text-gray-400 d-block fs-8">
+                  {{link.linkCampaignName}}
+                </span>
+              </div>
+            </div>
+          </td>
+
+          <td class="min-w-100px">
+            <a class="text-dark d-block mb-1 fs-6">
+             %10 Rate
+            </a>
+            <span class="text-gray-400 d-block fs-8">Conversion Rate</span>
+          </td>
+
+          <td class="min-w-100px">
+            <a class="text-dark d-block mb-1 fs-6">
+              $10 Revenue
+            </a>
+            <span class="text-gray-400 d-block fs-8">Gained Revenue</span>
+          </td>
+
+          <td class="text-end min-w-100px">
+            <a href="#" class="
+                btn btn-icon btn-sm btn-bg-light btn-active-color-primary
+                fs-9
+                me-1
+              ">
+              <i class="fa-solid fa-link"></i>
+            </a>
+            <a href="#" class="btn btn-icon btn-sm btn-bg-light btn-active-color-primary
+                fs-9
+              ">
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </td>
+
+        </tr>
+      </tbody>
+      <!-- #endregion Table body -->
+    </table>
+    <!-- #endregion Table -->
+  </div>
+  <prms-table-pagination [model]="tableDataSource" (change)="onGetListPagination()"></prms-table-pagination>
+  <!-- #endregion Table container -->
+</div>
+<!-- #endregion Body -->

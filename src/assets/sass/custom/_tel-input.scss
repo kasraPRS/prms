@@ -1,0 +1,34 @@
+// 
+// Tel Input Styles
+// 
+
+ngx-intl-tel-input.custom-tel-input {
+  &.hide-flags {
+    .iti__flag-container {
+      display: none;
+    }
+
+    input {
+      padding: $input-padding-y $input-padding-x;
+    }
+
+    &.control-p-sm input {
+      padding: $input-padding-y-sm $input-padding-x-sm;
+    }
+
+    &.control-p-lg input {
+      padding: $input-padding-y-lg $input-padding-x-lg;
+    }
+  }
+
+  .iti.iti--allow-dropdown {
+    width: 100%;
+  }
+}
+
+.country-search-box {
+  @extend .form-control;
+  @extend .form-control-sm;
+  border-radius: 0;
+  border: none;
+}

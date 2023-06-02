@@ -1,0 +1,187 @@
+<!-- #region card -->
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header border-0">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1">
+                <div class="align-items-center d-flex justify-content-center">
+                    Manage Links
+                    <prms-tool-tip [context]="tooltips.linksAndCampaigns.manageLinks.title" class="ms-1">
+                    </prms-tool-tip>
+                </div>
+            </span>
+            <span class="text-muted fw-normal fs-6">{{tableDataSource.totalCount}} Links</span>
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+
+            <!-- #region filter -->
+            <div ngbDropdown placement="bottom-right">
+                <button class="btn btn-icon-dark" id="tableFilter" ngbDropdownToggle>
+                    Filter
+                </button>
+                <div ngbDropdownMenu aria-labelledby="tableFilter">
+
+                    <div class="card w-350px">
+
+                        <div class="card-header d-flex align-items-center min-h-50px px-7">
+                            <h3 class="m-0 fw-bolder">Filter Options</h3>
+                        </div>
+                        <div class="card-body d-flex flex-column py-5 px-7">
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Name :</label>
+                                <input type="text" class="form-control form-control-solid" placeholder="name"
+                                    [(ngModel)]="tableFilterOptions.name">
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Status :</label>
+                                <ng-select [searchable]="false"
+                                    class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark"
+                                    placeholder="statuses">
+                                    <ng-option value="1">All</ng-option>
+                                    <ng-option value="2">Successful</ng-option>
+                                    <ng-option value="2">Unsuccessful</ng-option>
+                                </ng-select>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Source :</label>
+                                <ng-select [addTag]="true" [items]="sourceDto" bindLabel="value" bindValue="key"
+                                    [(ngModel)]="tableFilterOptions.source"
+                                    class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark"
+                                    placeholder="source">
+                                </ng-select>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Medium :</label>
+                                <ng-select [addTag]="true" [items]="mediumDto" bindLabel="value" bindValue="key"
+                                    class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark"
+                                    placeholder="medium" [(ngModel)]="tableFilterOptions.medium">
+                                </ng-select>
+                            </div>
+
+                        </div>
+                        <div class="card-footer py-5 px-7 text-end border-0">
+                            <div class="btn btn-light me-3" (click)="onBtnResetFilterClick()">Reset</div>
+                            <div class="btn btn-primary" (click)="onBtnApplyFilterClick()">Apply</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- #endregion filter -->
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body p-0">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px pt-0 px-6">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="fw-normal bg-light">
+                        <th class="ps-4 rounded-start min-w-200px ">Title</th>
+                        <th class="min-w-200px text-center">By</th>
+                        <th class="min-w-200px text-center">
+                            <div class="align-items-center d-flex justify-content-center">
+                                Entries
+                                <prms-tool-tip [context]="tooltips.linksAndCampaigns.manageLinks.entries" class="ms-1">
+                                </prms-tool-tip>
+                            </div>
+                        </th>
+                        <th class="min-w-200px text-center">Status</th>
+                        <th class="min-w-300px text-center">Page</th>
+                        <th class="min-w-150px text-center">Creation Date</th>
+                        <th class="min-w-200px rounded-end"></th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let item of tableDataSource.items"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-6">
+
+                        <!-- #region Title -->
+                        <td>
+                            <div class="mb-2 text-primary">{{item.name}}</div>
+                            <div class="text-muted fs-7">12 Links</div>
+                        </td>
+                        <!-- #endregion Title -->
+                        <!-- #region By -->
+                        <td class="text-center">
+                            <div class="mb-2 text-primary">{{item.createdBy}}</div>
+                            <div class="text-muted fs-7">New York</div>
+                        </td>
+                        <!-- #endregion By-->
+                        <!-- #region Entries -->
+                        <td class="text-center">
+                            <div class="mb-2">{{1578 | number}} Entries</div>
+                            <div class="text-muted fs-7">4.5% Converted</div>
+                        </td>
+                        <!-- #endregion Entries -->
+                        <!-- #region Status -->
+                        <td class="text-center">
+                            <div class="mb-2 text-success">Successful</div>
+                            <div class="text-muted fs-7">$500 Gained Revenue</div>
+                        </td>
+                        <!-- #endregion Status -->
+                        <!-- #region Page -->
+                        <td class="text-center">
+                            <!-- /{{item.url}} -->
+                            <div class="mb-2 text-primary">
+                                <a href="{{baseLinkUrl}}/{{item.url}}">
+                                    {{baseLinkUrl}}
+                                </a>
+                            </div>
+                            <div class="text-muted fs-7">${{1475547 | number}} Donated</div>
+                        </td>
+                        <!-- #endregion Page -->
+                        <!-- #region Creation Date -->
+                        <td class="text-center">
+                            <div class="mb-2">{{item.date}}</div>
+                            <div class="text-muted fs-7">{{item.time}}</div>
+                        </td>
+                        <!-- #endregion Creation Date -->
+                        <!-- #region Actions -->
+                        <td class="text-end">
+                            <button class="btn bg-light btn-sm btn-icon bg-hover-light-info text-hover-info"
+                                (click)="onBtnCopyUrlClick(item)">
+                                <i class="bi bi-link-45deg fs-2"></i>
+                            </button>
+                            <button (click)="onBtnUpdateExistLinkClick(item.id)"
+                                class="btn bg-light btn-sm btn-icon mx-2 bg-hover-light-primary text-hover-primary">
+                                <i class="bi bi-pencil fs-4"></i>
+                            </button>
+                            <button (click)="onBtnDeleteLinkClick(item)"
+                                class="btn bg-light btn-sm btn-icon bg-hover-light-danger text-hover-danger">
+                                <i class="bi bi-x fs-1"></i>
+                            </button>
+                        </td>
+                        <!-- #endregion Actions -->
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- #endregion Table container -->
+        <prms-table-pagination [model]="tableDataSource" (change)="onGetListPagination()"></prms-table-pagination>
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

@@ -1,0 +1,269 @@
+<div class="card w-700px mw-100 mh-100">
+    <!-- #region Header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">
+                <span>
+                    Link Information
+                </span>
+                <span class="text-primary">
+                    {{createdBy}}
+                </span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close.emit()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <form novalidate="" class="form">
+        <!-- #region Body -->
+        <div class="card-body border-top p-0 mh-400px overflow-auto">
+
+            <!-- #region link name -->
+            <div class="px-9 py-6 border-bottom">
+
+                <!-- #region Link Name -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Link Name</label>
+                    <div class="col-lg-8 fv-row">
+                        <input type="text" class=" form-control form-control-solid
+                    text-dark mb-3 mb-lg-0 " placeholder="Type a Name" [(ngModel)]="name" name="name" />
+                    </div>
+                </div>
+                <!-- #endregion Link Name -->
+
+                <!-- #region Campaign -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">Campaign</label>
+                    <div class="col-lg-8 fv-row">
+                        <select class="form-select form-select-solid fw-bold text-dark" [(ngModel)]="campaignId"
+                            name="campaignId">
+                            <option value="{{item.id}}" *ngFor="let item of campaigns">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- #endregion Campaign -->
+
+                <!-- #region Link Url -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">
+                        <div class=" d-flex align-items-center">
+                            Link Url
+                            <prms-tool-tip [context]="tooltips.linknformation.linkURL" class="ms-1"></prms-tool-tip>
+                        </div>                       
+                    </label>
+                    <div class="col-lg-8">
+                        <div class="input-group">
+                            <input readonly type="text" class="form-control form-control-solid" placeholder="URL"
+                                aria-describedby="btn_view" [(ngModel)]="url" name="url">
+                            <button class="btn bg-light text-primary" type="button" id="btn_view"
+                                (click)="onBtnViewClick()">view</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- #endregion Link Url -->
+
+                <!-- #region Link Source -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">
+                        <div class=" d-flex align-items-center">
+                            Source
+                            <prms-tool-tip [context]="tooltips.linknformation.source" class="ms-1"></prms-tool-tip>
+                        </div>
+                    </label>
+                    <div class="col-lg-8">
+                        <ng-select [addTag]="true" [items]="sourceDto" name="source" [(ngModel)]="source"
+                            bindLabel="value" bindValue="key" class="form-control form-control-solid text-primary placeholder-primary
+              placeholder-italic placeholder-lighter " (change)="onChangeSource($event)">
+                        </ng-select>
+                    </div>
+                </div>
+                <!-- #endregion Link Source -->
+
+                <!-- #region Link Medium -->
+                <div class="row">
+                    <label class="col-lg-4 col-form-label fw-bold fs-6">
+                        <div class=" d-flex align-items-center">
+                            Medium
+                            <prms-tool-tip [context]="tooltips.linknformation.source" class="ms-1"></prms-tool-tip>
+                        </div>
+                    </label>
+                    <div class="col-lg-8">
+                        <ng-select [addTag]="true" [items]="mediumDto" name="medium" [(ngModel)]="medium"
+                            bindLabel="value" bindValue="key" class="form-control form-control-solid text-primary placeholder-primary
+          placeholder-italic placeholder-lighter " (change)="onChangeMedium($event)">
+                        </ng-select>
+                        <!-- <input type="text" class="
+                        form-control form-control-solid
+                        text-dark mb-3 mb-lg-0 " name="medium" [(ngModel)]="medium" /> -->
+                    </div>
+                </div>
+                <!-- #endregion Link Medium -->
+
+            </div>
+            <!-- #endregion link  -->
+
+            <!-- #region link status -->
+            <div class="px-9 py-6 border-bottom">
+
+                <!-- #region status -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 fw-bold fs-6 text-muted"> Status </label>
+                    <div class="col-lg-8 fv-row text-success"> Successful </div>
+                </div>
+                <!-- #endregion status -->
+
+                <!-- #region number of entries -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 fw-bold fs-6 text-muted">
+                        <div class=" d-flex align-items-center">
+                            Number of Entries
+                            <prms-tool-tip [context]="tooltips.linknformation.numberOfEntries" class="ms-1">
+                            </prms-tool-tip>
+                        </div>
+                    </label>
+                    <div class="col-lg-8 fv-row"> {{1578 | number}} Entries </div>
+                </div>
+                <!-- #endregion number of entries -->
+
+                <!-- #region conversion rate -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 fw-bold fs-6 text-muted">
+                        <div class=" d-flex align-items-center">
+                            Conversion Rate
+                            <prms-tool-tip [context]="tooltips.linknformation.conversionRate" class="ms-1">
+                            </prms-tool-tip>
+                        </div>
+                    </label>
+                    <div class="col-lg-8 fv-row">
+                        <span class="me-3">4.5% Converted</span>
+                        <span class="text-primary">70 Persons</span>
+                    </div>
+                </div>
+                <!-- #endregion conversion rate -->
+
+                <!-- #region Generated Revenue -->
+                <div class="row mb-3">
+                    <label class="col-lg-4 fw-bold fs-6 text-muted">
+                        <div class=" d-flex align-items-center">
+                            Generated Revenue
+                            <prms-tool-tip [context]="tooltips.linknformation.generatedRevenue" class="ms-1">
+                            </prms-tool-tip>
+                        </div>
+                    </label>
+                    <div class="col-lg-8 fv-row"> $700 Gained Revenue </div>
+                </div>
+                <!-- #endregion Generated Revenue -->
+
+                <!-- #region creation date -->
+                <div class="row">
+                    <label class="col-lg-4 fw-bold fs-6 text-muted"> Creation Date </label>
+                    <div class="col-lg-8 fv-row">
+                        <span class="me-3">2/5/2022</span>
+                        <span class="text-muted">10:47 AM</span>
+                    </div>
+                </div>
+                <!-- #endregion creation date -->
+
+            </div>
+            <!-- #endregion link status -->
+
+            <!-- #region banner -->
+            <div class="px-9 py-6 border-bottom">
+                <div class="fs-6 fw-bolder mb-2">
+                    <div class=" d-flex align-items-center">
+                        Banner {{banner}}
+                        <prms-tool-tip [context]="tooltips.linknformation.banner" class="ms-1">
+                        </prms-tool-tip>
+                    </div>
+                </div>
+
+                <!-- #region add banner -->
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="text-muted" *ngIf="Banner_GetListByLinkDto.length <= 0">No Active Banner</span>
+                    <button class="btn btn-primary btn-sm" (click)="addBannerBtnClick.emit()"> Add Banner </button>
+                </div>
+                <!-- #endregion add banner -->
+
+                <!-- #region banner -->
+                <!-- *ngIf="banner" -->
+                <div class="d-flex h-125px px-1 py-1" *ngFor="let item of Banner_GetListByLinkDto">
+                    <button class="btn btn-icon btn-sm btn-bg-light btn-active-color-primary fs-9 "
+                        (click)="onBtnRemoveBannerLinkClick(item)"><i class="fa-solid fa-xmark fs-5"></i></button>
+                    <!-- #region image -->
+                    <div class="rounded-4 bg-secondary w-250px overflow-hidden me-3">
+                        <img src="{{serverImageUrl}}/{{item.url}}" alt="banner" class="w-100 h-100"
+                            style="object-fit: cover;">
+                    </div>
+                    <!-- #endregion image -->
+                    <!-- #region embed -->
+                    <div class="bg-light-dark rounded w-100 h-100 overflow-hidden p-2 d-flex flex-column">
+                        <div class="h-100 overflow-auto">
+                            <code>{{item.code}}</code>
+                        </div>
+                        <div class="pt-1 text-end">
+                            <button class="btn btn-primary btn-sm py-1"
+                                (click)="onBtnCopyLinkBannerClick(item)">Copy</button>
+                        </div>
+                    </div>
+                    <!-- #endregion embed -->
+                </div>
+                <!-- #endregion banner -->
+
+            </div>
+            <!-- #endregion banner -->
+
+        </div>
+        <!-- #endregion Body -->
+
+        <!-- #region Card Footer -->
+        <div class="card-footer d-flex justify-content-between align-items-center py-4 px-9">
+
+            <!-- #region url input -->
+            <div class="input-group input-group-sm w-100">
+                <span class="input-group-text bg-light-primary text-primary border border-primary">Url</span>
+                <input type="text" class="form-control m-0 text-gray-600" value="{{linkurl}}" readonly>
+                <button type="button" class="btn btn-light-success border border-success btn-sm"
+                    (click)="onBtnCopyClipboardClick()">
+                    Copy
+                </button>
+            </div>
+            <!-- #endregion url input -->
+
+            <!-- #region buttons -->
+            <div class="w-100 text-end">
+
+                <!-- #region delete -->
+                <button type="button" class="btn btn-light-danger me-3 btn-sm" [hidden]="isLoading"
+                    (click)="onBtnDeleteLinkClick(id)">
+                    Delete
+                </button>
+                <!-- #endregion delete -->
+
+                <!-- #region view analytics -->
+                <button type="button" class="btn btn-light-primary me-3 btn-sm"> View Analytics </button>
+                <!-- #endregion view analytics -->
+
+                <!-- #region view analytics -->
+                <button type="button" class="btn btn-primary btn-sm" [disabled]="isLoading" (click)="onBtnApplyClick()">
+                    <ng-container *ngIf="!isLoading">Apply</ng-container>
+                    <ng-container *ngIf="isLoading">
+                        <span clas="indicator-progress" [style.display]="'block'">
+                            Please Wait...{{ " " }}
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+                    </ng-container>
+                </button>
+                <!-- #endregion view analytics -->
+
+            </div>
+            <!-- #region buttons -->
+
+        </div>
+        <!-- #endregion Card Footer -->
+    </form>
+</div>

@@ -1,0 +1,71 @@
+<div class="d-flex flex-wrap flex-stack mb-6">
+  <h3 class="fw-normal my-2">
+    My Documents
+    <span class="fs-6 text-gray-400 fw-normal ms-1">12 Resources</span>
+  </h3>
+
+  <div class="d-flex my-2">
+    <div class="d-flex align-items-center position-relative me-4">
+      <span [ngClass]="{'svg-icon-primary':searchFocused|async}"
+        [inlineSVG]="'./assets/media/icons/duotune/general/gen021.svg'"
+        class="svg-icon svg-icon-1 position-absolute ms-2"></span>
+      <input type="text" class="form-control form-control-white form-control-sm ps-12 border-0" placeholder="Search..."
+        #searchInput (input)="onChangeSearchInput(searchInput.value)" />
+    </div>
+
+    <button class="btn btn-primary btn-sm cursor-pointer me-3" (click)="onBtnAddDocumentClick()">
+      Add Document
+    </button>
+
+    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+      <button type="button" class="btn bg-white text-hover-gray-700 btn-icon"
+        [ngClass]="{'btn-icon-gray-700' : layout == layouts.tile}" (click)="onBtnChangeLayoutClick(layouts.tile)">
+        <i class="bi bi-grid-fill"></i>
+      </button>
+      <button type="button" class="btn bg-white text-hover-gray-700 btn-icon"
+        [ngClass]="{'btn-icon-gray-700' : layout == layouts.list}" (click)="onBtnChangeLayoutClick(layouts.list)">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- #region tile mode -->
+<div class="row g-6 g-xl-9 mb-6 mb-xl-9" *ngIf="layout == layouts.tile">
+  <div class="col-md-3" *ngFor="let doc of documentsList">
+
+    <app-card4 [icon]="getFileIcon(doc.fileName)" [title]="doc.displayName" [description]="doc.created"
+      [privateTooltip]="tooltip.private" (click)="onDownloadAFile(doc.url)" [private]="doc.documentViewType == 0"
+      (deleteClick)="onDeleteDoc(doc)" (editClick)="onEditBtnClick(doc)">
+    </app-card4>
+
+  </div>
+</div>
+<!-- #endregion tile mode -->
+
+<!-- #region list mode -->
+<table class="w-100" *ngIf="layout == layouts.list">
+
+  <tbody>
+    <tr class="bg-white cursor-pointer" *ngFor="let doc of documentsList" (click)="onDownloadAFile(doc.url)">
+      <td class="p-4 border-light min-w-400px rounded-start" style="border-bottom-width: 5px;">
+        <img [src]="getFileIcon(doc.fileName)" alt="file icon" class="w-30px h-30px me-5">
+        <span class="fw-bolder">
+          {{doc.displayName}}
+        </span>
+      </td>
+      <td class="text-muted p-4 border-light text-end text-muted" style="border-bottom-width: 5px;">
+        {{doc.created}}
+      </td>
+      <td class="p-4 border-light text-end text-muted" style="border-bottom-width: 5px;">
+        By {{doc.createdByUserName}}
+      </td>
+      <td class="p-4 pe-10 border-light text-muted text-end rounded-end" style="border-bottom-width: 5px;">
+        {{doc.documentViewType == 1 ? 'Private' : ''}}
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+<!-- #endregion list mode -->

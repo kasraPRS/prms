@@ -1,0 +1,11 @@
+
+
+<!-- #region information dialog -->
+<prms-information *ngIf="visibleArea == visibleAreatas.information" (close)="close()" (addBannerBtnClick)="addBannerBtnClick()" [banner]="banner">
+</prms-information>
+<!-- #endregion information dialog -->
+
+<!-- #region banner dialog -->
+<prms-banner *ngIf="visibleArea == visibleAreatas.banner" (close)="close()" (back)="onBannerDialogBtnBackClick($event)">
+</prms-banner>
+<!-- #endregion banner dialog -->

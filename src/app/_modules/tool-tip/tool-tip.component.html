@@ -1,0 +1,4 @@
+<div [ngbTooltip]="context" class="tool-tip bg-primary cursor-pointer" [container]="(containerIsNotBody) ? '' : 'body'"
+    (click)="$event.stopPropagation();$event.preventDefault()">
+    <i class="fa-solid fa-question text-white fs-8"></i>
+</div>

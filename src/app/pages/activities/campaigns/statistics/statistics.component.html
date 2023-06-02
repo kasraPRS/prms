@@ -1,0 +1,84 @@
+<!-- #region Header -->
+<div class="card-header border-0">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-normal fs-3 mb-1">
+      <div class="d-flex inline-center">
+        Statistics
+        <prms-tool-tip [context]="tooltips.links.statistics.title" class="ms-1"></prms-tool-tip>
+      </div>
+    </span>
+  </h3>
+
+  <!-- #region Toolbar -->
+  <div class="card-toolbar" data-kt-buttons="true">
+    <a class="
+        btn btn-sm btn-color-muted btn-active btn-active-light-primary
+        fw-normal
+        active
+        px-4 
+        py-1
+        me-1
+      " id="kt_charts_widget_2_year_btn">
+      Year
+    </a>
+
+    <a class="
+        btn btn-sm btn-color-muted btn-active btn-active-light-primary
+        fw-normal
+        px-4 py-1
+        me-1
+      " id="kt_charts_widget_2_month_btn">
+      Month
+    </a>
+
+    <a class="btn btn-sm btn-color-muted btn-active btn-active-light-primary
+      fw-normal
+      px-4 py-1
+    " id="kt_charts_widget_2_week_btn">
+      Week
+    </a>
+  </div>
+  <!-- #endregion Toolbar -->
+</div>
+<!-- #endregion Header -->
+
+<!-- #region Body -->
+<div class="card-body p-0">
+  <!-- #region Chart -->
+  <div #chartRef class="d-flex justify-content-center py-4" id="kt_charts_statistics_chart" style="height: 250px;">
+    <apx-chart [series]="chartOptions.series" [labels]="chartOptions.labels" [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis" [dataLabels]="chartOptions.dataLabels"
+      [stroke]="chartOptions.stroke" [legend]="chartOptions.legend" [fill]="chartOptions.fill"
+      [states]="chartOptions.states" [tooltip]="chartOptions.tooltip" [colors]="chartOptions.colors"
+      [markers]="chartOptions.markers" [plotOptions]="chartOptions.plotOptions"></apx-chart>
+  </div>
+  <!-- <div #chartRef style="height: 300px;"></div> -->
+  <!-- #endregion Chart -->
+
+  <!-- #region Separator -->
+  <div class="separator mt-4"></div>
+  <!-- #endregion Separator -->
+
+  <!-- #region Info -->
+  <div class="row px-5 px-lg-9 text-center py-5">
+    <div class="col-md-6 px-1 py-4">
+      <span class="text-primary me-2">$3,215</span>
+      <span class="text-muted fs-8">Total Revenue</span>
+    </div>
+    <div class="col-md-6 px-1 py-4">
+      <span class="text-primary me-2">12,215</span>
+      <span class="text-muted fs-8">Total Entries</span>
+    </div>
+    <div class="col-md-6 px-1 py-4">
+      <span class="text-primary me-2">60%</span>
+      <span class="text-muted fs-8">Average Bounce Rate</span>
+    </div>
+    <div class="col-md-6 px-1 py-4">
+      <span class="text-primary me-2">4%</span>
+      <span class="text-muted fs-8">Average Conversion</span>
+    </div>
+  </div>
+  <!-- #endregion Info -->
+
+</div>
+<!-- #endregion Body -->

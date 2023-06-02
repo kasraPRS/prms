@@ -1,0 +1,55 @@
+<!-- #region meeting -->
+<div class="card h-700px">
+
+    <!-- #region header -->
+    <div class="card-header">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3">Meeting List</span>
+        </h3>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-primary btn-sm" (click)="openAddMeetingDialog()">
+                Add Meeting
+            </button>
+        </div>
+    </div>
+    <!-- #endregion header -->
+
+    <!-- #region body -->
+    <div class="card-body p-0 overflow-auto scroll-y px-9" style="height:500px;">
+        <div #external class="pt-5">
+            <p class="text-primary mb-5">Upcoming Meetings</p>
+            <!-- List items -->
+            <div *ngIf="meetingListitems">
+                <div *ngFor="let item of meetingListitems.items;let i = index">
+                    <div class='fc-event pb-3 border-bottom cursor-pointer text-hover-primary' (click)="openMeetingInfoDialog(i)">
+                        <div class="mt-5">
+                            <div class="">{{item.date.slice(0, 10)}}</div>
+                            <div class="fs-8 text-muted">{{item.title}}</div>
+                            <div class="fs-8 text-muted" *ngIf="item.Participants?.length">By
+                                <div *ngFor="let perticipant of item.Participants">{{perticipant}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- List items -->
+        </div>
+
+    </div>
+    <!-- #endregion body -->
+
+    <!-- #region navigation -->
+    <div class="card-footer d-flex align-items-center justify-content-center p-3">
+        <button class="btn bg-hover-light-primary text-hover-primary me-1" (click)="getPrevMeetingList()">
+            Previous
+        </button>
+        <button class="btn bg-hover-light-primary text-hover-primary ms-1" (click)="getNextMeetingList()">
+            Next
+        </button>
+    </div>
+    <!-- #endregion navigation -->
+
+</div>
+<!-- #region meeting -->

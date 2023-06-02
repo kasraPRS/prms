@@ -1,0 +1,240 @@
+<div class="row g-5 g-xxl-8">
+    <!-- #region select maketers level -->
+    <div class="col-xl-12">
+        <div class="card">
+
+            <!-- #region Header -->
+            <div class="card-header border-0">
+
+                <!-- #region title -->
+                <h3 class="card-title text-muted fw-normal">
+                    Select Marketers Level
+                    <prms-tool-tip [context]="tooltips.selectMarketersLevel.title" class="ms-1"></prms-tool-tip>
+                </h3>
+                <!-- #endregion title -->
+
+                <!-- #region toolbar -->
+                <div class="card-toolbar">
+
+                    <!-- #region level select -->
+                    <select class="form-select fw-bold me-3 text-dark w-100px">
+                        <option value="">Select</option>
+                        <option value="1">RM</option>
+                    </select>
+                    <!-- #endregion level select -->
+
+                    <!-- #region save changes -->
+                    <button class="btn btn-primary">
+                        Save Changes
+                    </button>
+                    <!-- #endregion save changes -->
+
+                </div>
+                <!-- #endregion toolbar -->
+
+            </div>
+            <!-- #endregion Header -->
+
+        </div>
+    </div>
+    <!-- #endregion select maketers level -->
+
+    <!-- #region incentive conditions -->
+    <div class="col-xl-12">
+        <div class="card">
+            <!-- #region Header -->
+            <div class="card-header">
+
+                <!-- #region title -->
+                <h3 class="card-title align-items-start flex-column">
+                    <span class="card-label fw-normal fs-3 mb-1 text-muted d-flex align-items-center">
+                        Incentive Conditions
+                        <prms-tool-tip [context]="tooltips.incentiveConditions.title" class="ms-1"></prms-tool-tip>
+                    </span>
+                </h3>
+                <!-- #endregion title -->
+
+            </div>
+            <!-- #endregion Header -->
+
+            <!-- #region body -->
+            <div class="card-body border-bottom">
+
+                <!-- #region check -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="period" [(ngModel)]="part1_checkStatus">
+                    <label class="form-check-label fs-6" for="period">
+                        If the independent marketer's income exceeds a certain amount within a specified period of time,
+                        a
+                        fixed
+                        amount will be awarded to the marketer as a reward.
+                    </label>
+                </div>
+                <!-- #endregion check -->
+
+                <!-- #region options -->
+                <div class="row mt-10">
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-between">
+                        <label for="marketersIncome" class="me-7 fs-6">
+                            Marketer's Income
+                        </label>
+                        <div class="input-group w-200px">
+                            <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                                name="marketersIncome" id="marketersIncome" value=""
+                                aria-describedby="marketersIncomeSign" [disabled]="!part1_checkStatus" />
+                            <span class="input-group-text border-0" id="marketersIncomeSign">$</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <label for="timePeriod" class="me-7 fs-6">
+                            Time Period
+                        </label>
+                        <select id="timePeriod" class="form-select form-select-solid fw-bold me-3 text-dark w-200px"
+                            [disabled]="!part1_checkStatus">
+                            <option value="">Select</option>
+                            <option value="1">RM</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <label for="reward" class="me-7 fs-6">
+                            Reward
+                        </label>
+                        <div class="input-group w-200px">
+                            <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                                name="reward" id="reward" value="" aria-describedby="rewardSign"
+                                [disabled]="!part1_checkStatus" />
+                            <span class="input-group-text border-0" id="rewardSign">$</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- #endregion options -->
+
+            </div>
+            <!-- #endregion body -->
+
+            <!-- #region body -->
+            <div class="card-body border-bottom">
+
+                <!-- #region check -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="part2_checkStatus" id="part2">
+                    <label class="form-check-label fs-6" for="part2">
+                        If the total income of the merketer,including independent income and income of sub-branches,
+                        exceeds
+                        a certain amount in a certain period of time. A certain percentage of total revenue is given to
+                        the
+                        marketer as a reward.
+                    </label>
+                </div>
+                <!-- #endregion check -->
+
+                <!-- #region options -->
+                <div class="row mt-10">
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-between">
+                        <label for="marketersIncome" class="me-7 fs-6">
+                            Total Income
+                        </label>
+                        <div class="input-group w-200px">
+                            <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                                name="marketersIncome" id="marketersIncome" value=""
+                                aria-describedby="marketersIncomeSign" [disabled]="!part2_checkStatus" />
+                            <span class="input-group-text border-0" id="marketersIncomeSign">$</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <label for="timePeriod" class="me-7 fs-6">
+                            Time Period
+                        </label>
+                        <select id="timePeriod" class="form-select form-select-solid fw-bold me-3 text-dark w-200px"
+                            [disabled]="!part2_checkStatus">
+                            <option value="">Select</option>
+                            <option value="1">RM</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <label for="reward" class="me-7 fs-6">
+                            Reward
+                        </label>
+                        <div class="input-group w-200px">
+                            <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                                name="reward" id="reward" value="" aria-describedby="rewardSign"
+                                [disabled]="!part2_checkStatus" />
+                            <span class="input-group-text border-0" id="rewardSign">$</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- #endregion options -->
+
+            </div>
+            <!-- #endregion body -->
+
+            <!-- #region body -->
+            <div class="card-body border-bottom">
+
+                <!-- #region check -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="part3_checkStatus" id="part3">
+                    <label class="form-check-label fs-6" for="part3">
+                        Third, if the independent marketer's income exceeds a certain amount in a cetain period of time,
+                        the
+                        merketer share percentage will increase by a cetain amount.
+                    </label>
+                </div>
+                <!-- #endregion check -->
+
+                <!-- #region options -->
+                <div class="row mt-10">
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-between">
+                        <label for="marketersIncome" class="me-7 fs-6">
+                            Marketer's Income
+                        </label>
+                        <div class="input-group w-200px">
+                            <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                                name="marketersIncome" id="marketersIncome" value=""
+                                aria-describedby="marketersIncomeSign" [disabled]="!part3_checkStatus" />
+                            <span class="input-group-text border-0" id="marketersIncomeSign">$</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <label for="timePeriod" class="me-7 fs-6">
+                            Time Period
+                        </label>
+                        <select id="timePeriod" class="form-select form-select-solid fw-bold me-3 text-dark w-200px"
+                            [disabled]="!part3_checkStatus">
+                            <option value="">Select</option>
+                            <option value="1">RM</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+                        <label for="reward" class="me-7 fs-6">
+                            Reward
+                        </label>
+                        <div class="input-group w-200px">
+                            <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                                name="reward" id="reward" value="" aria-describedby="rewardSign"
+                                [disabled]="!part3_checkStatus" />
+                            <span class="input-group-text border-0" id="rewardSign">$</span>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- #endregion options -->
+
+            </div>
+            <!-- #endregion body -->
+
+        </div>
+    </div>
+    <!-- #endregion incentive conditions -->
+</div>

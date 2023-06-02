@@ -1,0 +1,333 @@
+<div class="card mb-5 mb-xl-7">
+  <div class="card-body pt-9 pb-0">
+    <!-- #region Total Info -->
+    <div class="d-flex flex-wrap flex-sm-nowrap mb-2">
+      <div class="me-7 mb-4">
+        <div class="
+            symbol symbol-100px symbol-lg-150px symbol-fixed
+            position-relative
+          ">
+          <img [src]="marketerUser.marketer?.profileImageUrl" alt="user image" />
+          <!-- <div
+            class="
+              position-absolute
+              translate-middle
+              bottom-0
+              start-100
+              mb-6
+              bg-success
+              rounded-circle
+              border border-4 border-white
+              h-20px
+              w-20px
+            "
+          ></div> -->
+        </div>
+      </div>
+
+      <div class="flex-grow-1">
+        <div class="
+            d-flex
+            justify-content-between
+            align-items-start
+            flex-wrap
+            mb-2
+          ">
+          <div class="d-flex flex-column">
+            <!-- #region info -->
+            <div class="d-flex align-items-center mb-2">
+              <span class="
+                  text-gray-800 
+                  fs-2
+                  fw-bolder
+                  me-1
+                ">
+                {{marketerUser.marketer?.fullName}}
+              </span>
+              <span class="badge badge-primary rounded-pill badge-sm fs-7 mx-2">
+                {{marketerUser.marketer.role | roleConverter}}
+              </span>
+              <span class="text-gray-400 fw-bold fs-6 mx-3" *ngIf="marketerUser.marketer.role !== 'admin'">Joined by
+                <a style="text-decoration:underline!important; cursor:pointer;" class="text-hover-primary text-gray-400"
+                  (click)="navigateToParentPage()">{{marketerUser.marketer?.parentName}}</a>
+                at {{marketerUser.marketer?.joinDate}}
+              </span>
+              <!-- routerLink="/activities/overview" -->
+              <!-- [queryParams]="{i:marketerUser.marketer.parentId}" -->
+            </div>
+            <!-- #endregion info -->
+
+            <!-- #region extra info -->
+            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+              <a class="
+                  d-flex
+                  align-items-center
+                  text-gray-400
+                  me-5
+                  mb-2
+                ">
+                <span [inlineSVG]="
+                    './assets/media/icons/duotune/communication/com006.svg'
+                  " class="svg-icon svg-icon-4 me-1 svg-icon-dark"></span>
+                {{marketerUser.marketer?.role | roleConverter}}
+              </a>
+              <!-- <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 
+                  me-5
+                  mb-2
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen018.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1 svg-icon-dark"
+                ></span>
+                {{marketerUser.marketer?.state?.title}}
+              </a> -->
+              <a class="
+                  d-flex
+                  align-items-center
+                  text-gray-400
+                  mb-2
+                ">
+                <span [inlineSVG]="
+                    './assets/media/icons/duotune/communication/com011.svg'
+                  " class="svg-icon svg-icon-4 me-1 svg-icon-dark"></span>
+                {{marketerUser.marketer?.email}}
+              </a>
+            </div>
+            <!-- #endregion extra info -->
+          </div>
+
+          <!-- #region actions -->
+          <div class="d-flex">
+            <a *ngIf="user?.role === 'admin' || !marketerUser.routeId" [hidden]="!checkedAccess"
+              routerLink="/account/settings" queryParamsHandling="merge" class="btn btn-sm btn-primary cursor-pointer">
+              Manage Account
+            </a>
+          </div>
+          <!-- #endregion actions -->
+        </div>
+
+
+        <div class="d-flex flex-wrap flex-stack">
+          <div class="d-flex flex-column flex-grow-1 pe-8">
+            <div class="d-flex flex-wrap">
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2 justify-content-center">
+                  <span [inlineSVG]="
+                      './assets/media/icons/duotune/arrows/arr066.svg'
+                    " class="svg-icon svg-icon-3 svg-icon-success"></span>
+                  <div class="fs-2 fw-bold">83%</div>
+                </div>
+
+                <div class="fw-bold fs-8 text-gray-400">Successful Links</div>
+              </div>
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2 justify-content-center">
+                  <span [inlineSVG]="
+                      './assets/media/icons/duotune/arrows/arr066.svg'
+                    " class="svg-icon svg-icon-3 svg-icon-success"></span>
+                  <div class="fs-2 fw-bold">45%</div>
+                </div>
+
+                <div class="fw-bold fs-8 text-gray-400">Successful Compaigns</div>
+              </div>
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="fs-2 fw-bold w-100 text-center">12</div>
+                </div>
+                <div class="fw-bold fs-8 text-gray-400">Total Links</div>
+              </div>
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="fs-2 fw-bold w-100 text-center">4</div>
+                </div>
+                <div class="fw-bold fs-8 text-gray-400">Total Compaigns</div>
+              </div>
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="fs-2 fw-bold w-100 text-center">4</div>
+                </div>
+                <div class="fw-bold fs-8 text-gray-400">All Related People</div>
+              </div>
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="fs-2 fw-bold text-success w-100 text-center">$ 2,458</div>
+                </div>
+
+                <div class="fw-bold fs-8 text-gray-400">Monthly Income</div>
+              </div>
+
+              <div class="
+                  border border-gray-300 border-dashed
+                  rounded
+                  min-w-80px
+                  py-3
+                  px-4
+                  me-3
+                  mb-3
+                ">
+                <div class="d-flex align-items-center mb-2">
+                  <div class="fs-2 fw-bold text-success w-100 text-center">$ 12.5K</div>
+                </div>
+
+                <div class="fw-bold fs-8 text-gray-400">Total Income</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- #endregion Total Info -->
+
+    <!-- #region Tabs -->
+    <div class="d-flex overflow-auto h-45px">
+      <ul class="
+          nav nav-stretch nav-line-tabs nav-line-tabs-2x
+          border-transparent
+          fs-5
+          fw-bolder
+          flex-nowrap
+        ">
+        <li class="nav-item">
+          <a
+            class="nav-link text-gray-800 text-active-primary me-6"
+            routerLink="/activities/overview" [queryParams]="userId ? {'i': userId} : ''"
+            routerLinkActive="active"
+            *ngIf="access?.overview?.allowed"
+          >
+            Overview
+            <prms-tool-tip [context]="tooltips.overview.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-gray-800 text-active-primary me-6"
+            routerLink="/activities/hierarchy" [queryParams]="userId ? {'i': userId} : ''"
+            routerLinkActive="active"
+            *ngIf="access?.hierarchy.allowed"
+          >
+            Hierarchy
+            <prms-tool-tip [context]="tooltips.hierarchy.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-gray-800 text-active-primary me-6"
+            routerLink="/activities/activity" [queryParams]="userId ? {'i': userId} : ''"
+            routerLinkActive="active"
+            *ngIf="access?.activity.allowed"
+          >
+            Activity
+            <prms-tool-tip [context]="tooltips.activity.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-gray-800 text-active-primary me-6"
+            routerLink="/activities/links" [queryParams]="userId ? {'i': userId} : ''"
+            routerLinkActive="active"
+            *ngIf="access?.links.allowed"
+          >
+            Links
+            <prms-tool-tip [context]="tooltips.links.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-gray-800 text-active-primary me-6"
+            routerLink="/activities/campaigns" [queryParams]="userId ? {'i': userId} : ''"
+            routerLinkActive="active"
+            *ngIf="access?.campaigns.allowed"
+          >
+            Campaigns
+            <prms-tool-tip [context]="tooltips.campaigns.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-gray-800 text-active-primary me-6"
+            routerLink="/activities/contracts" [queryParams]="userId ? {'i': userId} : ''"
+            routerLinkActive="active"
+            *ngIf="access?.contracts.allowed"
+          >
+            Contracts
+            <prms-tool-tip [context]="tooltips.contracts.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-gray-800 text-active-primary me-6" routerLink="/activities/documents"
+            [queryParams]="userId ? {'i': userId} : ''" routerLinkActive="active">
+            Documents
+            <prms-tool-tip [context]="tooltips.documents.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- #endregion Tabs -->
+  </div>
+</div>
+
+<router-outlet></router-outlet>

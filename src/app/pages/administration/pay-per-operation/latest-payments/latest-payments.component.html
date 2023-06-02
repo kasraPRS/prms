@@ -1,0 +1,98 @@
+<!-- #region card -->
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header">
+
+        <!-- #region title -->
+        <h3 class="card-title">
+            <span class="card-label fw-normal fs-3 mb-1">Latest Payments</span>
+
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+
+            <!-- #region Search -->
+            <div class="d-flex align-items-center position-relative me-4">
+                <label for="search-links" class="svg-icon svg-icon-2 position-absolute ms-3"
+                    [inlineSVG]="'assets/media/icons/duotune/general/gen021.svg'"></label>
+                <input type="text" id="search-links" data-kt-customer-table-filter="search"
+                    class="form-control form-control-sm form-control-solid w-250px ps-12">
+            </div>
+            <!-- #endregion Search -->
+            <!-- #region filter -->
+            <div>
+                <select class="form-select border-0 fw-bold text-dark">
+                    <option value="">Filter</option>
+                    <option value="1">RM</option>
+                </select>
+            </div>
+            <!-- #endregion filter -->
+            <!-- #region export -->
+            <button class="btn m-5 p-0">
+                <i class="bi bi-box-arrow-up fs-2"></i>
+            </button>
+            <!-- #endregion export -->
+
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3">
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let payment of payments"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region marketer name -->
+                        <td class="min-w-150px py-6">
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <div class="symbol symbol-60px me-4">
+                                    <img src="./assets/media/avatars/300-23.jpg" alt="" />
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <a class="text-gray-800 mb-1 mb-2 d-flex justify-content-between"
+                                        routerLink="/activities/contracts">
+                                        Jordan Scott <span class="badge bg-primary rounded-circle">{{4 | roleConverter}}</span>
+                                    </a>
+                                    <span class="text-muted fs-7">Joined by Nancy Clarkson</span>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- #endregion marketer name -->
+                        <!-- #region payment -->
+                        <td class="min-w-400px text-muted">
+                            <div class="mb-2">
+                                <span class="text-success">200$</span>
+                            </div>
+                            <div class="text-muted fs-7">100th Campaign</div>
+                        </td>
+                        <!-- #endregion payment -->
+                        <!-- #region action -->
+                        <td class="text-end">
+                            <a class="btn btn-light btn-sm btn-icon" routerLink="/activities/overview">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                        <!-- #endregion action -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

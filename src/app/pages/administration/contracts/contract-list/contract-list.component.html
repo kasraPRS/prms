@@ -1,0 +1,119 @@
+<!-- #region card -->
+<div class="card">
+  <!-- #region Header -->
+  <div class="card-header border-0">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-normal fs-3 mb-1">Contract List</span>
+    </h3>
+    <div class="card-toolbar">
+      <!-- #region Search -->
+      <div class="d-flex align-items-center position-relative me-4">
+        <label for="search-links" class="svg-icon svg-icon-2 position-absolute ms-3"
+          [inlineSVG]="'assets/media/icons/duotune/general/gen021.svg'"></label>
+        <input type="text" id="search-links" data-kt-customer-table-filter="search"
+          class="form-control form-control-sm form-control-solid w-250px ps-12" [(ngModel)]="searchTerm"
+          name="searchTerm" (keyup)="inputChanged()">
+      </div>
+      <!-- #endregion Search -->
+      <!-- #region New Link -->
+      <button class="btn btn-sm btn-primary" (click)="onBtnCreateNewContractClick()">
+        Create New Contract
+      </button>
+      <!-- #endregion New Link -->
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div class="card-body p-0">
+    <!-- #region Table container -->
+    <div class="table-responsive mah-400px pt-0 px-6">
+      <!-- #region Table -->
+      <table class="table align-middle mb-0 gx-3 text-center">
+        <!-- #region Table head -->
+        <thead>
+          <tr class="fw-normal bg-light">
+            <th class="ps-4 min-w-200px text-start rounded-start">Name</th>
+            <th class="min-w-125px">Contracting party</th>
+            <th class="min-w-125px">Start Date</th>
+            <th class="min-w-125px">End Date</th>
+            <th class="min-w-200px">Status</th>
+            <th class="min-w-150px text-end rounded-end"></th>
+          </tr>
+        </thead>
+        <!-- #endregion Table head -->
+        <!-- #region Table body -->
+        <tbody>
+          <tr *ngFor="let item of tableDataSource.items" routerLink="/activities/contracts"
+            class="border-gray-200 border-bottom-dashed border-bottom-1 cursor-pointer">
+
+            <td class="min-w-200px py-6 text-start">
+              <a class="text-primary mb-1 fs-6">
+                {{item.name}}
+              </a>
+            </td>
+
+            <td class="min-w-100px">
+              <a class="text-muted fw-bolder d-block mb-1 fs-6">
+                <!-- #region User -->
+                <div class="d-flex align-items-center justify-content-center flex-grow-1">
+                  <!-- #region Avatar -->
+                  <div class="symbol symbol-35px me-4">
+                    <img src="./assets/media/avatars/300-23.jpg" alt="" />
+                  </div>
+                  <!-- #endregion Avatar -->
+
+                  <!-- #region Info -->
+                  <div class="d-flex flex-column">
+                    <a class="text-gray-800 fs-6 mb-1">
+                      <!-- {{contract.contractingParty}} -->
+                    </a>
+                  </div>
+                  <!-- #endregion Info -->
+                </div>
+                <!-- #endregion User -->
+              </a>
+            </td>
+
+            <td class="min-w-150px">
+              <span class="text-muted fw-bolder d-block mb-1 fs-6">
+                {{item.startDate}}
+              </span>
+            </td>
+
+            <td class="min-w-150px">
+              <span class="text-muted fw-bolder d-block mb-1 fs-6">
+                {{item.endDate}}
+              </span>
+            </td>
+
+            <td class="min-w-100px">
+              <span class="text-success fw-bolder d-block mb-1 fs-6">
+                {{item.status}}
+              </span>
+            </td>
+
+            <td class="text-end min-w-150px" (click)="$event.stopPropagation()">
+              <button (click)="onBtnViewClick(item)" class="btn btn-sm btn-light btn-active-color-primary py-2 px-5">
+                View
+              </button>
+              <button class="btn btn-sm btn-light-danger py-2 px-5" (click)="onBtnDeleteClick(item)" >
+                Delete
+              </button>
+              <button class="btn btn-sm btn-light-primary mx-3 py-2 px-5" (click)="onBtnEditClick(item.id)" [disabled]="item.status === 'active' ">
+                Edit
+              </button>
+            </td>
+
+          </tr>
+        </tbody>
+        <!-- #endregion Table body -->
+      </table>
+      <!-- #endregion Table -->
+    </div>
+    <!-- #endregion Table container -->
+    <prms-table-pagination [model]="tableDataSource" (change)="onGetListPagination()"></prms-table-pagination>
+  </div>
+  <!-- #endregion Body -->
+</div>
+<!-- #endregion card -->

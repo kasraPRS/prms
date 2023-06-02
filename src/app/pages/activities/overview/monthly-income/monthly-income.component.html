@@ -1,0 +1,31 @@
+<!-- #region Header -->
+<div class="card-header border-0">
+  <div class="card-title">
+    <h3 class="fw-normal m-0">Monthly Income</h3>
+  </div>
+</div>
+<!-- #endregion Header -->
+
+<!-- #region Body -->
+<div class="card-body p-0">
+  <!-- #region Chart -->
+  <div #chartRef id="kt_charts_monthly_income_chart" class="mt-n4"  [style.height]="'350px'">
+    <apx-chart
+      [series]="chartOptions.series"
+      [chart]="chartOptions.chart"
+      [xaxis]="chartOptions.xaxis"
+      [yaxis]="chartOptions.yaxis"
+      [dataLabels]="chartOptions.dataLabels"
+      [stroke]="chartOptions.stroke"
+      [legend]="chartOptions.legend"
+      [fill]="chartOptions.fill"
+      [states]="chartOptions.states"
+      [tooltip]="chartOptions.tooltip"
+      [colors]="chartOptions.colors"
+      [markers]="chartOptions.markers"
+      [plotOptions]="chartOptions.plotOptions"
+    ></apx-chart>
+  </div>
+  <!-- #endregion Chart -->
+</div>
+<!-- #endregion Body -->

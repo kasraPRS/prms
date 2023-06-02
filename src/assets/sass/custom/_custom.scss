@@ -1,0 +1,15 @@
+// Import Custom Styles
+@import "./base";
+@import "./form";
+@import "./border";
+@import "./scrollbar";
+@import "./placeholder";
+@import "./tel-input";
+@import "./toastr";
+@import "./tooltip";
+@import "_google-places";
+
+// use class to scroll card-body in new link
+.scroll-card-body {
+  overflow-x: auto;
+}

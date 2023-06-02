@@ -1,0 +1,82 @@
+<!-- #region Header -->
+<div class="card-header">
+  <div class="card-title m-0">
+    <h3 class="fw-normal m-0">Profile Details</h3>
+  </div>
+
+  <a
+    *ngIf="user?.role === 'admin' || !marketerUser.routeId"
+    [hidden]="!checkedAccess"
+    routerLink="/account/settings"
+    queryParamsHandling="merge"
+    class="btn btn-primary align-self-center"
+  >
+    Edit Profile
+  </a>
+</div>
+<!-- #region Header -->
+
+<!-- #region Body -->
+<div class="card-body p-9">
+  <!-- #region full name -->
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-bold text-muted">Full Name</label>
+
+    <div class="col-lg-8">
+      <span class="fw-bold fs-6 text-dark">{{marketerUser.marketer?.fullName}}</span>
+    </div>
+  </div>
+  <!-- #endregion full name -->
+
+  <!-- #region email -->
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-bold text-muted">Email</label>
+
+    <div class="col-lg-8">
+      <span class="fw-bold fs-6">{{marketerUser.marketer?.email}}</span>
+    </div>
+  </div>
+  <!-- #endregion email -->
+
+  <!-- #region work address -->
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-bold text-muted">Work Address</label>
+
+    <div class="col-lg-8">
+      <span class="fw-bold fs-6">{{marketerUser.marketer?.workAddress?.addr}}</span>
+      <span class="fw-bold fs-6 text-dark">{{marketerUser.marketer?.creationDate}}</span>
+    </div>
+  </div>
+  <!-- #endregion work address -->
+
+  <!-- #region contact phone -->
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-bold text-muted">Contact Phone</label>
+
+    <div class="col-lg-8 fv-row">
+      <span class="fw-bold fs-6">{{marketerUser.marketer?.workAddress?.phoneNumber}}</span>
+    </div>
+  </div>
+  <!-- #endregion contact phone -->
+
+  <!-- #region home address -->
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-bold text-muted">Home Address</label>
+
+    <div class="col-lg-8">
+      <span class="fw-bold fs-6">{{marketerUser.marketer?.homeAddress?.addr}}</span>
+    </div>
+  </div>
+  <!-- #endregion home address -->
+
+  <!-- #region Join Date -->
+  <div class="row">
+    <label class="col-lg-4 fw-bold text-muted">Join Date</label>
+
+    <div class="col-lg-8">
+      <span class="fw-bolder fs-6 text-dark">{{marketerUser.marketer?.joinDate}}</span>
+    </div>
+  </div>
+  <!-- #endregion Join Date -->
+</div>
+<!-- #endregion Body -->

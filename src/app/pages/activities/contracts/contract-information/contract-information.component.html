@@ -1,0 +1,113 @@
+<div class="row g-5 g-xxl-8">
+
+    <!-- #region links -->
+    <div class="col-xl-12">
+        <div class="card mb-5 mb-xl-7">
+
+            <!-- #region Header -->
+            <div class="card-header">
+                <h3 class="card-title">
+                    Viewing Contract Name
+                </h3>
+                <div class="card-toolbar">
+
+                    <!-- #region decline -->
+                    <button class="btn btn-sm btn-danger me-3" (click)="onBtnDeclinedContractClick()">
+                        Declined
+                    </button>
+                    <!-- #endregion decline -->
+
+                    <!-- #region sign -->
+                    <button class="btn btn-sm btn-success" (click)="onBtnSignContractClick()">
+                        Sign
+                    </button>
+                    <!-- #endregion sign -->
+
+                </div>
+            </div>
+            <!-- #endregion Header -->
+
+            <!-- #region Body -->
+            <div class="card-body p-0">
+
+                <!-- #region total info -->
+                <div class="px-9 py-7 border-bottom d-flex">
+
+                    <!-- #region Contract Name -->
+                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3">
+                        <div class="d-flex align-items-center">
+                            <div class="fs-4 fw-bold text-dark">{{'Contract Name'}}</div>
+                        </div>
+
+                        <div class="fw-bold fs-9 text-gray-400">
+                            {{name}}
+                        </div>
+                    </div>
+                    <!-- #endregion Contract Name -->
+
+                    <!-- #region contracting party -->
+                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3">
+                        <div class="d-flex align-items-center">
+                            <div class="fs-4 fw-bold text-primary">{{fullName}}</div>
+                        </div>
+
+                        <div class="fw-bold fs-9 text-gray-400">
+                            Contracting party
+                        </div>
+                    </div>
+                    <!-- #endregion contracting party -->
+
+                    <!-- #region start date -->
+                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3">
+                        <div class="d-flex align-items-center">
+                            <div class="fs-4 fw-bold text-primary">{{startDate}}</div>
+                        </div>
+
+                        <div class="fw-bold fs-9 text-gray-400">
+                            Start Date
+                        </div>
+                    </div>
+                    <!-- #endregion start -->
+
+                    <!-- #region start date -->
+                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3">
+                        <div class="d-flex align-items-center">
+                            <div class="fs-4 fw-bold text-primary">{{endDate}}</div>
+                        </div>
+
+                        <div class="fw-bold fs-9 text-gray-400">
+                            end Date
+                        </div>
+                    </div>
+                    <!-- #endregion start -->
+
+                    <!-- #region status -->
+                    <div class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3">
+                        <div class="d-flex align-items-center">
+                            <div class="fs-4 fw-bold text-warning">{{status}}</div>
+                        </div>
+
+                        <div class="fw-bold fs-9 text-gray-400">
+                            Status
+                        </div>
+                    </div>
+                    <!-- #endregion status -->
+
+                </div>
+                <!-- #endregion total info -->
+
+                <!-- #region contract -->
+                <div class="p-9">
+                    <div class="fw-bolder fs-5 mb-3">Contract Text</div>
+                    <div class="border border-2 rounded-3 p-4" [innerHTML]="content"></div>
+                </div>
+                <!-- #endregion contract -->
+
+            </div>
+            <!-- #endregion Body -->
+
+        </div>
+    </div>
+    <!-- #endregion links -->
+
+</div>

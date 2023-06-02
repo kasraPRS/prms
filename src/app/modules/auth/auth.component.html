@@ -1,0 +1,52 @@
+<div class="d-flex flex-column flex-column-fluid flex-lg-row">
+  <!-- #region Aside -->
+  <div class="
+      d-flex flex-column flex-lg-row-auto 
+      w-lg-600px positon-lg-relative
+    "
+  >
+    <!--#region Wrapper-->
+    <div class="
+        d-flex flex-column position-lg-fixed top-0 bottom-0
+        w-lg-600px scroll-y bg-aside
+      "
+    >
+      <!--#region Aside Content-->
+      <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
+
+        <!--#region Logo-->
+        <a href="./" class="py-9 mt-10 mt-lg-20">
+          <img alt="Logo" src="./assets/media/logos/prms-1.svg" class="h-60px">
+        </a>
+        <!--#endregion Logo-->
+
+        <!--#region Title-->
+        <h1 class="fw-bolder fs-1qx pb-5 pb-md-10 text-white">HelpaHand PRMS</h1>
+        <!--#endregion Title-->
+
+      </div>
+      <!--#endregion Aside Content-->
+
+      <!--#region Illustration-->
+      <div
+        class="d-flex flex-row-auto bgi-no-repeat bgi-size-contain bgi-position-y-bottom min-h-150px min-h-lg-250px min-h-lg-425px"
+        style="background-image: url(./assets/media/illustrations/custom/1_1.png)"></div>
+      <!--#endregion Illustration-->
+
+    </div>
+    <!--#endregion Wrapper-->
+  </div>
+  <!-- #endregion Aside -->
+
+  <!--#region Content-->
+  <div class="d-flex flex-column flex-lg-row-fluid py-10">
+    <div class="d-flex flex-center flex-column flex-column-fluid pt-lg-15">
+
+      <!--#region Content body-->
+      <router-outlet></router-outlet>
+      <!--#endregion Content body-->
+
+    </div>
+  </div>
+  <!--#endregion Content-->
+</div>

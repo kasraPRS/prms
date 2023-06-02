@@ -1,0 +1,1057 @@
+<div class="w-100 w-lg-600px1 px-10 px-lg-15 mx-auto">
+  <form
+    class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework"
+    novalidate="novalidate"
+    autocomplete="off"
+    id="kt_login_signup_form"
+    [formGroup]="registrationForm"
+    (ngSubmit)="submit()"
+  >
+    <!-- #region Heading-->
+    <!-- <div class="text-center mb-20">
+      <h1 class="text-dark">Create an Account</h1>
+    </div> -->
+    <!--#endregion Heading-->
+
+    <!-- #region General -->
+    <div class="px-0">
+      <div class="fw-bold fs-5 pb-8">General</div>
+      <!-- #region Avatar -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label text-gray-400 fw-bold fs-6">Avatar</label>
+        <div class="col-xl-8">
+          <div
+            class="image-input image-input-outline"
+          >
+            <!-- #region Image -->
+            <div
+              class="image-input-wrapper w-125px h-125px"
+              style="background: url('./assets/media/avatars/blank.png')"
+            ><div 
+              class="image" 
+              [ngfBackground]="profileImage">
+            </div></div>
+            <!-- #endregion Image -->
+
+            <!--#region Edit button-->
+            <span 
+              accept=".png, .jpg, .jpeg"
+              [(file)]="profileImage"
+              ngfSelect 
+              multiple="1" 
+              (fileChange)="setLogoFile($event)"
+              class="
+                image-action change-btn
+                btn btn-icon btn-circle btn-color-muted btn-active-color-primary 
+                w-25px h-25px bg-body shadow
+              "
+            >
+              <i class="bi bi-pencil-fill fs-7"></i>
+            </span>
+            <!--#endregion Edit button-->
+
+            <!--#region Remove button-->
+            <span 
+              (click)="removeProfileImage()"
+              class="
+                image-action remove-btn
+                btn btn-icon btn-circle btn-color-muted btn-active-color-primary 
+                w-25px h-25px bg-body shadow
+              "
+            >
+              <i class="bi bi-x fs-2"></i>
+            </span>
+            <!--#endregion Remove button-->
+          </div>
+          <div 
+            class="form-text" 
+            *ngIf="profileImage?.size <= maxSizeImage"
+          >
+            Allowed File Types: png, jpg, jpeg.
+          </div>
+          <div class="fv-plugins-message-container mt-2" 
+            *ngIf="profileImage?.size > maxSizeImage">
+            <div class="fv-help-block">
+              <span role="alert">
+                Maximum Size of the Photo is 1 MB.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion Avatar -->
+
+      <!-- #region Full Name -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6"
+          >Full Name</label
+        >
+        <div class="col-xl-8">
+          <div class="row">
+            <div class="col-sm-6 fv-row pe-sm-2">
+              <input
+                type="text"
+                class="
+                  form-control form-control-lg form-control-solid
+                  text-dark mb-3 mb-lg-0
+                "
+                placeholder="First Name"
+                formControlName="firstName"
+                autocomplete="off"
+              />
+            </div>
+            <div class="col-sm-6 fv-row ps-sm-2">
+              <input
+                type="text"
+                class="form-control form-control-lg form-control-solid text-dark"
+                placeholder="Last Name"
+                formControlName="lastName"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+          <ng-container
+            *ngIf="(
+              (registrationForm.controls['firstName'].hasError('required') || 
+              registrationForm.controls['lastName'].hasError('required')) && (
+              registrationForm.controls['firstName'].touched ||
+              registrationForm.controls['firstName'].dirty) && (
+              registrationForm.controls['lastName'].touched ||
+              registrationForm.controls['lastName'].dirty) 
+            )"
+          >
+            <div class="fv-plugins-message-container mt-2">
+              <div class="fv-help-block">
+                <span role="alert">
+                  First Name and Last Name is Required
+                </span>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!-- #endregion Full Name -->
+
+      <!-- #region Gender -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Gender</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select [searchable]="false"
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            placeholder="Select Gender"
+            formControlName="gender"
+          >
+            <ng-option 
+              [value]="item.value" 
+              *ngFor="let item of genderList"
+            >
+              {{item.title}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Gender is Required',
+              control: registrationForm.get('gender')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Gender -->
+
+      <!-- #region tax id -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Tax ID</label>
+        <div class="col-xl-8 fv-row">
+            <input
+              type="text"
+              class="
+                form-control form-control-lg form-control-solid
+                text-dark mb-3 mb-lg-0
+              "
+              placeholder="Tax ID"
+              formControlName="taxId"
+              autocomplete="off"
+            />
+            <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Tax ID is Required',
+              control: registrationForm.get('taxId')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion tax id -->
+
+      <!-- #region social security number -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Social Security Number</label>
+        <div class="col-xl-8 fv-row">
+            <input
+              type="text"
+              class="
+                form-control form-control-lg form-control-solid
+                text-dark mb-3 mb-lg-0
+              "
+              placeholder="Social Security Number"
+              formControlName="socialSecurityNumber"
+              autocomplete="off"
+            />
+            <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Social Security Number is Required',
+              control: registrationForm.get('socialSecurityNumber')
+            }"
+           ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion social security number -->
+
+      <!-- #region Email -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Email</label>
+        <div class="col-xl-8 fv-row">
+          <input
+            email
+            type="text"
+            class="form-control form-control-lg form-control-solid text-dark"
+            placeholder="Email"
+            formControlName="email"
+          />
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Email is Required',
+              control: registrationForm.get('email')
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'email',
+              message: 'Email is invalid',
+              control: registrationForm.get('email')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Email -->
+
+      <!-- #region Password -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Password</label>
+        <div class="col-xl-8 fv-row">
+          <!--#region Input wrapper-->
+          <div class="position-relative">
+            <input 
+              class="form-control form-control-lg form-control-solid" 
+              [type]="showPass?'text':'password'" 
+              placeholder="Password" 
+              autocomplete="off"
+              formControlName="password"
+            >
+            <span 
+              class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
+              (click)="showPass=!showPass"
+            >
+              <i class="bi bi-eye-slash fs-2" [class.d-none]="!showPass"></i>
+              <i class="bi bi-eye fs-2" [class.d-none]="showPass"></i>
+            </span>
+          </div>
+          <!--#endregion Input wrapper-->
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Password is Required',
+              control: registrationForm.controls['password']
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'password',
+              message: 'Password must contain uppercase and lowercase letters and numbers',
+              control: registrationForm.controls['password']
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'minlength',
+              message: 'Password should have at least 6 symbols',
+              control: registrationForm.controls['password']
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'maxLength',
+              message: 'Password should have maximum 100 symbols',
+              control: registrationForm.controls['password']
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Password -->
+    </div>
+    <!-- #endregion General -->
+
+    <!-- #region separator -->
+    <div class="separator border-2"></div>
+    <!-- #endregion separator -->
+
+    <!-- #region Work Address -->
+    <div class="px-0" formGroupName="workAddress">
+      <div class="fw-bold fs-5 py-8">Work Address</div>
+      <!-- #region Country -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Country</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select [searchable]="false"
+            #workAddressCountrySelect
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            placeholder="Select Country"
+            [formControl]="workAddress.selectedCountryId"
+            (change)="
+              getStates(workAddress, $event);
+              getCountryPhoneNumberInfo(workAddressTelInputRef, $event, $event);
+              unsetState(workAddress, registrationForm.get('workAddress')); setMasks();
+            "
+          >
+            <ng-template ng-header-tmp>
+              <input 
+                type="text" 
+                class="form-control"
+                autocomplete="off"
+                (input)="workAddressCountrySelect.filter($event.target.value)"
+              />
+            </ng-template>
+            <ng-option 
+              [value]="country.id" 
+              *ngFor="let country of workAddress.countries"
+            >
+              {{country.name}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Country is Required',
+              control: workAddress.selectedCountryId
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Country -->
+
+      <!-- #region State -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">State</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select 
+            #workAddressStateSelect
+            [searchable]="false"
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            placeholder="Select State"
+            [formControl]="workAddress.selectedStateId"
+            (change)="getCities(workAddress, $event)"
+            (change)="unsetCity(workAddress, registrationForm.get('workAddress'))"
+          >
+            <ng-template ng-header-tmp>
+              <input 
+                type="text" 
+                class="form-control"
+                autocomplete="off"
+                (input)="workAddressStateSelect.filter($event.target.value)"
+              />
+            </ng-template>
+            <ng-option [value]="state.id" *ngFor="let state of workAddress.states">
+              {{state.name}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            *ngIf="
+              workAddress.selectedCountryId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Select Country before Select State',
+              control: workAddress.selectedStateId
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="
+              !workAddress.selectedCountryId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'State is Required',
+              control: workAddress.selectedStateId
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion State -->
+      
+      <!-- #region City -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">City</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select [searchable]="false"
+            #workAddressCitySelect
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            (change)="updateHomeAddress()"
+            placeholder="Select City"
+            formControlName="cityId"
+          >
+            <ng-template ng-header-tmp>
+              <input 
+                type="text" 
+                class="form-control"
+                autocomplete="off"
+                (input)="workAddressCitySelect.filter($event.target.value)"
+              />
+            </ng-template>
+            <ng-option [value]="city.id" *ngFor="let city of workAddress.cities">
+              {{city.name}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            *ngIf="
+              workAddress.selectedCountryId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Select Country before Select City',
+              control: registrationForm.get('workAddress.cityId')
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="
+              !workAddress.selectedCountryId.hasError('required') &&
+              workAddress.selectedStateId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Select State before Select City',
+              control: registrationForm.get('workAddress.cityId')
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="!(
+              workAddress.selectedCountryId.hasError('required') ||
+              workAddress.selectedStateId.hasError('required')
+            )"
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'City is Required',
+              control: registrationForm.get('workAddress.cityId')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion City -->
+
+      <!-- #region Address -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Address</label>
+        <div class="col-xl-8 fv-row">
+          <input
+            #workAddr
+            type="text"
+            autocomplete="off"
+            [options]="options"
+            placeholder="Address"
+            formControlName="addr"
+            (input)="updateHomeAddress()"
+            ngx-google-places-autocomplete 
+            class="form-control form-control-lg form-control-solid text-dark"
+            (onAddressChange)="addressChange(registrationForm?.get('workAddress.addr'), workAddr.value)"
+          />
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Address is Required',
+              control: registrationForm.get('workAddress.addr')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Address -->
+
+      <!-- #region Place -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6"
+          >Place</label
+        >
+        <div class="col-xl-8">
+          <div class="row">
+            <div class="col-sm-6 fv-row pe-sm-2">
+                <ng-select [searchable]="false"
+                class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+                placeholder="Place"
+                formControlName="place"
+                >
+                <ng-option 
+                  [value]="item.value" 
+                  *ngFor="let item of placeTypeList"
+                >
+                  {{item.title}}
+                </ng-option>
+              </ng-select>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Place is Required',
+                  control: registrationForm.get('workAddress')?.get('place')
+                }"
+              ></ng-container>
+            </div>
+            <div class="col-sm-6 fv-row ps-sm-2">
+              <input
+                type="text"
+                class="form-control form-control-lg form-control-solid text-dark"
+                placeholder="No."
+                formControlName="no"
+                autocomplete="off"
+              />
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'No is Required',
+                  control: registrationForm.get('workAddress')?.get('no')
+                }"
+              ></ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion Place -->
+      
+      <!-- #region Zip Code -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Zip Code</label>
+        <div class="col-xl-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid text-dark"
+            (input)="updateHomeAddress()"
+            placeholder="Zip Code"
+            formControlName="zipCode"
+            autocomplete="off"
+            #workAddZIPCode
+          />
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Zip Code is Required',
+              control: registrationForm.get('workAddress.zipCode')
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'zipCode',
+              message: 'Zip Code is Invalid',
+              control: registrationForm.get('workAddress.zipCode')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Zip Code -->
+
+      <!-- #region Contact Phone -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Contact Phone</label>
+        <div class="col-xl-8 fv-row">
+          <div class="d-flex input-group">
+            <label style="width: 60px" class="
+              input-group-text rounded-3 rounded-end-0
+              border-gray-200 bg-white 
+              fw-bolder  
+              "
+              for="work-address-tel-input"
+            >+1</label>
+            <ngx-intl-tel-input
+              #workAddressTelInputRef
+              style="width: calc(60% - 30px)"
+              class="custom-tel-input hide-flags control-p-lg"
+              [cssClass]="
+                'form-control form-control-lg form-control-solid ' +
+                'rounded-0 text-dark'
+              "
+              inputId="work-address-tel-input"
+              [phoneValidation]="false"
+              [enablePlaceholder]="true"
+              formControlName="phoneNumber"
+              [onlyCountries]="OnlyCountries"
+              (ngModelChange)="updateHomeAddressWithDelay()"
+              [numberFormat]="PhoneNumberFormat.National"
+              [selectedCountryISO]="selectedCountryISO"
+            >
+            </ngx-intl-tel-input>
+            <input 
+              type="text"
+              style="width: calc(40% - 30px);"
+              class="form-control form-control-lg form-control-solid text-dark w-20
+              border-gray-200 border-left-1 border-top-0 border-bottom-0 border-right-0"
+              formControlName="phoneNumberExtension"
+              (input)="updateHomeAddress();"
+              placeholder="Extension"
+              autocomplete="off"
+            >
+          </div>
+          <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Contact Phone is Required',
+            control: registrationForm.get('workAddress.phoneNumber')
+          }"
+          ></ng-container>
+          <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'phoneNumber',
+            message: 'Contact Phone is Invalid',
+            control: registrationForm.get('workAddress.phoneNumber')
+          }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Contact Phone -->
+    </div>
+    <!-- #endregion Work Address -->
+
+    <!-- #region Used Work Address -->
+    <div class="px-0 mt-10 mb-6">
+      <div class="form-check form-check-solid fv-row">
+        <input
+          type="checkbox"
+          id="same-information"
+          class="form-check-input bg-primary"
+          formControlName="isSameWorkAndHomeAddress"
+          (change)="useSameAddress(registrationForm.get('isSameWorkAndHomeAddress')?.value)"
+        /><label class="form-check-label fw-bold ps-2 fs-6 user-select-none" for="same-information">
+          Use the Same Information as Home Address
+        </label>
+      </div>
+    </div>
+    <!-- #endregion Used Work Address -->      
+
+    <!-- #region Home Address -->
+    <div class="px-0 overflow-hidden border-top border-top-2"
+      *ngIf="!registrationForm.get('isSameWorkAndHomeAddress')?.value"
+      [class.disabled-form]="isSameAddress"
+      formGroupName="homeAddress"
+      [@slideAuto]
+    >
+      <div class="fw-bold fs-5 py-8">Home Address</div>
+      <!-- #region Country -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Country</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select [searchable]="false"
+            appendTo="body"
+            #homeAddressCountrySelect
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            placeholder="Select Country"
+            [formControl]="homeAddress.selectedCountryId"
+            (change)="
+              getStates(homeAddress, $event);
+              getCountryPhoneNumberInfo(homeAddressTelInputRef, $event, $event);
+              unsetState(homeAddress, registrationForm.get('homeAddress')); setMasks();
+            "
+          >
+            <ng-template ng-header-tmp>
+              <input 
+                type="text" 
+                class="form-control"
+                autocomplete="off"
+                (input)="homeAddressCountrySelect.filter($event.target.value)"
+              />
+            </ng-template>
+            <ng-option [value]="country.id" *ngFor="let country of homeAddress.countries">
+              {{country.name}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            *ngIf="!isSameAddress"
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Country is Required',
+              control: homeAddress.selectedCountryId
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Country -->
+
+      <!-- #region State -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">State</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select [searchable]="false"
+            appendTo="body"
+            #homeAddressStateSelect
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            placeholder="Select State"
+            [formControl]="homeAddress.selectedStateId"
+            (change)="getCities(homeAddress, $event)"
+            (change)="unsetCity(homeAddress, registrationForm.get('homeAddress'))"
+          >
+            <ng-template ng-header-tmp>
+              <input 
+                type="text" 
+                class="form-control"
+                autocomplete="off"
+                (input)="homeAddressStateSelect.filter($event.target.value)"
+              />
+            </ng-template>
+            <ng-option [value]="state.id" *ngFor="let state of homeAddress.states">
+              {{state.name}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            *ngIf="
+              !isSameAddress &&
+              homeAddress.selectedCountryId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Select Country before Select State',
+              control: homeAddress.selectedStateId
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="
+              !isSameAddress &&
+              !homeAddress.selectedCountryId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'State is Required',
+              control: homeAddress.selectedStateId
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion State -->
+
+      <!-- #region City -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">City</label>
+        <div class="col-xl-8 fv-row">
+          <ng-select [searchable]="false" 
+            appendTo="body"
+            #homeAddressCitySelect
+            class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+            [loading]="homeAddress.cityLoading"
+            placeholder="Select City"
+            formControlName="cityId"
+          >
+            <ng-template ng-loadingspinner-tmp>
+              <div class="spinner-border spinner-border-sm text-primary"></div>
+            </ng-template>
+            <ng-template ng-header-tmp>
+              <input 
+                type="text" 
+                class="form-control"
+                autocomplete="off"
+                (input)="homeAddressCitySelect.filter($event.target.value)"
+              />
+            </ng-template>
+            <ng-option [value]="city.id" *ngFor="let city of homeAddress.cities">
+              {{city.name}}
+            </ng-option>
+          </ng-select>
+          <ng-container
+            *ngIf="
+              !isSameAddress &&
+              homeAddress.selectedCountryId.hasError('required')
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Select Country before Select City',
+              control: registrationForm.get('homeAddress.cityId')
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="
+              !isSameAddress && (
+              !homeAddress.selectedCountryId.hasError('required') &&
+              homeAddress.selectedStateId.hasError('required'))
+            "
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Select State before Select City',
+              control: registrationForm.get('homeAddress.cityId')
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="!(
+              !isSameAddress && (
+              homeAddress.selectedCountryId.hasError('required') ||
+              homeAddress.selectedStateId.hasError('required'))
+            )"
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'City is Required',
+              control: registrationForm.get('homeAddress.cityId')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion City -->
+
+      <!-- #region Address -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Address</label>
+        <div class="col-xl-8 fv-row">
+          <input
+            #homeAddr
+            type="text"
+            autocomplete="off"
+            [options]="options"
+            placeholder="Address"
+            formControlName="addr"
+            (input)="updateHomeAddress()"
+            ngx-google-places-autocomplete 
+            class="form-control form-control-lg form-control-solid text-dark"
+            (onAddressChange)="addressChange(registrationForm?.get('homeAddress.addr'), homeAddr.value)"
+          />
+          <ng-container
+            *ngIf="!isSameAddress"
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Address is Required',
+              control: registrationForm.get('homeAddress.addr')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Address -->
+      
+      <!-- #region Place -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6"
+          >Place</label
+        >
+        <div class="col-xl-8">
+          <div class="row">
+            <div class="col-sm-6 fv-row pe-sm-2">
+              <ng-select [searchable]="false"
+                appendTo="body"
+                class="custom-select ng-select-solid ng-select-lg ng-select-dark fw-bold"
+                placeholder="Place"
+                formControlName="place"
+                >
+                <ng-option 
+                  [value]="item.value" 
+                  *ngFor="let item of placeTypeList"
+                >
+                  {{item.title}}
+                </ng-option>
+              </ng-select>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Place is Required',
+                  control: registrationForm.get('homeAddress')?.get('place')
+                }"
+              ></ng-container>
+            </div>
+            <div class="col-sm-6 fv-row ps-sm-2">
+              <input
+                type="text"
+                class="form-control form-control-lg form-control-solid text-dark"
+                placeholder="No."
+                formControlName="no"
+                autocomplete="off"
+              />
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'No is Required',
+                  control: registrationForm.get('homeAddress')?.get('no')
+                }"
+              ></ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #endregion Place -->
+      
+      <!-- #region Zip Code -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Zip Code</label>
+        <div class="col-xl-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid text-dark mask-zipcode"
+            placeholder="Zip Code"
+            formControlName="zipCode"
+            autocomplete="off"
+            #homeAddZIPCode
+          />
+          <ng-container
+            *ngIf="!isSameAddress"
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'required',
+              message: 'Zip Code is Required',
+              control: registrationForm.get('homeAddress.zipCode')
+            }"
+          ></ng-container>
+          <ng-container
+            *ngIf="!isSameAddress"
+            [ngTemplateOutlet]="formError"
+            [ngTemplateOutletContext]="{
+              validation: 'zipCode',
+              message: 'Zip Code is Invalid',
+              control: registrationForm.get('homeAddress.zipCode')
+            }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Zip Code -->
+
+      <!-- #region Contact Phone -->
+      <div class="row mb-6">
+        <label class="col-xl-4 col-form-label fw-bold fs-6">Contact Phone</label>
+        <div class="col-xl-8 fv-row">
+          <div class="d-flex input-group">
+            <label style="width: 60px" class="
+              input-group-text rounded-3 rounded-end-0
+              border-gray-200 bg-white 
+              fw-bolder  
+              "
+              for="home-address-tel-input"
+            >+1</label>
+            <ngx-intl-tel-input
+              #homeAddressTelInputRef
+              style="width: calc(60% - 30px)"
+              class="custom-tel-input hide-flags control-p-lg"
+              [cssClass]="
+                'form-control form-control-lg form-control-solid ' +
+                'rounded-0 text-dark'
+              "
+              inputId="home-address-tel-input"
+              [phoneValidation]="false"
+              [enablePlaceholder]="true"
+              formControlName="phoneNumber"
+              [onlyCountries]="OnlyCountries"
+              [numberFormat]="PhoneNumberFormat.National"
+              [selectedCountryISO]="selectedCountryISO"
+            >
+            </ngx-intl-tel-input>
+            <input 
+              type="text"
+              style="width: calc(40% - 30px);"
+              class="form-control form-control-lg form-control-solid text-dark w-20
+              border-gray-200 border-left-1 border-top-0 border-bottom-0 border-right-0"
+              formControlName="phoneNumberExtension"
+              (input)="updateHomeAddress();"
+              placeholder="Extension"
+              autocomplete="off"
+            >
+          </div>
+          <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'required',
+            message: 'Contact Phone is Required',
+            control: registrationForm.get('homeAddress.phoneNumber')
+          }"
+          ></ng-container>
+          <ng-container
+          [ngTemplateOutlet]="formError"
+          [ngTemplateOutletContext]="{
+            validation: 'phoneNumber',
+            message: 'Contact Phone is Invalid',
+            control: registrationForm.get('homeAddress.phoneNumber')
+          }"
+          ></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Contact Phone -->
+    </div>
+    <!-- #endregion Home Address -->
+
+    <!-- #region Actions -->
+    <div class="text-center">
+      <button
+        type="submit"
+        id="kt_sign_up_submit"
+        [disabled]="registrationForm.invalid"
+        class="btn btn-lg btn-primary w-100 mb-5"
+      >
+        <ng-container *ngIf="(isLoading$ | async) === false">
+          <span class="indicator-label">Submit</span>
+        </ng-container>
+        <ng-container *ngIf="isLoading$ | async">
+          <span class="indicator-progress" [style.display]="'block'">
+            Please Wait...
+            <span
+              class="spinner-border spinner-border-sm align-middle ms-2"
+            ></span>
+          </span>
+        </ng-container>
+      </button>
+      <a
+        routerLink="/auth/login"
+        type="button"
+        id="kt_login_signup_form_cancel_button"
+        class="btn btn-lg btn-light-primary w-100 mb-5"
+      >
+        Cancel
+      </a>
+    </div>
+    <!--#endregion Actions -->
+  </form>
+</div>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container mt-2">
+      <div class="fv-help-block">
+        <span role="alert">
+          {{ message }}
+        </span>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

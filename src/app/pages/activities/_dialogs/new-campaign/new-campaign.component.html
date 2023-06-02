@@ -1,0 +1,90 @@
+<div class="card overflow-hidden w-800px mw-100 mh-100">
+  <!-- #region Header -->
+  <div class="card-header">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">{{title}} Campaign</h3>
+    </div>
+    <div class="card-toolbar">
+      <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <form novalidate="novalidate" class="form" [formGroup]="submitForm" (ngSubmit)="createNewCampaign()">
+    <!-- #region Body -->
+    <div class="card-body border-top p-0 h-400px">
+      <!-- #region Campaign Name -->
+      <div class="row px-9 py-5">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Campaign Name</label>
+        <div class="col-lg-8 fv-row">
+          <input type="text" class="
+              form-control form-control-solid
+              text-dark mb-3 mb-lg-0 " required name="name" formControlName="name"
+          />
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'Campaign Name is Required',
+                control: submitForm.controls['name']
+              }"></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Campaign Name -->
+
+      <!-- #region Separator -->
+      <div class="separator"></div>
+      <!-- #endregion Separator -->
+
+      <!-- #region Links -->
+      <div class="px-9 py-5">
+        <div class="row mb-6">
+          <label class="col-lg-4 fw-bold fs-6">Links</label>
+        </div>
+        <div class="row align-items-center mb-6">
+          <label class="col-lg-4 fw-bold fs-6">Choose Link to Add</label>
+
+          <div class="col-lg-8 d-flex">
+            <div class="flex-grow-1 pe-3">
+              <ng-select [searchable]="true" multiple="true" [items]="linkDto" name="linkId" formControlName="linkId"
+                bindLabel="name" bindValue="id" class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark" placeholder="">
+              </ng-select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- #endregion Links -->
+    </div>
+    <!-- #endregion Body -->
+
+    <!-- #region Card Footer -->
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+      <!-- #region Create New Link -->
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading"
+        [disabled]="submitForm.invalid || (isLoading$ | async)">
+        <ng-container *ngIf="!isLoading">Save Link</ng-container>
+        <ng-container *ngIf="isLoading">
+          <span clas="indicator-progress" [style.display]="'block'">
+            Please Wait...{{ " " }}
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+          </span>
+        </ng-container>
+      </button>
+      <!-- #endregion Create New Link -->
+
+    </div>
+    <!-- #endregion Card Footer -->
+  </form>
+</div>
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+  <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+    <div class="fv-plugins-message-container invalid-feedback">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

@@ -1,0 +1,76 @@
+<!-- #region Card -->
+<div class="card rounded-0">
+
+  <!-- #region Header -->
+  <div class="card-header bg-white" #header>
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-normal fs-3">Tasks</span>
+    </h3>
+    <div class="card-toolbar">
+      <button id="kt_drawer_all_rewards_close" type="button" class="btn btn-icon btn-sm text-hover-danger">
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+  
+  <!-- #region Body -->
+  <div class="card-body p-0">
+    <div class="table-responsive px-5 py-2" [style]="{'height': 'calc(100vh - 70px)'}">
+      <table class="table align-middle gs-0 gy-4">
+        <tr *ngFor="let reward of rewards" class="border-gray-200 border-bottom-dashed border-bottom-1">
+
+          <td class="min-w-200px">
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark mb-1 fs-6">
+                  Reward Title
+                </a>
+                <span class="text-gray-400 d-block fs-8">
+                  by Nancy Clarkson
+                </span>
+              </div>
+            </div>
+          </td>
+
+          <td class="min-w-100px">
+            <div class="d-flex justify-content-start flex-column">
+              <a class="text-dark d-block mb-1 fs-6">
+                Reward Action
+              </a>
+              <span class="text-gray-400 d-block fs-8">
+                Action Needed Amount
+              </span>
+            </div>
+          </td>
+
+          <td class="min-w-100px">
+            <div class="d-flex justify-content-start flex-column">
+              <a class="text-success d-block mb-1 fs-6">
+                $2,100
+              </a>
+              <span class="text-gray-400 d-block fs-8">
+                Reward
+              </span>
+            </div>
+          </td>
+
+          <td class="min-w-100px">
+            <div class="d-flex justify-content-start flex-column">
+              <a class="text-dark d-block mb-1 fs-6">
+                Due in 6 Days
+              </a>
+              <span class="text-gray-400 d-block fs-8">
+                Created in 2/20/2022
+              </span>
+            </div>
+          </td>
+
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- #endregion Body -->
+
+</div>
+<!-- #endregion Card -->

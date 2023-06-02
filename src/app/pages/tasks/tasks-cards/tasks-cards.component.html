@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-body" *ngFor="let item of UTaskDto">
+        
+        <div class="form-check row">
+            <!-- <div class="col-4"> -->
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <!-- </div>
+            <div class="col-8"> -->
+            <label class="form-check-label" for="exampleCheck1">{{item.title}}</label>
+        </div>
+
+        <!-- </div> -->
+        <div class="row">
+            <p> {{item.description}}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5">
+                <small>{{item.dueDateStr}}</small>
+            </div>
+            <div class="col-6">
+
+                <div class="d-flex flex-row-reverse justify-content-start">
+                    <span class="badge badge-outlined badge-secondary me-3" (click)="onBtnEditClick(item)">
+                        <i class="bi bi-pen"></i>
+                    </span>
+                    <span class="badge badge-outlined badge-danger me-3">{{item.dueDateNumber}}</span>
+                    <span class="badge badge-outlined badge-secondary me-3" *ngIf="item.typeStr === 'call' ">
+                        <i class="bi bi-bell"></i>
+                    </span>
+                    <span href="#" class="badge badge-outlined badge-secondary me-3">{{item.typeStr}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

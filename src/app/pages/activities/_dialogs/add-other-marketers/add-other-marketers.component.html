@@ -1,0 +1,50 @@
+<div class="card w-800px mw-100 mh-100">
+    <!-- card header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">Add Other Marketers</h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- card header -->
+    <!-- card body -->
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                aria-describedby="basic-addon1" #searchFiel>
+        </div>
+    </div>
+
+    <form class="form" [formGroup]="formData" (ngSubmit)="onSubmit()">
+        <div class="card-body border-top p-9 h-400px">
+
+
+            <ul class="list-group mb-5" *ngIf="users">
+                <li class="list-group-item" *ngFor="let item of users.items">
+                    <p class="text-secondary">{{item.profileImageUrl}}</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{item}}" id="{{item.id}}"
+                            (change)="onCheckChange(item, $event.target.checked)">
+                        <label class="form-check-label" for="{{item.id}}">
+                            {{item.fullName}}
+                        </label>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="card-footer">
+            <div class=" d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary">Dismiss</button>
+                <button type="submit" class="btn btn-primary">Done</button>
+            </div>
+        </div>
+    </form>
+    <!-- card body -->
+</div>

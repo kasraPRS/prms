@@ -1,0 +1,82 @@
+<div class="card w-800px mw-100 mh-100">
+  <!-- #region Header -->
+  <div class="card-header">
+    <div class="card-title m-0">
+      <h3 class="m-0">{{title}} Contract Template</h3>
+    </div>
+    <div class="card-toolbar">
+      <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <form novalidate="novalidate" class="form" [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+
+    <!-- #region Body -->
+    <div class="card-body border-top p-9 h-400px">
+      <!-- #region Template Name -->
+      <div class="row mb-6">
+        <label class="col-lg-4 col-form-label fw-bold fs-6">Template Name</label>
+        <div class="col-lg-8 fv-row">
+          <input type="text" class="
+                form-control form-control-solid
+                text-dark mb-3 mb-lg-0 " required name="name" formControlName="name" placeholder="Name" value="" />
+          <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Link Name is Required',
+                  control: submitForm.controls['name']
+                }"></ng-container>
+        </div>
+      </div>
+      <!-- #endregion Name -->
+
+      <!-- #region Contract Text -->
+      <div class="row mb-6">
+        <label class="col-lg-12 col-form-label fs-6">Contract Text</label>
+        <div class="col-lg-12 fv-row">
+          <ckeditor [editor]="editor" data="" name="content" formControlName="content"></ckeditor>
+        </div>
+      </div>
+      <!-- #endregion Contract Text -->
+    </div>
+    <!-- #endregion Body -->
+
+    <!-- #region Card Footer -->
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+      <!-- #region dismiss button -->
+      <button type="button" class="btn btn-light me-3" (click)="close()">
+        Dismiss
+      </button>
+      <!-- #endregion dismiss button -->
+
+      <!-- #region save button -->
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading"
+        [disabled]="submitForm.invalid || (isLoading$ | async)">
+        <ng-container *ngIf="!isLoading">Save</ng-container>
+        <ng-container *ngIf="isLoading">
+          <span clas="indicator-progress" [style.display]="'block'">
+            Please Wait...{{ " " }}
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+          </span>
+        </ng-container>
+      </button>
+      <!-- #endregion save button -->
+
+    </div>
+    <!-- #endregion Card Footer -->
+  </form>
+
+</div>
+
+<ng-template #formError let-control="control" let-message="message" let-validation="validation">
+  <ng-container *ngIf="control.hasError(validation) && (control.dirty || control.touched)">
+    <div class="fv-plugins-message-container invalid-feedback">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

@@ -1,0 +1,18 @@
+@use "/src/assets/sass/core/components/variables" as v;
+
+:host {
+  width: 100%;
+  @media (min-width: 992px) {
+    .login-form {
+      width: 100%;
+      max-width: 450px;
+
+      .mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+}
+.disabled-form label {
+  opacity: v.$disabled-opacity;
+}

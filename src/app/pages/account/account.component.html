@@ -1,0 +1,177 @@
+<div class="card mb-5 mb-xl-8">
+  <div class="card-body pt-9 pb-0">
+    <!-- #region Total Info -->
+    <div class="d-flex flex-wrap flex-sm-nowrap">
+      <div class="me-7 mb-4">
+        <div
+          class="
+            symbol symbol-70px symbol-fixed
+            position-relative
+          "
+        >
+          <img [src]="marketerUser.marketer?.profileImageUrl" alt="User Image" />
+        </div>
+      </div>
+
+      <div class="flex-grow-1">
+        <div
+          class="
+            d-flex
+            justify-content-between
+            align-items-start
+            flex-wrap
+            mb-2
+          "
+        >
+          <div class="d-flex flex-column">
+            <!-- #region info -->
+            <div class="d-flex align-items-center mb-2">
+              <span
+                class="
+                  text-gray-800 
+                  fs-2
+                  fw-bolder
+                  me-1
+                "
+              >
+                {{marketerUser.marketer?.fullName}}
+              </span>
+              <span class="badge badge-primary rounded-pill badge-sm fs-7 mx-2">
+                {{marketerUser.marketer.role | roleConverter}}
+              </span>
+              <span 
+                class="text-gray-400 fw-bold fs-6 mx-3" 
+                *ngIf="marketerUser.marketer.role !== 'admin'"
+              >
+                Joined by 
+                <a
+                  style="text-decoration:underline!important; cursor:pointer;"
+                  class="text-hover-primary text-gray-400"
+                  (click)="navigateToParentPage()"
+                >{{marketerUser.marketer?.parentName}}</a> 
+                at {{marketerUser.marketer?.joinDate}}
+              </span>
+            </div>
+            <!-- #endregion info -->
+
+            <!-- #region extra info -->
+            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400
+                  me-5
+                  mb-2
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/communication/com006.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1 svg-icon-dark"
+                ></span>
+                {{marketerUser.marketer?.role | roleConverter}}
+              </a>
+              <!-- <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 
+                  me-5
+                  mb-2
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/general/gen018.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1 svg-icon-dark"
+                ></span>
+                {{marketerUser.marketer?.state}}
+              </a> -->
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400
+                  mb-2
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/icons/duotune/communication/com011.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1 svg-icon-dark"
+                ></span>
+                {{marketerUser.marketer?.email}}
+              </a>
+            </div>
+            <!-- #endregion extra info -->
+          </div>
+
+          <!-- #region actions -->
+          <div class="d-flex">
+            <a
+              *ngIf="user.role !== 'admin'"
+              routerLink="/activities/overview"
+              queryParamsHandling="merge"
+              class="btn btn-sm btn-primary me-3 cursor-pointer"
+            >
+              View Profile
+            </a>
+          </div>
+          <!-- #endregion actions -->
+        </div>
+      </div>
+    </div>
+    <!-- #endregion Total Info -->
+
+    <!-- #region Tabs -->
+    <div class="d-flex overflow-auto h-55px">
+      <ul
+        class="
+          nav nav-stretch nav-line-tabs nav-line-tabs-2x
+          border-transparent
+          fs-5
+          fw-bolder
+          flex-nowrap
+        "
+      >
+        <li class="nav-item">
+          <a
+            class="nav-link text-active-primary me-6"
+            routerLink="/account/settings"
+            queryParamsHandling="merge"
+            routerLinkActive="active"
+          >
+            Account Settings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-active-primary me-6"
+            routerLink="/account/earnings"
+            queryParamsHandling="merge"
+            routerLinkActive="active"
+          >
+            Earnings
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-active-primary me-6"
+            routerLink="/account/security"
+            queryParamsHandling="merge"
+            routerLinkActive="active"
+          >
+            Security
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- #region Tabs -->
+  </div>
+</div>
+
+<router-outlet></router-outlet>

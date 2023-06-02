@@ -1,0 +1,40 @@
+//
+//  Tooltip
+//
+
+// Use
+@use "sass:map";
+@use "sass:math";
+
+// Variables
+$custom-tooltop-config: (
+  size: (lg: .8rem)
+);
+
+// Styles
+.custom-tooltip {
+
+  @each $name,
+  $value in map.get($custom-tooltop-config, 'size') {
+    &.tooltip-#{$name} {
+      &[data-popper-placement="right-start"] {
+        margin-top: math.div(-$value, 2) !important;
+        margin-left: calc($value - .2rem) !important;
+
+        .tooltip-inner {
+          margin-top: -$value;
+        }
+
+        .tooltip-arrow {
+          transform: translate(0, 0) !important;
+          transition: all .2s;
+
+          &::before {
+            border-width: $value;
+            border-left-width: 0;
+          }
+        }
+      }
+    }
+  }
+}

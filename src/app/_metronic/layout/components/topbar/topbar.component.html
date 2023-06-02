@@ -1,0 +1,34 @@
+<!-- #region Wallet -->
+<div
+  class="d-flex align-items-center"
+  [ngClass]="toolbarButtonMarginClass"
+  id="kt_header_wallet_menu_toggle"
+>
+  <div class="d-flex align-items-center rounded bg-gray-100 h-30px p-2">
+    <i class="bi bi-wallet2 fs-5 mx-1"></i>
+    <span class="text-success fw-bolder mx-1">$1,000</span>
+  </div>
+</div>
+<!-- #endregion Wallet -->
+
+<!-- #region User -->
+<div
+  class="d-flex align-items-center"
+  [ngClass]="toolbarButtonMarginClass"
+  id="kt_header_user_menu_toggle"
+>
+  <!-- #region Toggle -->
+  <div
+    class="cursor-pointer symbol"
+    [ngClass]="toolbarUserAvatarHeightClass"
+    data-kt-menu-trigger="click"
+    data-kt-menu-attach="parent"
+    data-kt-menu-placement="bottom-end"
+    data-kt-menu-flip="bottom"
+  >
+    <img [src]="user.profileImageUrl" alt="metronic" />
+  </div>
+  <!-- #endregion Toggle  -->
+  <app-user-inner></app-user-inner>
+</div>
+<!-- #endregion User -->

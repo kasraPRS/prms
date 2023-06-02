@@ -1,0 +1,92 @@
+<!-- #region Code -->
+<div class="">
+  <!-- #region Form-->
+  <form 
+    class="form w-100 mb-10" 
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    novalidate="novalidate" 
+    id="kt_sing_in_two_steps_form">
+
+    <!-- #region Icon-->
+    <div class="text-center mb-6">
+      <img alt="Logo" class="mh-125px" src="/assets/media/svg/misc/smartphone.svg">
+    </div>
+    <!-- #endregion Icon-->
+    <!-- #region Heading-->
+    <div class="text-center mb-20">
+      <h1 class="text-dark mb-3">Two Step Verification</h1>
+      <div class="text-muted fw-bold fs-5 mb-5" *ngIf="phoneNumberHandel.state?.phone">
+        Enter the verification code we sent to
+      </div>
+      <div class="fw-bolder text-dark fs-3">{{phoneNumberHandel.state?.phone}}</div>
+    </div>
+    <!-- #endregion Heading-->
+
+    <!-- #region Section-->
+    <div class="mb-20">
+      <!-- #region Label--> 
+      <div class="fw-bolder text-center text-dark fs-6 mb-6 ms-1">
+        Type Your 4 Digit Security Code
+        <span *ngIf="phoneNumberHandel.timer$|async">(
+          <span class="d-inline-block text-primary w-40px">{{
+            (phoneNumberHandel.timer$|async|toMinute)
+          }}</span>
+        )</span>
+      </div>
+      <!-- #endregion Label-->
+
+      <!-- #region Input group-->
+      <div class="d-flex flex-wrap justify-content-center mb-6" formArrayName="code">
+        <input 
+          #codeRef
+          type="text" 
+          maxlength="1"
+          [formControl]="control"
+          (input)="fouseNextInput(i)"
+          (focus)="$event.target.select()"
+          *ngFor="let control of form.get('code')?.['controls']; index as i"
+          class="
+            form-control form-control-solid h-60px w-60px fs-2qx text-center 
+            border-primary border-hover mx-1 my-2
+          "
+        >
+      </div>
+      <!-- #region Input group-->
+
+      <!-- #region Timer -->
+      <!-- <div class="text-center text-primary fw-bold fs-4 mb-5" *ngIf="(loginHandel.timer$ | async)">{{
+        (loginHandel.timer$|async|toMinute)
+      }}</div> -->
+      <!-- #endregion Timer -->
+
+      <!--#region Action-->
+      <div class="text-center">
+        <button type="submit" id="kt_sign_in_submit_step1" class="btn btn-lg btn-primary"
+          [disabled]="form.invalid || (isLoading$ | async)">
+          <ng-container *ngIf="isLoading$ | async">
+            <span class="indicator-progress" [style.display]="'block'">
+              Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+          </ng-container>
+          <ng-container *ngIf="!(isLoading$ | async)">
+            <span class="indicator-label">Submit</span>
+          </ng-container>
+          <!--timer-->
+        </button>
+      </div>
+      <!--#endregion Action-->
+    </div>
+    <!-- #endregion Section-->
+  </form>
+  <!-- #endregion Form-->
+
+  <!-- #region Notice-->
+  <div class="text-center fw-bold fs-5">
+    <span class="text-muted me-1">Didn’t Get the Code ?</span>
+    <a routerLink="/auth/login/password" class="link-primary fw-bolder fs-5 me-1">Try with another Account</a>
+  </div>
+  <!-- #endregion Notice-->
+</div>
+<!-- #endregion Code -->

@@ -1,0 +1,111 @@
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header">
+        <h3 class="card-title">
+            Marketer Hierarchy
+        </h3>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body">
+
+
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+            <!-- This is the tree node template for leaf nodes -->
+            <!-- There is inline padding applied to this node using styles.
+              This padding value depends on the mat-icon-button width. -->
+            <mat-tree-node class="border border-success rounded my-2 node-container position-relative with-h-line"
+                [ngClass]="{'border-dashed border-gray-400': node.value.id != authService.currentUserSubject.value?.id}"
+                *matTreeNodeDef="let node" matTreeNodeToggle>
+
+
+                <div class="d-flex align-items-center flex-grow-1 node">
+                    <!-- #region Avatar -->
+                    <div class="symbol symbol-45px me-4">
+                        <img [src]="node.value.profileImageUrl" [hidden]="node.value.profileImageUrl == 'No Profile'"
+                            alt="user image" />
+                        <div class="symbol-label fs-2 fw-bold text-primary"
+                            [hidden]="node.value.profileImageUrl != 'No Profile'">
+                            {{node.value.firstName.substring(0,1)}}
+                        </div>
+                    </div>
+                    <!-- #endregion Avatar -->
+
+                    <!-- #region Info -->
+                    <div class="d-flex flex-column">
+                        <a class="text-gray-800 fs-6 mb-1 d-flex align-items-center" routerLink="/activities" target="_blank"
+                            [queryParams]="{i: node.value.id}">
+                            {{node.value.firstName}} {{node.value.lastName}}
+                            <span class="badge badge-primary badge-sm rounded-pill ms-2">
+                                {{node.value.marketerTypeTitle | roleConverter}}
+                            </span>
+                        </a>
+                    </div>
+                    <!-- #endregion Info -->
+                </div>
+
+            </mat-tree-node>
+            <!-- This is the tree node template for expandable nodes -->
+            <mat-nested-tree-node
+                [ngClass]="{'border-dashed border-gray-400': node.value.id != authService.currentUserSubject.value?.id}"
+                class="border border-success rounded my-2 position-relative with-v-line with-h-line node-container "
+                *matTreeNodeDef="let node; when: hasChild">
+
+                <div class="mat-tree-node d-flex justify-content-between">
+
+                    <!-- #region main data -->
+                    <div class="w-100 z-index-1">
+
+                        <div class="d-flex align-items-center flex-grow-1 node">
+                            <!-- #region Avatar -->
+                            <div class="symbol symbol-45px me-4">
+                                <img [src]="node.value.profileImageUrl" [hidden]="node.value.profileImageUrl == 'No Profile'"
+                                    alt="user image" />
+                                <div class="symbol-label fs-2 fw-bold text-primary"
+                                    [hidden]="node.value.profileImageUrl != 'No Profile'">
+                                    {{node.value.firstName.substring(0,1)}}
+                                </div>
+                            </div>
+                            <!-- #endregion Avatar -->
+
+                            <!-- #region Info -->
+                            <div class="d-flex flex-column">
+                                <a class="text-gray-800 fs-6 mb-1 d-flex align-items-center" routerLink="/activities"
+                                    [queryParams]="{i: node.value.id}">
+                                    {{node.value.firstName}} {{node.value.lastName}}
+                                    <span class="badge badge-primary badge-sm rounded-pill ms-2">
+                                        {{node.value.marketerTypeTitle | roleConverter}}
+                                    </span>
+                                </a>
+                            </div>
+                            <!-- #endregion Info -->
+                        </div>
+
+                    </div>
+                    <!-- #endregion main data -->
+
+                    <!-- #region buttun -->
+                    <div>
+                        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name"
+                            class="text-primary">
+                            <mat-icon class="mat-icon-rtl-mirror">
+                                {{treeControl.isExpanded(node) ? 'remove' : 'add_outlined'}}
+                            </mat-icon>
+                        </button>
+                    </div>
+                    <!-- #endregion buttun -->
+
+                </div>
+                <!-- There is inline padding applied to this div using styles.
+                    This padding value depends on the mat-icon-button width.  -->
+                <div [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+                    <ng-container matTreeNodeOutlet></ng-container>
+                </div>
+            </mat-nested-tree-node>
+        </mat-tree>
+
+
+    </div>
+    <!-- #endregion Body -->
+</div>

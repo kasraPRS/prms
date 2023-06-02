@@ -1,0 +1,156 @@
+<div class="card-header">
+    <h3 class="card-title align-items-start flex-column">
+        <span class="card-label fw-normal fs-3 mb-1 d-flex align-items-center">
+            Open Rewards
+            <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+        </span>
+        <span class="text-muted mt-1 fw-normal fs-7">132 Rewards</span>
+    </h3>
+    <div class="card-toolbar">
+
+        <!-- #endregion Search -->
+
+        <!-- #region Filter  -->
+        <select class="form-select form-select-sm form-select-solid form-select-transparent w-100px me-2">
+            <option value="1">All</option>
+            <option value="2">Successful</option>
+            <option value="2">Unsuccessful</option>
+        </select>
+        <!-- #endregion Filter  -->
+
+        <!-- #region New  -->
+        <button class="btn btn-sm btn-primary" (click)="createRewatd()">
+            Create New
+        </button>
+        <!-- #endregion New  -->
+    </div>
+
+
+</div>
+<div class="card-body p-0">
+    <div class="table-responsive mh-400px pt-5 px-6">
+        <table class="table align-middle mb-0 gx-3" *ngIf="rewards.length">
+            <!-- #region Table head -->
+            <thead>
+                <tr class="fw-normal bg-light">
+                    <th class="ps-4 min-w-200px rounded-start">Reward title</th>
+                    <th class="min-w-125px">Action</th>
+                    <th class="min-w-125px">Rewarded Marketers</th>
+                    <th class="min-w-200px">Reward</th>
+                    <th class="min-w-150px">Total Reward</th>
+                    <th class="min-w-150px">Due Date</th>
+                    <th class="min-w-150px">Marketers</th>
+                    <th class="min-w-150px text-end rounded-end"></th>
+                </tr>
+            </thead>
+            <!-- #region Table head -->
+            <!-- #region Table body -->
+            <tbody>
+                <tr *ngFor="let reward of rewards;let i = index"
+                    class="border-gray-200 border-bottom-dashed border-bottom-1 cursor-pointer">
+                    <!-- rewards title -->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <p class="mb-1 fs-6">
+                                    {{reward.title}}
+                                </p>
+                                <span class="text-gray-400 d-block fs-8">
+                                    Raise for women
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- rewards title -->
+                    <!-- rewards actions -->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <p class="mb-1 fs-6">
+                                    {{reward.action}}
+                                </p>
+                                <span class="text-gray-400 d-block fs-8">
+                                    Raise for women
+                                </span>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- rewards actions -->
+                    <!-- Reward Marketes-->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <p class="mb-1 fs-6 text-green">
+                                    {{reward.rewardedMarketers}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Reward Marketes-->
+                    <!-- Reward -->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <p class="mb-1 fs-6 text-success">
+                                    ${{reward.reward}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Reward -->
+                    <!-- Total Reward -->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <p class="mb-1 fs-6 text-success">
+                                    ${{reward.total}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Total Reward -->
+                    <!-- Due Date -->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex justify-content-start flex-column">
+                                <p class="mb-1 fs-6 text-green">
+                                    {{reward.date}}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Due Date -->
+                    <!-- Marketers -->
+                    <td class="min-w-200px py-6">
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="symbol symbol-50px me-5" *ngFor="let marketer of reward.marketers"
+                                    (click)=" showMarketersDialog(reward.marketers)">
+                                    <img alt="logo" src="{{marketer.image}}">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Marketers -->
+                    <!-- Edit and delete -->
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="d-flex flex-row bd-highlight mb-3">
+                                <div class="symbol symbol-50px me-5">
+                                    <i class="fa-solid fa-pencil me-10" (click)="editReward(reward)"></i>
+                                    <i class="fa-solid fa-trash" (click)="deletRewards(i)"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Edit and delete -->
+                </tr>
+            </tbody>
+            <!-- #region Table body -->
+        </table>
+
+        <div class="alert alert-secondary" role="alert" *ngIf="!rewards.length">
+            There is no Open Reward.
+        </div>
+    </div>
+</div>

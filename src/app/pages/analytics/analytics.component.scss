@@ -1,0 +1,8 @@
+@use "sass:map";
+@use "../../../assets/sass/init" as v;
+
+.analytics-filter {
+    z-index: 1;
+    position: sticky;
+    top: calc(map.get(v.$header-config, default, height, desktop) + var(--kt-toolbar-height));
+}

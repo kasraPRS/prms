@@ -1,0 +1,126 @@
+// 
+// Scroll Bar Styles
+// 
+
+/* Variables */
+$sizes: (
+  '': 10px,
+  '-thin': 5px,
+  '-thick': 20px,
+);
+$opacities: (
+  '': 1,
+  // '-10': .1,
+  // '-20': .2,
+  // '-30': .3,
+  // '-50': .5,
+  // '-60': .6,
+  // '-70': .7,
+  // '-80': .8,
+  // '-90': .9,
+);
+
+/* Mixins */
+@mixin scroll() {
+  &::-webkit-scrollbar {
+    display: unset;
+  }
+  &::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+}
+@mixin scroll-height($width) {
+  scrollbar-height: thin;
+  &::-webkit-scrollbar {
+    height: $width;
+  }
+}
+@mixin scroll-width($width) {
+  scrollbar-width: thin;
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+}
+@mixin scroll-radius($radius) {
+  &::-webkit-scrollbar {
+    border-radius: $radius;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: $radius;
+  }
+}
+@mixin scroll-shadow($shadow: inset 0 0 5px grey) {
+  &::-webkit-scrollbar-track {
+    box-shadow: $shadow;
+  }
+}
+@mixin scroll-color($tumb-color, $track-color, $tumb-hover-color: null) {
+  scrollbar-color: $tumb-color;
+  scrollbar-track-color: $track-color;
+
+  &::-webkit-scrollbar-thumb {
+    background: $tumb-color;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    @if $tumb-hover-color {
+      background: $tumb-hover-color;
+    }
+    @else {
+      background: color.adjust($color: $tumb-color, $lightness: -20%);
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+  }
+}
+
+/* Hide scrollbar */
+.sc-none::-webkit-scrollbar { /* Hide scrollbar for Chrome, Safari and Opera */
+  display: none;
+}
+.sc-none { /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* scroll styles */
+.sc { @include scroll(); }
+// Set Size
+@each $name, $value in $sizes {
+  .sc.sc-w#{$name} {
+    @include scroll-width($value);
+  }
+  .sc.sc-h#{$name} {
+    @include scroll-height($value);
+  }
+}
+
+// Set Theme
+@each $name, $value in $theme-colors {
+  // Base
+  @each $opacity-name, $opacity-value in $opacities {
+    .sc.sc-#{$name}#{$opacity-name} {
+      $track-color: theme-light-color($name);
+      $tumb-hover-color: theme-active-color($name);
+      $tumb-color: $value;
+  
+      @include scroll-color(
+        rgba($color: $tumb-color, $alpha: $opacity-value),
+        $track-color,
+        $tumb-hover-color,
+      );
+    }
+  }
+
+  // Light
+  @if (theme-light-color($name)) {
+    .sc.sc-light-#{$name} {
+      $track-color: $value;
+      $tumb-hover-color: theme-active-color($name);
+      $tumb-color: theme-light-color($name);
+
+      @include scroll-color($tumb-color, $track-color, $tumb-hover-color);
+    }
+  }	
+}

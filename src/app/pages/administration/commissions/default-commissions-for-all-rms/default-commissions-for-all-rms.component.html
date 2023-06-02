@@ -1,0 +1,130 @@
+<form [formGroup]="form" class="card mb-5 mb-xl-7" (ngSubmit)="onBtnApplyClick()">
+
+    <!-- #region Header -->
+    <div class="card-header border-0">
+        <h3 class="card-title">
+            <span class="card-label fw-normal fs-3 mb-1">Default Commission Percentage for Each Level</span>
+        </h3>
+        <div class="card-toolbar">
+            <!-- #region change -->
+            <button type="button" class="btn btn-sm btn-light" [hidden]="changingStatus" (click)="onBtnChangeClick()">
+                Change
+            </button>
+            <!-- #endregion change -->
+            <!-- #region Apply -->
+            <button type="submit" class="btn btn-sm btn-primary" [hidden]="!changingStatus" >
+                Apply
+            </button>
+            <!-- #endregion Apply -->
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body pt-0">
+
+        <!-- #region Total Info -->
+        <div class="d-flex flex-wrap flex-stack">
+            <div class="d-flex flex-column flex-grow-1 pe-8">
+                <div class="d-flex flex-wrap">
+
+                    <!-- #region total share -->
+                    <div style="width: 95px;"
+                        class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-9 d-flex flex-column justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="fs-2 fw-bold text-success w-100 text-center">
+                                {{form.get('RM')!.value + form.get('DM')!.value + form.get('L3')!.value + form.get('L4')!.value + form.get('L5')!.value}}%
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 text-center">
+                            Total Share
+                        </div>
+                    </div>
+                    <!-- #endregion total share -->
+
+                    <!-- #region RM -->
+                    <div [ngClass]="{'pt-0': changingStatus}"
+                        class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="fs-2 fw-bold text-primary w-100 text-center" [hidden]="changingStatus">
+                                {{form.get('RM')!.value}}%
+                            </div>
+                            <input type="number" [hidden]="!changingStatus" formControlName="RM"
+                                class="border-botoom border-left-0 border-right-0 border-top-0 text-center w-50px fs-3 text-gray-500"
+                                style="outline: none;">
+                        </div>
+                        <div class="fw-bold fs-8 text-gray-400 w-100 text-center">RM</div>
+                    </div>
+                    <!-- #endregion RM -->
+
+                    <!-- #region DM -->
+                    <div [ngClass]="{'pt-0': changingStatus}"
+                        class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="fs-2 fw-bold text-primary" [hidden]="changingStatus">
+                                {{form.get('DM')!.value}}%
+                            </div>
+                            <input type="number" [hidden]="!changingStatus" formControlName="DM"
+                                class="border-botoom border-left-0 border-right-0 border-top-0 text-center w-50px fs-3 text-gray-500"
+                                style="outline: none;">
+                        </div>
+                        <div class="fw-bold fs-8 text-center text-gray-400">DM</div>
+                    </div>
+                    <!-- #endregion DM -->
+
+                    <!-- #region L3 -->
+                    <div [ngClass]="{'pt-0': changingStatus}"
+                        class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="fs-2 fw-bold text-primary" [hidden]="changingStatus">
+                                {{form.get('L3')!.value}}%
+                            </div>
+                            <input type="number" [hidden]="!changingStatus" formControlName="L3"
+                                class="border-botoom border-left-0 border-right-0 border-top-0 text-center w-50px fs-3 text-gray-500"
+                                style="outline: none;">
+                        </div>
+                        <div class="fw-bold fs-8 text-center text-gray-400">AM3</div>
+                    </div>
+                    <!-- #endregion L3 -->
+
+                    <!-- #region L4 -->
+                    <div [ngClass]="{'pt-0': changingStatus}"
+                        class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="fs-2 fw-bold text-primary" [hidden]="changingStatus">
+                                {{form.get('L4')!.value}}%
+                            </div>
+                            <input type="number" placeholder="" [hidden]="!changingStatus" formControlName="L4"
+                                class="border-botoom border-left-0 border-right-0 border-top-0 text-center w-50px fs-3 text-gray-500"
+                                style="outline: none;">
+                        </div>
+                        <div class="fw-bold fs-8 text-center text-gray-400">AM4</div>
+                    </div>
+                    <!-- #endregion L4 -->
+
+                    <!-- #region L5 -->
+                    <div [ngClass]="{'pt-0': changingStatus}"
+                        class="border border-gray-300 border-dashed rounded min-w-80px py-3 px-4 me-3 d-flex flex-column justify-content-between">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="fs-2 fw-bold text-primary" [hidden]="changingStatus">
+                                {{form.get('L5')!.value}}%
+                            </div>
+                            <input type="number" placeholder="" [hidden]="!changingStatus" formControlName="L5"
+                                class="border-botoom border-left-0 border-right-0 border-top-0 text-center w-50px fs-3 text-gray-500"
+                                style="outline: none;">
+                        </div>
+                        <div class="fw-bold fs-8 text-center text-gray-400">AM5</div>
+                    </div>
+                    <!-- #endregion L5 -->
+
+                </div>
+            </div>
+        </div>
+        <!-- #endregion Total Info -->
+
+    </div>
+    <!-- #endregion boyd -->
+
+</form>
+
+<router-outlet></router-outlet>

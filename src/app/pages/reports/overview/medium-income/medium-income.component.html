@@ -1,0 +1,89 @@
+<!-- #region card -->
+<div class="card mt-3">
+    <!-- #region Header -->
+    <div class="card-header p-4">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column m-0">
+            <span class="card-label fw-normal fs-3 d-flex align-items-center">
+                Medium Income
+                <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+            </span>
+            <span class="text-muted fw-normal fs-6">13 Marketers</span>
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+            <!-- #region view details -->
+            <button class="btn btn-primary btn-sm">
+                Change Threshold
+            </button>
+            <!-- #endregion view details -->
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body px-0 py-4">
+        <!-- #region Table container -->
+        <div class="table-responsive mh-400px pt-0 px-4">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3 text-center">
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let marketer of [1,2,3,4,5,6,5,6,7,8,6,6,6]"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region marketer name -->
+                        <td class="min-w-250px py-6 text-start">
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <div class="symbol symbol-50px me-4">
+                                    <img src="./assets/media/avatars/300-23.jpg" alt="user image" />
+                                    <!-- [hidden]="marketer.profileImageUrl == 'No Profile'" -->
+                                    <!-- <div class="symbol-label fs-2 fw-bold text-primary"
+                                        [hidden]="marketer.profileImageUrl != 'No Profile'">
+                                        {{marketer.fullName.substring(0,1)}}
+                                    </div> -->
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <a class="text-gray-800 mb-1 mb-2 fs-7">
+                                        <!-- [routerLink]="['/activities/overview']"
+                                        [queryParams]="{i: marketer.id}" -->
+                                        <!-- {{marketer.fullName}} -->
+                                        Jordan Scott
+                                        <span class="badge bg-primary rounded-circle badge-sm ms-2 fs-9"
+                                            *ngIf="marketer.marketerTypeTitle != 'No Marketer Type'">
+                                            <!-- {{marketer.marketerTypeTitle | roleConverter}} -->
+                                            AM4
+                                        </span>
+                                    </a>
+                                    <span class="text-muted fs-8 fw-bolder">Joined by
+                                        <!--{{marketer.parentName}}--> Patcy
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- #endregion marketer name -->
+                        <!-- #region Monthly Income -->
+                        <td class="min-w-150px">
+                            <div class="text-success mb-2">${{ generateRandom(5000,10000) | number }}</div>
+                            <div class="text-muted fs-7">Monthly Income</div>
+                        </td>
+                        <!-- #endregion Monthly Income -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- <prms-table-pagination [model]="tableDataSource" (change)="getMarketersList()"></prms-table-pagination> -->
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

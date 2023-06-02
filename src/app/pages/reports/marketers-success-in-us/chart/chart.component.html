@@ -1,0 +1,36 @@
+<div class="card mt-3 h-400px">
+    <!-- #region Header -->
+    <div class="card-header px-4">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1 d-flex align-items-center">
+                Marketer Success in the U.S.
+                <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+            </span>
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+            <!-- #region view details -->
+            <button class="btn btn-primary btn-sm" routerLink="/reports/marketers-success-in-us" routerLinkActive="d-none">
+                View Details
+            </button>
+            <!-- #endregion view details -->
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body p-4">
+
+        <!-- #region map -->
+        <div [id]="'map' + id" style="width: 100%; height: 100%"></div>
+        <!-- #endregion map -->
+
+    </div>
+    <!-- #endregion body -->
+</div>

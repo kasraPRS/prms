@@ -1,0 +1,60 @@
+<div class="row g-5 g-xxl-8">
+  <!-- #region 2-Factor Authentication -->
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body text-center">
+        <a class="btn cursor-pointer my-6" 
+          [ngClass]="[user.twoFactorEnabled&&user.phoneNumberConfirmed?'btn-danger':'btn-primary']" 
+          (click)="toggleTwoFactorAuth()"
+        >
+          <ng-container *ngIf="isLoading$ | async">
+            <span class="indicator-progress" [style.display]="'block'">
+              Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+            </span>
+          </ng-container>
+          <ng-container *ngIf="!(isLoading$ | async)"> 
+            <span class="indicator-label">
+              {{user.twoFactorEnabled&&user.phoneNumberConfirmed?'Disable':'Enable'}}
+              2-Factor Authentication
+            </span>
+          </ng-container>
+        </a>
+        <div class="text-muted fs-7 mb-6">2-factor authentication for added security.</div>
+      </div>
+    </div>
+  </div>
+  <!-- #endregion 2-Factor Authentication -->
+  <!-- #region Change Password -->
+  <div class="col-lg-6" *ngIf="!marketerUser.routeId">
+    <div class="card">
+      <div class="card-body text-center">
+        <a routerLink="/auth/change-password" class="btn btn-primary my-6">Change Password</a>
+        <div class="text-muted fs-7 mb-6">Change your password if you feel you should.</div>
+      </div>
+    </div>
+  </div>
+  <!-- #endregion Change Password -->
+  <!-- #region Reset Password For User -->
+  <div class="col-lg-6" *ngIf="marketerUser.routeId && user.role === 'admin'">
+    <div class="card">
+      <div class="card-body text-center">
+        <button type="button" class="btn btn-primary my-6" (click)="resetPasswordForUser()">
+          <ng-container *ngIf="isLoading$ | async">
+            <span class="indicator-progress" [style.display]="'block'">
+              Please wait...
+              <span
+                class="spinner-border spinner-border-sm align-middle ms-2"
+              ></span>
+            </span>
+          </ng-container>
+          <ng-container *ngIf="!(isLoading$ | async)">
+            <span class="indicator-label">Reset Password</span>
+          </ng-container>
+        </button>
+        <div class="text-muted fs-7 mb-6">Reset password for user if you feel you should.</div>
+      </div>
+    </div>
+  </div>
+  <!-- #endregion Reset Password For User -->
+</div>

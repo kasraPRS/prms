@@ -1,0 +1,56 @@
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header min-h-50px border-0">
+        <h3 class="card-title">
+            Subset Marketers
+        </h3>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body pt-0 h-300px overflow-auto">
+
+        <div class="d-flex align-items-sm-center py-4 border-bottom border-bottom-dashed"
+            *ngFor="let marketer of subSetMarketersList; index as i;"
+            [ngClass]="{'border-0' : i == subSetMarketersList.length - 1}">
+
+            <div class="w-100">
+                <div class="d-flex align-items-center flex-grow-1">
+                    <!-- #region Avatar -->
+                    <div class="symbol symbol-45px me-4">
+                        <img [src]="marketer.profileImageUrl" alt="image"
+                            [hidden]="marketer.profileImageUrl == 'No Profile'" />
+                        <div class="symbol-label fs-2 fw-bold text-primary"
+                            [hidden]="marketer.profileImageUrl != 'No Profile'">
+                            {{marketer.firstName.substring(0,1)}}
+                        </div>
+                    </div>
+                    <!-- #endregion Avatar -->
+
+                    <!-- #region Info -->
+                    <div class="d-flex flex-column">
+                        <a class="text-gray-800 fs-6 mb-1 d-flex align-items-center" routerLink="/activities"
+                            [queryParams]="{i: marketer.id}" target="_blank"
+                            [ngClass]="{'text-gray-800 ': marketer.id != userId}">
+                            {{marketer.firstName}} {{marketer.lastName}}
+                            <span class="badge badge-primary badge-sm rounded-circle ms-2">
+                                {{marketer.marketerTypeTitle | roleConverter}}
+                            </span>
+                        </a>
+                    </div>
+                    <!-- #endregion Info -->
+                </div>
+            </div>
+
+            <div class="text-end">
+                <a class="btn btn-light btn-sm" style="white-space: nowrap;" routerLink="/activities" target="_blank"
+                    [queryParams]="{i: marketer.id}">
+                    View Profile
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- #endregion Body -->
+</div>

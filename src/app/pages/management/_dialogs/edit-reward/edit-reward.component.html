@@ -1,0 +1,97 @@
+<div class="card w-800px mw-100 mh-100">
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">
+                <span class="fw-bolder" *ngIf="reward">
+                    Edit Reward Title
+                </span>
+                <span class="fw-bolder" *ngIf="!reward">
+                    Create Reward Title
+                </span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Region body -->
+    <form class="form">
+        <div class="card-body border-top p-9">
+            <!-- Title -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Reward Title</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" class="form-control form-control-solid
+                              text-dark mb-3 mb-lg-0
+                            " placeholder="Type a Title" name="AddMeeting" value="" />
+                </div>
+            </div>
+            <!-- Title -->
+            <!-- Amount -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Reward Amount</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" class="form-control form-control-solid
+                                                      text-dark mb-3 mb-lg-0
+                                                    " placeholder="Amount" value="" />
+                </div>
+            </div>
+            <!-- Amount -->
+            <!-- Reward Action -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Reward Action</label>
+                <div class="col-lg-8 fv-row d-flex justify-content-center">
+                    <select class="form-select form-select-solid fw-bold text-dark me-3" name="url">
+                        <option value="">1 Hour</option>
+                        <option value="">2 Hour</option>
+                        <option value="">3 Hour</option>
+                        <option value="">4 Hour</option>
+                    </select>
+                    <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                        placeholder="Amount" value="" />
+                </div>
+            </div>
+            <!-- Reward Action -->
+            <!-- Due Date -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Due Date</label>
+                <div class="col-lg-8 fv-row d-flex justify-content-center">
+
+                    <input type="date" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                        placeholder="Amount" value="" />
+                </div>
+            </div>
+            <!-- Due Date -->
+        </div>
+        <!-- Add Marketers -->
+        <div class="card-body border-top p-9">
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Add Marketer</label>
+                <div class="col-lg-8 fv-row d-flex justify-content-center">
+
+                    <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0"
+                        placeholder="Search Teams,Categories, Marketers & ..." />
+                </div>
+            </div>
+            <!-- Add Marketers -->
+            <!-- MArketers -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Marketer</label>
+                <div class="col-lg-8 fv-row d-flex justify-content-center">
+                    <div class="symbol symbol-50px me-5" *ngFor="let marketer of reward.marketers"
+                        (click)=" showMarketersDialog(reward.marketers)">
+                        <img alt="logo" src="{{marketer.image}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex flex-row-reverse">
+            <button type="button" class="btn btn-primary" (click)="close()">Done</button>
+        </div>
+        <!-- MArketers -->
+
+    </form>
+    <!-- Region body -->
+</div>

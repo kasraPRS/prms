@@ -1,0 +1,264 @@
+<!-- #region card -->
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header">
+
+        <!-- #region title -->
+        <h3 class="card-title">
+            <span class="card-label fw-normal fs-3 mb-1 d-flex align-items-center">
+                Branches
+                <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+            </span>
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+
+            <!-- #region filter -->
+            <div ngbDropdown placement="bottom-right">
+                <button class="btn btn-icon-dark" id="tableFilter" ngbDropdownToggle>
+                    Filter
+                </button>
+                <div ngbDropdownMenu aria-labelledby="tableFilter">
+
+                    <div class="card w-350px">
+
+                        <div class="card-header d-flex align-items-center min-h-50px px-7">
+                            <h3 class="m-0 fw-bolder">Filter Options</h3>
+                        </div>
+                        <div class="card-body d-flex flex-column py-5 px-7">
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Name:</label>
+                                <input type="text" class="form-control form-control-solid"
+                                    [(ngModel)]="tableFilterOptions.name" placeholder="name">
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">User Name:</label>
+                                <input type="text" class="form-control form-control-solid"
+                                    [(ngModel)]="tableFilterOptions.userName" placeholder="user name">
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Role Name:</label>
+                                <ng-select [searchable]="false"
+                                    class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark"
+                                    placeholder="role name" [(ngModel)]="tableFilterOptions.roleName" [multiple]="true">
+                                    <ng-option value="rm">RM</ng-option>
+                                    <ng-option value="dm">DM</ng-option>
+                                    <ng-option value="level3">Level3</ng-option>
+                                    <ng-option value="level4">Level4</ng-option>
+                                    <ng-option value="level5">Level5</ng-option>
+                                </ng-select>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">User Category Name:</label>
+                                <ng-select [searchable]="false"
+                                    class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark"
+                                    placeholder="category name" [(ngModel)]="tableFilterOptions.userCategoryName"
+                                    [multiple]="true">
+                                    <ng-option [value]="cat.id" *ngFor="let cat of userCategoriesList.items">
+                                        {{cat.name}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+
+                            <div class="mb-5">
+                                <label class="fw-bolder mb-1">Gender:</label>
+                                <ng-select [searchable]="false"
+                                    class="custom-select ng-select-solid ng-select-lg fw-bold ng-select-dark"
+                                    placeholder="Gender" [(ngModel)]="tableFilterOptions.gender">
+                                    <ng-option value="">All</ng-option>
+                                    <ng-option value="male">male</ng-option>
+                                    <ng-option value="femail">femail</ng-option>
+                                </ng-select>
+                            </div>
+
+                            <div>
+                                <label class="fw-bolder mb-1">Email:</label>
+                                <input type="text" class="form-control form-control-solid"
+                                    [(ngModel)]="tableFilterOptions.email" placeholder="email">
+                            </div>
+
+                        </div>
+                        <div class="card-footer py-5 px-7 text-end border-0">
+                            <div class="btn btn-light me-3" (click)="onBtnResetFilterClick()">Reset</div>
+                            <div class="btn btn-primary" (click)="onBtnApplyFilterClick()">Apply</div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- #endregion filter -->
+
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3 text-center">
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let rm of tableDataSource.items"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region marketer name -->
+                        <td class="min-w-400px py-6 text-start">
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <div class="symbol symbol-60px me-4">
+                                    <img [src]="rm.defaultData.profileImageUrl" alt="user image"
+                                        [hidden]="!rm.defaultData.profileImageUrl" />
+                                    <div class="symbol-label fs-2 fw-bold text-primary"
+                                        [hidden]="rm.defaultData.profileImageUrl">
+                                        {{rm.defaultData.firstName.substring(0,1)}}
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <a class="text-gray-800 mb-1 mb-2 fw-bolder" [routerLink]="['/activities/overview']"
+                                        [queryParams]="{i: rm.id}">
+                                        {{rm.defaultData.firstName}} {{rm.defaultData.lastName}}
+                                        <span class="badge bg-primary rounded-circle badge-sm ms-2"
+                                            *ngIf="rm.marketerTypeTitle != 'No Marketer Type'">
+                                            {{rm.defaultData.marketerTypeTitle | roleConverter}}
+                                        </span>
+                                    </a>
+                                    <!-- <span class="text-muted fs-7 fw-bolder">Joined by TEAM</span> -->
+                                </div>
+                            </div>
+                        </td>
+                        <!-- #endregion marketer name -->
+                        <!-- #region total share -->
+                        <td class="min-w-100px text-muted">
+                            <div class="mb-2">
+                                <span class="text-primary"
+                                    [ngClass]="{'text-gray-400': !rm.defaultData.hasCustomCommission }">
+                                    {{getTotalShare(rm)}}%
+                                </span>
+                            </div>
+                            <div class="text-muted fs-7">Total Share</div>
+                        </td>
+                        <!-- #endregion total share -->
+                        <!-- #region RM -->
+                        <td class="min-w-100px text-muted">
+                            <div class="mb-2">
+                                <span class="text-primary" *ngIf="!rm.editMood"
+                                    [ngClass]="{'text-gray-400': !rm.defaultData.hasCustomCommission || !rm.rmCommission}">
+                                    {{rm.rmCommission}}%
+                                </span>
+                                <input type="text" *ngIf="rm.editMood" [(ngModel)]="rm.rmCommission"
+                                    class="w-50px text-center border-botoom border-left-0 border-right-0 border-top-0 text-gray-500"
+                                    style="outline: none;">
+                            </div>
+                            <div class="text-muted fs-7">RM</div>
+                        </td>
+                        <!-- #endregion RM -->
+                        <!-- #region DM -->
+                        <td class="min-w-100px text-muted">
+                            <div class="mb-2">
+                                <span class="text-primary" *ngIf="!rm.editMood"
+                                    [ngClass]="{'text-gray-400': !rm.defaultData.hasCustomCommission || !rm.dmCommission}">
+                                    {{rm.dmCommission}}%
+                                </span>
+                                <input type="text" *ngIf="rm.editMood" [(ngModel)]="rm.dmCommission"
+                                    class="w-50px text-center border-botoom border-left-0 border-right-0 border-top-0 text-gray-500"
+                                    style="outline: none;">
+                            </div>
+                            <div class="text-muted fs-7">DM</div>
+                        </td>
+                        <!-- #endregion DM -->
+                        <!-- #region L3 -->
+                        <td class="min-w-100px text-muted">
+                            <div class="mb-2">
+                                <span class="text-primary" *ngIf="!rm.editMood"
+                                    [ngClass]="{'text-gray-400': !rm.defaultData.hasCustomCommission || !rm.level3Commission}">
+                                    {{rm.level3Commission}}%
+                                </span>
+                                <input type="text" *ngIf="rm.editMood" [(ngModel)]="rm.level3Commission"
+                                    class="w-50px text-center border-botoom border-left-0 border-right-0 border-top-0 text-gray-500"
+                                    style="outline: none;">
+                            </div>
+                            <div class="text-muted fs-7">AM3</div>
+                        </td>
+                        <!-- #endregion L3 -->
+                        <!-- #region L4 -->
+                        <td class="min-w-100px text-muted">
+                            <div class="mb-2">
+                                <span class="text-primary" *ngIf="!rm.editMood"
+                                    [ngClass]="{'text-gray-400': !rm.defaultData.hasCustomCommission || !rm.level4Commission}">
+                                    {{rm.level4Commission}}%
+                                </span>
+                                <input type="text" *ngIf="rm.editMood" [(ngModel)]="rm.level4Commission"
+                                    class="w-50px text-center border-botoom border-left-0 border-right-0 border-top-0 text-gray-500"
+                                    style="outline: none;">
+                            </div>
+                            <div class="text-muted fs-7">AM4</div>
+                        </td>
+                        <!-- #endregion L4 -->
+                        <!-- #region L5 -->
+                        <td class="min-w-100px text-muted">
+                            <div class="mb-2">
+                                <span class="text-primary" *ngIf="!rm.editMood"
+                                    [ngClass]="{'text-gray-400': !rm.defaultData.hasCustomCommission || !rm.level5Commission}">
+                                    {{rm.level5Commission}}%
+                                </span>
+                                <input type="text" *ngIf="rm.editMood" [(ngModel)]="rm.level5Commission"
+                                    class="w-50px text-center border-botoom border-left-0 border-right-0 border-top-0 text-gray-500"
+                                    style="outline: none;">
+                            </div>
+                            <div class="text-muted fs-7">AM5</div>
+                        </td>
+                        <!-- #endregion L5 -->
+                        <!-- #region Custom team Commissions -->
+                        <td class="text-muted text-start">
+                            <div *ngIf="rm.defaultData.customteamCommissionCnt" class="min-w-200px">
+                                <div class="mb-2">
+                                    <span class="text-primary">
+                                        {{rm.defaultData.customteamCommissionCnt}}
+                                    </span>
+                                </div>
+                                <div class="text-muted fs-7">Custom Team Commissions</div>
+                            </div>
+                        </td>
+                        <!-- #endregion Custom team Commissions -->
+                        <!-- #region actions -->
+                        <td class="min-w-100px text-end">
+                            <div *ngIf="rm.defaultData.marketerTypeTitle == 'rm'">
+                                <button class="btn btn-light btn-sm btn-icon me-3" ngbTooltip="Reset to Default"
+                                    placement="top" *ngIf="!rm.editMood && rm.defaultData.hasCustomCommission" (click)="resetToDefault(rm)">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
+                                <button class="btn btn-light btn-sm btn-icon" *ngIf="!rm.editMood"
+                                    (click)="onBtnEditClick(rm)">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-light-success btn-sm btn-icon" *ngIf="rm.editMood"
+                                    (click)="onBtnSubmitRowCommissionsClick(rm)">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <!-- #endregion actions -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <prms-table-pagination [model]="tableDataSource" (change)="getData()"></prms-table-pagination>
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

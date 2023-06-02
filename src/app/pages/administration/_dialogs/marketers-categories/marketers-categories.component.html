@@ -1,0 +1,71 @@
+<div class="card w-800px mw-100 mh-100">
+    <!-- #region Header -->
+    <div class="card-header">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1">Marketers Categories</span>
+            <span class="text-muted fw-normal fs-6">9 Categories</span>
+        </h3>
+        <div class="card-toolbar">
+            <button class="btn btn-primary btn-sm me-3 w-80px" (click)="onBtnAddClick()">
+                Add
+            </button>
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" style="width: fit-content;" (click)="ref.close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body border-top p-9 h-400px overflow-auto">
+
+        <table class="w-100">
+            <tbody>
+                <tr class="border-bottom border-dashed" *ngFor="let category of categoriesList; index as i;"
+                    [ngClass]="{'border-bottom-0': i == categoriesList.length - 1}">
+
+                    <!-- #region category name -->
+                    <td class="d-flex justify-content-center flex-column min-w-300px py-5" [ngClass]="{'pt-0': i == 0}">
+                        <div class="text-primary fs-6">{{category.name}}</div>
+                        <div class="text-muted">{{category.totalUsers}} Marketers</div>
+                    </td>
+                    <!-- #endregion category name -->
+                    <!-- #region members -->
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="symbol-group symbol-hover">
+                                <div class="symbol symbol-circle symbol-40px" placement="bottom"
+                                    *ngFor="let user of category.userCategoryUsers.slice(0,3)"
+                                    [ngbTooltip]="user.fullName">
+                                    <img [src]="user.profileImageUrl" alt="user image" [hidden]="!user.profileImageUrl" />
+                                    <div class="symbol-label fs-2 fw-bold text-primary" [hidden]="user.profileImageUrl">
+                                        {{user.fullName?.substring(0,1)}}
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-muted" *ngIf="category.totalUsers - 3 > 0">
+                                + {{category.totalUsers - 3}} more
+                            </span>
+                        </div>
+                    </td>
+                    <!-- #endregion members -->
+                    <!-- #region actions -->
+                    <td class="text-end">
+                        <button class="btn btn-light btn-sm btn-icon me-2" (click)="onBtnEditCategoryClick(category)">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn bg-light btn-sm btn-icon" (click)="onBtnDeleteCategoryClick(category)">
+                            <i class="bi bi-x fs-1"></i>
+                        </button>
+                    </td>
+                    <!-- #endregion actions -->
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- #endregion Body -->
+
+
+</div>

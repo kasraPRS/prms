@@ -1,0 +1,49 @@
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header border-0">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3">Rewards</span>
+        </h3>
+        <div class="card-toolbar">
+            <a id="kt_drawer_all_rewards_button" class="btn btn-light text-hover-primary">
+                View All
+            </a>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+    <!-- #region Body -->
+    <div class="card-body p-0 py-1">
+        <div class="overflow-auto" style="height: calc(370px - var(--bs-gutter-y));">
+
+            <!-- #region Chart -->
+            <div #chartRef class="d-flex justify-content-center py-4" id="kt_charts_rewards_chart"
+                [style.height]="'200px'">
+                <apx-chart [series]="chartOptions.series" [labels]="chartOptions.labels" [chart]="chartOptions.chart"
+                    [xaxis]="chartOptions.xaxis" [yaxis]="chartOptions.yaxis" [dataLabels]="chartOptions.dataLabels"
+                    [stroke]="chartOptions.stroke" [legend]="chartOptions.legend" [fill]="chartOptions.fill"
+                    [states]="chartOptions.states" [tooltip]="chartOptions.tooltip" [colors]="chartOptions.colors"
+                    [markers]="chartOptions.markers" [plotOptions]="chartOptions.plotOptions"></apx-chart>
+            </div>
+            <!-- #endregion Chart -->
+
+            <!-- #region Rewards List -->
+            <div class="scroll-y px-9 pb-5" style="height: 130px; max-height: 130px;">
+                <div class="d-flex align-items-center justify-content-between box-shadow border-around mb-3 p-4"
+                    *ngFor="let i of [1,2,3]">
+                    <div class="cursor-pointer" (click)="onRewardClick(i)">Reward Title</div>
+                    <div class="text-primary">+ 1000 Reward</div>
+                </div>
+            </div>
+            <!-- #endregion Rewards List -->
+        </div>
+    </div>
+    <!-- #endregion Body -->
+
+    <!--#region All Rewards -->
+    <div id="kt_drawer_all_rewards" class="bg-white mw-100" data-kt-drawer="true" data-kt-drawer-activate="true"
+        data-kt-drawer-overlay="true" data-kt-drawer-toggle="#kt_drawer_all_rewards_button"
+        data-kt-drawer-close="#kt_drawer_all_rewards_close">
+        <!-- <prms-all-rewards class="w-100"></prms-all-rewards> -->
+    </div>
+    <!--#region All Rewards -->
+</div>

@@ -1,0 +1,107 @@
+<!-- #region card -->
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header">
+
+        <!-- #region title -->
+        <h3 class="card-title">
+            <span class="card-label fw-normal fs-3 mb-1">default</span>
+            <span class="card-label fw-normal fs-3 mb-1" [hidden]="changeOptions">Pay Per Operation For All Users</span>
+
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+
+            <!-- #region change -->
+            <button class="btn btn-sm btn-primary" [hidden]="changeOptions" (click)="onBtnChangeClick()">
+                Change
+            </button>
+            <!-- #endregion change -->
+
+            <!-- #region add new operation -->
+            <button class="btn btn-sm btn-primary me-3" [hidden]="!changeOptions">
+                Add New Operation
+            </button>
+            <!-- #endregion add new operation -->
+
+            <!-- #region apply -->
+            <button class="btn btn-sm btn-primary" [hidden]="!changeOptions" (click)="onBtnApplyClick()">
+                Apply
+            </button>
+            <!-- #endregion apply -->
+
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="fw-normal bg-light">
+                        <th class="ps-4 rounded-start">Operation</th>
+                        <th class="text-center">Reach Number</th>
+                        <th class="text-center">Payment</th>
+                        <th class="pe-4 rounded-end text-center text-end w-100px">
+                            <span [hidden]="!changeOptions">Action</span>
+                        </th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let row of rows" class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region operation -->
+                        <td class="min-w-300px py-6" [ngClass]="{'opacity-50': !row.enable}">
+                            {{row.operation}}
+                        </td>
+                        <!-- #endregion operation -->
+                        <!-- #region reach number -->
+                        <td class="w-250px text-center">
+                            <span *ngIf="!changeOptions" [ngClass]="{'opacity-50': !row.enable}">
+                                {{row.reachNumber | number}}
+                            </span>
+                            <input type="text" class="form-control form-control-solid w-100"
+                                [(ngModel)]="row.reachNumber" *ngIf="changeOptions" [disabled]="!row.enable">
+                        </td>
+                        <!-- #endregion reach number -->
+                        <!-- #region payment -->
+                        <td class="min-w-150px text-center" [ngClass]="{'min-w-200px' : changeOptions}">
+                            <span *ngIf="!changeOptions" [ngClass]="{'opacity-50': !row.enable}">
+                                {{row.payment}}$
+                            </span>
+                            <input type="text" class="form-control form-control-solid w-100" [(ngModel)]="row.payment"
+                                *ngIf="changeOptions" [disabled]="!row.enable">
+                        </td>
+                        <!-- #endregion payment -->
+                        <!-- #region action -->
+                        <td class="text-end">
+                            <button [hidden]="!changeOptions" class="btn" (click)="onBtnChangeEnableClick(row)"
+                                [ngClass]="{ 'btn-light-danger' : row.enable, 'btn-light-success': !row.enable}">
+                                {{row.enable ? 'Disable' : 'Enable'}}
+                            </button>
+                        </td>
+                        <!-- #endregion action -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

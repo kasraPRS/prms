@@ -1,0 +1,97 @@
+<div id="two-factor-auth" class="card two-factor w-700px mw-100 mh-100">
+    <!-- #region Header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">
+                Choose an Authentication Method
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+    <!--#region Card Body-->
+    <div class="card-body border-top mh-400px overflow-auto">
+        <form [formGroup]="form">
+            <!--#region Just Password-->
+            <input 
+                type="radio" 
+                class="btn-check" 
+                [value]="false" 
+                checked="checked" 
+                name="twoVerification" 
+                formControlName="twoVerification" 
+                (change)="t()"
+                id="kt_modal_two_factor_authentication_option_1"
+            >
+            <label 
+                class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-5"
+                [ngClass]="{'bg-white':form.get('twoVerification')?.value}"
+                for="kt_modal_two_factor_authentication_option_1"
+            >
+                <span class="svg-icon svg-icon-4x" 
+                    [inlineSVG]="'/assets/media/icons/duotune/coding/cod001.svg'"></span>
+                <span class="d-block fw-bold text-start ms-5">
+                    <span class="text-dark fw-bolder d-block fs-3">Default</span>
+                    <span class="text-muted fw-bold fs-6">Login only with email and password.</span>
+                </span>
+            </label>
+            <!--#endregion Just Password-->
+            
+            <!--#region SMS -->
+            <input 
+                type="radio" 
+                class="btn-check" 
+                name="twoVerification" 
+                [value]="true" 
+                (change)="t()"
+                formControlName="twoVerification" 
+                id="kt_modal_two_factor_authentication_option_2"
+            >
+            <label 
+                class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center" 
+                [ngClass]="{'bg-white':!form.get('twoVerification')?.value}"
+                for="kt_modal_two_factor_authentication_option_2"
+            >
+                <span class="svg-icon svg-icon-4x" 
+                    [inlineSVG]="'/assets/media/icons/duotune/communication/com003.svg'"></span>
+                <span
+                class="d-block 
+                fw-bold text-start 
+                ms-5">
+    
+                <span class="text-dark fw-bolder d-block fs-3">SMS</span>
+                    <span class="text-muted fw-bold fs-6">We will send a code via SMS if you need to use your backup login method.</span>
+                </span>
+            </label>
+            <!--#endregion SMS-->
+        </form>
+    </div>
+    <!--#region Card Body-->
+    <div class="card-footer d-flex justify-content-end">
+        <!--#region Action-->
+        <div class="text-center">
+        <button
+            type="submit"
+            id="kt_two_verification_submit"
+            class="btn btn-sm btn-primary w-100"
+            [disabled]="form.invalid || (isLoading$ | async) "
+        >
+            <ng-container *ngIf="isLoading$ | async">
+                <span class="indicator-progress" [style.display]="'block'">
+                    Please wait...
+                    <span
+                        class="spinner-border spinner-border-sm align-middle ms-2"
+                    ></span>
+                </span>
+            </ng-container>
+            <ng-container *ngIf="!(isLoading$ | async)">
+                <span class="indicator-label">Apply</span>
+            </ng-container>
+        </button>
+        <!--#endregion Action-->
+    </div>
+</div>

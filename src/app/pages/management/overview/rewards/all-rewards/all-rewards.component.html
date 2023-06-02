@@ -1,0 +1,55 @@
+<!-- #region Card -->
+<div class="card rounded-0">
+
+    <!-- #region Header -->
+    <div class="card-header bg-white position-sticky top-0 z-index-1">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3">tasks</span>
+        </h3>
+        <div class="card-toolbar">
+            <button id="kt_drawer_all_rewards_close" type="button" class="btn btn-icon btn-sm text-hover-danger">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body hover-scroll-overlay-y p-3">
+        <table class="table align-middle gs-0 gy-4">
+            <tr *ngFor="let reward of rewards">
+
+                <td class="min-w-200px">
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex justify-content-start flex-column">
+                            <a class="text-dark mb-1 fs-6">
+                                {{reward.title}}
+                            </a>
+                            <span class="text-gray-400 d-block fs-8">
+                                1,598 Entries
+                            </span>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="min-w-100px">
+                    <a class="text-dark d-block mb-1 fs-6">
+                        {{reward.rate}}%
+                    </a>
+                    <span class="text-gray-400 d-block fs-8">Conversion Rate</span>
+                </td>
+
+                <td class="min-w-100px">
+                    <a class="text-dark d-block mb-1 fs-6">
+                        $ {{reward.revenue}}
+                    </a>
+                    <span class="text-gray-400 d-block fs-8">Gained Revenue</span>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <!-- #endregion Body -->
+
+</div>
+<!-- #endregion Card -->

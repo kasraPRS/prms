@@ -1,0 +1,104 @@
+<!-- #region Overview -->
+<div class="row g-5 g-xxl-8">
+
+  <!-- #region Profile Details -->
+  <div class="col-xl-8" *ngIf="access?.profileDetails?.allowed">
+    <app-profile-details class="card" id="kt_profile_details_view">
+    </app-profile-details>
+  </div>
+  <!-- #endregion Profile Details -->
+
+  <!-- #region Monthly Income -->
+  <div class="col-xl-4" *ngIf="access?.monthlyIncome?.allowed">
+    <prms-monthly-income class="card">
+    </prms-monthly-income>
+  </div>
+  <!-- #endregion Monthly Income -->
+
+  <!-- #region Recent Links -->
+  <div class="col-xl-6" *ngIf="access?.recentLinks?.allowed">
+    <prms-recent-links class="card">
+    </prms-recent-links>
+  </div>
+  <!-- #endregion Recent Links -->
+
+  <!-- #region Recent Compaigns -->
+  <div class="col-xl-6" *ngIf="access?.recentCampaigns?.allowed">
+    <prms-recent-compaigns class="card">
+    </prms-recent-compaigns>
+  </div>
+  <!-- #endregion Recent Compaigns -->
+
+  <!-- #region Notes -->
+  <div class="col-xl-4">
+    <prms-notes class="">
+    </prms-notes>
+  </div>
+  <!-- #endregion Notes -->
+
+  <!-- #region Rewards and Undone Tasks -->
+  <div class="col-xl-4">
+    <div class="row g-5 g-xxl-8">
+      <!-- #region Rewards -->
+      <div class="col-12" *ngIf="access?.rewards?.allowed">
+        <prms-rewards class="card">
+        </prms-rewards>
+      </div>
+      <!-- #endregion Rewards -->
+
+      <!-- #region Undone Tasks -->
+      <div class="col-12" *ngIf="access?.undoneTasks?.allowed">
+        <prms-undone-tasks class="card">
+        </prms-undone-tasks>
+      </div>
+      <!-- #endregion Undone Tasks -->
+    </div>
+  </div>
+  <!-- #endregion Rewards and Undone Tasks -->
+
+  <!-- #region Payments and Activites -->
+  <div class="col-xl-4">
+    <div class="row g-5 g-xxl-8">
+      <!-- #region Payment per Operation -->
+      <div class="col-12" *ngIf="access?.paymentsPerOperation?.allowed">
+        <prms-payments-operation class="card">
+        </prms-payments-operation>
+      </div>
+      <!-- #endregion Payment per Operation -->
+
+      <!-- #region Undone Activites -->
+      <div class="col-12" *ngIf="access?.activities?.allowed">
+        <prms-activity-list class="card">
+        </prms-activity-list>
+      </div>
+      <!-- #endregion Undone Activites -->
+    </div>
+  </div>
+  <!-- #endregion Payments and Activites -->
+
+  <div class="col-8 pe-1" *ngIf="access?.meeting?.allowed">
+    <prms-full-calendar #calenderRef></prms-full-calendar>
+  </div>
+
+  <div class="col-4 ps-1" *ngIf="access?.meeting?.allowed">
+    <prms-meeting (change)="meetingChanged()"></prms-meeting>
+  </div>
+
+</div>
+<!-- #endregion Overview -->
+
+
+<!-- <div class="row g-5 g-xxl-8">
+  <div class="col-xl-6">
+    <app-feeds-widget2 class="card mb-5 mb-xxl-8"></app-feeds-widget2>
+    <app-feeds-widget3 class="card mb-5 mb-xxl-8"></app-feeds-widget3>
+    <app-feeds-widget4 class="card mb-5 mb-xxl-8"></app-feeds-widget4>
+    <app-feeds-widget5 class="card mb-5 mb-xxl-8"></app-feeds-widget5>
+    <app-feeds-widget6 class="card mb-5 mb-xxl-8"></app-feeds-widget6>
+  </div>
+  <div class="col-xl-6">
+    <app-charts-widget1 class="card mb-5 mb-xxl-8"></app-charts-widget1>
+    <app-lists-widget5 class="card mb-5 mb-xxl-8"></app-lists-widget5>
+    <app-lists-widget2 class="card mb-5 mb-xxl-8"></app-lists-widget2>
+  </div>
+</div> -->

@@ -1,0 +1,48 @@
+<!-- #region Hierarchy -->
+<div class="row g-5 g-xxl-8">
+
+    <!-- #region buttons -->
+    <div class="col-xl-12 d-flex justify-content-between">
+        <button 
+            class="btn bg-white btn-text-primary btn-sm" 
+            (click)="addToCategory()"
+            *ngIf="authService.currentUserValue?.role === 'admin'">
+            Add To Category
+        </button>
+
+        <button type="button" class="btn btn-primary btn-sm ms-auto" (click)="onCopyProfileLink()">
+            Copy Profile Link
+        </button>
+    </div>
+    <!-- #endregion buttons -->
+
+    <!-- #region generate affilate marketer signup link -->
+    <div class="col-xl-12">
+        <prms-generate-affiliate-marketer-signup-link class="card">
+        </prms-generate-affiliate-marketer-signup-link>
+    </div>
+    <!-- #endregion generate affilate marketer signup link -->
+
+    <!-- #region subset marketers -->
+    <div class="col-xl-6">
+        <prms-subset-marketers>
+        </prms-subset-marketers>
+    </div>
+    <!-- #endregion subset marketers -->
+
+    <!-- #region quick review -->
+    <div class="col-xl-6">
+        <prms-quick-review>
+        </prms-quick-review>
+    </div>
+    <!-- #endregion quick review -->
+
+    <!-- #region marketer hierarchy -->
+    <div class="col-xl-12">
+        <prms-marketer-hierarchy>
+        </prms-marketer-hierarchy>
+    </div>
+    <!-- #endregion marketer hierarchy -->
+
+</div>
+<!-- #endregion Hierarchy -->

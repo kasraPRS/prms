@@ -1,0 +1,30 @@
+<div class="card w-800px mw-100 mh-100">
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">Add note to meeting title</h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <form class="form" [formGroup]="formData" (ngSubmit)="onSubmit()">
+        <div class="card-body border-top p-9 h-400px">
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-4 col-form-label">Your Note</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between" style="direction: rtl;">
+            <button type="submit" class="btn btn-primary">Done</button>
+            <button type="button" class="btn btn-secondary" (click)="close()">Dismiss</button>
+        </div>
+
+    </form>
+
+</div>

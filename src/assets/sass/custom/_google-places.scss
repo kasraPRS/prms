@@ -1,0 +1,34 @@
+// 
+// Google Places List Select
+// 
+
+/* Variables */
+$google-places-hover-bg-item: #f5faff;  // select background color in hover
+$google-places-padding-item: 0.4rem 1rem;
+
+/* Styles */
+.pac-container.pac-logo {
+  border: 0;
+  box-shadow: $dropdown-box-shadow;
+  border-radius: $dropdown-border-radius;
+  background-color: $dropdown-bg;
+
+  .pac-item {
+    color: $gray-700;
+    transition: $transition-link;
+    padding: $google-places-padding-item;
+
+    &:hover {
+      background-color: $google-places-hover-bg-item;
+      color: $primary !important;
+    }
+
+    .pac-icon.pac-icon-marker {
+      display: none;
+    }
+  }
+
+  &::after {
+    display: none !important;
+  }
+}

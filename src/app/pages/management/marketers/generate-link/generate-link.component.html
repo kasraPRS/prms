@@ -1,0 +1,66 @@
+<!-- #region Header -->
+<div class="card-header">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-normal fs-3 d-flex align-items-center">
+      Generate Affiliate Marketer Signup Link
+      <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+    </span>
+  </h3>
+</div>
+<!-- #endregion Header -->
+<!-- #region Body -->
+<div class="card-body">
+
+  <!-- #region Generate -->
+  <div [hidden]="(showGeneratedLink$|async)">
+    <div class="d-flex align-items-center">
+      <span class="text-muted text-nowrap fw-bold me-6 fs-6">Marketing Level : </span>
+
+      <ng-select [searchable]="false" class="custom-select ng-select-sm me-2 w-100px" [(ngModel)]="selectedRole"
+        [disabled]="allowedRoles.length === 1">
+        <ng-option [value]="role.value" *ngFor="let role of allowedRoles">
+          {{ role.title }}
+        </ng-option>
+      </ng-select>
+
+      <button type="button" [disabled]="(isLoading$ | async) || !allowedRoles?.length" class="btn btn-sm btn-primary"
+        (click)="onGenerate()">
+        <ng-container *ngIf="isLoading$ | async">
+          <span class="indicator-progress" [style.display]="'block'">
+            Please Wait...
+            <span
+              class="spinner-border spinner-border-sm align-middle ms-2"
+            ></span>
+          </span>
+        </ng-container>
+        <ng-container *ngIf="!(isLoading$ | async)">
+          <span class="indicator-label">Generate</span>
+        </ng-container>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Generate -->
+
+  <!-- #region Generate New -->
+  <div [hidden]="!(showGeneratedLink$|async)">
+    <div class="d-flex align-items-center">
+      <span class="text-muted text-nowrap fw-bold me-6 fs-6">Sign Up URL : </span>
+      <div class="input-group flex-grow me-2">
+
+        <input readonly type="text" class="text-dark form-control form-control-sm" [(ngModel)]="generatedLink" />
+        <div class="input-group-append">
+          <button type="button" (click)="onCopyLink()" class="
+              btn btn-sm btn-active-success btn-outline btn-outline-success 
+              bg-light-success rounded-start-0 w-100px
+            ">
+            Copy
+          </button>
+        </div>
+      </div>
+      <button type="button" class="btn btn-sm btn-primary text-nowrap" (click)="onGenerateNew()">Generate New</button>
+    </div>
+  </div>
+  <!-- #endregion Generate New -->
+
+</div>
+<!-- #endregion Body -->

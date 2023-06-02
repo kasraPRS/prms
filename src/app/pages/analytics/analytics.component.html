@@ -1,0 +1,265 @@
+<div class="analytics-filter bg-light d-flex justify-content-end">
+
+    <!-- #region location -->
+    <div class="d-flex align-items-center py-2 me-8">
+        <div class="text-muted me-3 fw-bolder">
+            Location
+        </div>
+        <div>
+            <select class="form-select form-select-sm w-100px me-2 text-primary fw-bolder w-200px">
+                <option value="1">All</option>
+                <option value="2">Successful</option>
+                <option value="2">Unsuccessful</option>
+            </select>
+        </div>
+    </div>
+    <!-- #endregion location -->
+
+    <!-- #region marketers -->
+    <div class="d-flex align-items-center py-2 me-8">
+        <div class="text-muted me-3 fw-bolder">
+            Marketers
+        </div>
+        <div>
+            <select class="form-select form-select-sm w-100px me-2 text-primary fw-bolder w-200px">
+                <option value="1">All</option>
+                <option value="2">Successful</option>
+                <option value="2">Unsuccessful</option>
+            </select>
+        </div>
+    </div>
+    <!-- #endregion marketers -->
+
+    <!-- #region date range -->
+    <div class="d-flex align-items-center py-2">
+        <div class="text-muted me-3 fw-bolder">
+            Date Range
+        </div>
+        <div>
+            <input type="date" class="form-control" placeholder="Pick date rage" />
+        </div>
+    </div>
+    <!-- #endregion date range -->
+
+</div>
+
+<div class="card mb-5 mb-xl-7">
+    <div class="card-body pt-3">
+        <h3 class="fw-bolder">Analytics</h3>
+        <!-- #region Total Info -->
+        <div class="d-flex flex-wrap flex-stack">
+            <div class="d-flex flex-column flex-grow-1">
+
+                <div class="d-flex flex-wrap">
+
+                    <!-- #region status -->
+                    <div routerLink="/analytics"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-success">Successful</div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Status</div>
+                    </div>
+                    <!-- #endregion status -->
+
+                    <!-- #region entries -->
+                    <div routerLinkActive="bg-light" routerLink="/analytics/entries"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">{{1578 | number}}</div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Entries</div>
+                    </div>
+                    <!-- #endregion entries -->
+
+                    <!-- #region visitors -->
+                    <div routerLink="/analytics/visitors" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">{{350 | number}}</div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Visitors</div>
+                    </div>
+                    <!-- #endregion visitors -->
+
+                    <!-- #region registration -->
+                    <div routerLink="/analytics/registration" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">123</div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Registration</div>
+                    </div>
+                    <!-- #endregion registration -->
+
+                    <!-- #region converted -->
+                    <div routerLink="/analytics/converted" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold">
+
+                                <span class="text-primary me-2">70 Persons</span>
+                                <span class="text-success">4.5%</span>
+
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Converted</div>
+                    </div>
+                    <!-- #endregion converted -->
+
+                    <!-- #region bounced -->
+                    <div routerLink="/analytics/bounced" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold">
+
+                                <span class="text-primary me-2">70 Persons</span>
+                                <span class="text-success">4.5%</span>
+
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Bounced</div>
+                    </div>
+                    <!-- #endregion bounced -->
+
+                    <!-- #region link url -->
+                    <div
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-5 mw-300px overflow-hidden fw-bold text-primary"
+                                style="text-overflow: ellipsis; white-space: nowrap;">
+                                https://helphand.com/asdk3jrs
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Link URL</div>
+                    </div>
+                    <!-- #endregion link url -->
+
+                </div>
+
+                <div class="d-flex flex-wrap">
+
+                    <!-- #region Campaign Views -->
+                    <div routerLink="/analytics/campaign-views" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">
+                                {{14269 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Campaign Views</div>
+                    </div>
+                    <!-- #endregion Campaign Views -->
+
+                    <!-- #region Site Views -->
+                    <div routerLink="/analytics/site-views" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">
+                                {{15236 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Site Views</div>
+                    </div>
+                    <!-- #endregion Site Views -->
+
+                    <!-- #region donation page views -->
+                    <div routerLink="/analytics/donation-page-views" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">
+                                {{13 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Donation Page Views</div>
+                    </div>
+                    <!-- #endregion donation page views -->
+
+                    <!-- #region payment page views -->
+                    <div routerLink="/analytics/payment-page-views" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">
+                                {{13 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Payment Page Views</div>
+                    </div>
+                    <!-- #endregion payment page views -->
+
+                    <!-- #region Campaign created -->
+                    <div routerLink="/analytics/campaign-created" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-primary">
+                                {{13 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Campaign Created</div>
+                    </div>
+                    <!-- #endregion Campaign created -->
+
+                    <!-- #region donation -->
+                    <div
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-success">
+                                ${{1456 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Donation</div>
+                    </div>
+                    <!-- #endregion donation -->
+
+                    <!-- #region revenue -->
+                    <div
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold text-success">
+                                ${{700 | number}}
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Revenue</div>
+                    </div>
+                    <!-- #endregion revenue -->
+
+                    <!-- #region Created a Campaign -->
+                    <div routerLink="/analytics/created-a-campaign" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold">
+
+                                <span class="text-primary me-2">853</span>
+                                <span class="text-gray-400 fs-4">Persons</span>
+
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Created a Campaign</div>
+                    </div>
+                    <!-- #endregion Created a Campaign -->
+
+                    <!-- #region Donated to a Campaign -->
+                    <div routerLink="/analytics/donated-to-a-campaign" routerLinkActive="bg-light"
+                        class="border border-gray-300 border-dashed rounded min-w-80px px-4 me-3 mb-3 text-center cursor-pointer d-flex flex-column justify-content-between py-2 h-65px">
+                        <div class="align-items-center">
+                            <div class="fs-3 fw-bold">
+
+                                <span class="text-primary me-2">853</span>
+                                <span class="text-gray-400 fs-4">Persons</span>
+
+                            </div>
+                        </div>
+                        <div class="fw-bold fs-8 fw-bolder">Donated to a Campaign</div>
+                    </div>
+                    <!-- #endregion Donated to a Campaign -->
+
+                </div>
+
+            </div>
+        </div>
+        <!-- #endregion Total Info -->
+
+    </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,26 @@
+.activities-overview-note {
+  &.border-around {
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='rgb(191, 198, 214)' stroke-width='2' stroke-dasharray='10' stroke-dashoffset='10' stroke-linecap='square'/%3e%3c/svg%3e");
+    border-radius: 10px;
+  }
+  .custom-ng-select {
+    .ng-select-container {
+      border: none;
+      min-height: 50px;
+      box-shadow: 0px 0px 20px 0px rgba(76, 87, 125, 0.02);
+      .ng-value-container {
+        display: flex;
+        align-items: center;
+        .ng-placeholder{
+          top: 50% !important;
+          transform: translate(0, -50%) !important;
+          padding-bottom: 0;
+        }
+        .ng-input {
+          top: 50% !important;
+          // transform: translate(0, -50%) !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,193 @@
+<div class="border-around overflow-hidden activities-overview-note" style="padding: 1px;">
+  <div class="hover-scroll-overlay-y sc sc-w-thin sc-secondary mh-800px p-5" infinite-scroll
+    [infiniteScrollDistance]="1" [infiniteScrollThrottle]="5" [scrollWindow]="false" (scrolled)="onScrollDown()">
+
+    <!-- #region Filter Note -->
+    <div class="mb-3 mb-xxl-5">
+      <ng-select [searchable]="true" [multiple]="true" class="custom-select w-100 border-0 custom-ng-select"
+        [searchWhileComposing]="false" placeholder="Filter" (change)="onSlctFilterChange()"
+        (search)="onSlctFilterSearch($event)" [(ngModel)]="filterModel">
+        <ng-option value="">Show All Notes</ng-option>
+        <ng-option [value]="user.id" *ngFor="let user of usersList">
+          {{user.fullName}}
+        </ng-option>
+      </ng-select>
+    </div>
+    <!-- #endregion Filter Note -->
+
+    <!-- #region add Note -->
+    <form class="card mb-3 mb-xxl-5" [formGroup]="form">
+      <div class="card-body p-7 pb-1">
+        <!-- #region Info -->
+        <div class="d-flex align-items-center mb-7">
+
+          <!-- #region Submitter User -->
+          <div class="d-flex align-items-center flex-grow-1">
+            <!-- #region Avatar -->
+            <div class="symbol symbol-45px me-4">
+              <img [src]="userProfileImgUrl" alt="user image" [hidden]="!userProfileImgUrl" />
+              <div class="symbol-label fs-2 fw-bold text-primary" [hidden]="userProfileImgUrl">
+                {{userName?.substring(0,1)}}
+              </div>
+            </div>
+            <!-- #endregion Avatar -->
+
+            <!-- #region Info -->
+            <div class="d-flex flex-column">
+              <a class="text-gray-800 fs-6 mb-1">
+                {{userName}}
+              </a>
+
+              <span class="text-gray-400 fs-8">3 Notes on This Profile</span>
+            </div>
+            <!-- #endregion Info -->
+          </div>
+          <!-- #endregion Submitter User -->
+
+          <!-- #region private -->
+          <div class="my-0">
+            <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid mb-1">
+              <input type="checkbox" id="note-type" class="form-check-input ms-auto" formControlName="private" />
+            </div>
+            <label for="note-type" [class.text-muted]="!form.get('private')!.value"
+              class="user-select-none form-label cursor-pointer text-primary fs-8 m-0">
+              {{ form.get('private')!.value ? 'Private Note' : 'Public' }}
+            </label>
+          </div>
+          <!-- #endregion private -->
+        </div>
+        <!-- #endregion Info -->
+
+        <!-- #region description -->
+        <div class="position-relative mb-1">
+          <textarea autosize style="min-height: 20px;" placeholder="Type a Note..." formControlName="description"
+            class="form-control resize-none border-0 fs-8 sc sc-w-thin sc-secondary fw-normal py-1 px-0"></textarea>
+        </div>
+        <!-- #endregion description -->
+
+        <!-- #region Separator -->
+        <div class="separator mb-1"></div>
+        <!-- #endregion Separator -->
+
+        <!-- #region Actions -->
+        <div class="d-flex align-items-center justify-content-between">
+          <div>
+            <button class="btn btn-icon btn-xs btn-white text-gray-800 text-hover-success" [disabled]="submitSpnStatus"
+              (click)="onBtnSaveNoteClick()">
+              <i class="fa-solid fa-check" [hidden]="submitSpnStatus"></i>
+              <i class="fa-solid fa-circle-notch fa-spin" [hidden]="!submitSpnStatus"></i>
+            </button>
+          </div>
+
+          <div>
+            <!-- #region file upload button -->
+            <!-- <button class="btn btn-icon btn-xs btn-white text-gray-800 text-hover-primary me-1"
+              [ngClass]="{'border border-primary bg-light-primary': form.get('file')!.value}"
+              (click)="onUploadBtnClick()">
+              <i class="fa-solid fa-paperclip"></i>
+              <input class="d-none" id="noteFileUploader" (change)="onFileUploadeChange($event.target.files)"
+                type="file" accept=".png, .jpg, .jpeg" />
+            </button> -->
+            <!-- #endregion file upload button -->
+
+            <!-- #region attach link -->
+            <button class="btn btn-icon btn-xs btn-white text-gray-800 text-hover-primary"
+              [ngClass]="{'border border-primary bg-light-primary': attachLink}" ngbTooltip="Attach Link"
+              placement="bottom-right" [ngbPopover]="popAttachLink" autoClose="outside">
+              <i class="fa-solid fa-link"></i>
+            </button>
+            <!-- #endregion attach link -->
+
+          </div>
+
+        </div>
+        <!-- #endregion Actions -->
+      </div>
+    </form>
+    <!-- #endregion add Note -->
+
+    <!-- #region Notes -->
+    <div class="card" [ngClass]="{'mb-3 mb-xxl-5': i !== 9}" *ngFor="let note of dataSource.items">
+
+      <!-- #region card body -->
+      <div class="card-body p-7 pb-3">
+        <!-- #region Info -->
+        <div class="d-flex align-items-start mb-7">
+          <!-- #region User -->
+          <div class="d-flex align-items-center flex-grow-1">
+            <!-- #region Avatar -->
+            <div class="symbol symbol-45px me-4">
+              <img [src]="note.fromUserProfileImage" alt="user image" [hidden]="!note.fromUserProfileImage" />
+              <div class="symbol-label fs-2 fw-bold text-primary" [hidden]="note.fromUserProfileImage">
+                {{note.fromUserName?.substring(0,1) || 'U'}}
+              </div>
+            </div>
+            <!-- #endregion Avatar -->
+
+            <!-- #region Info -->
+            <div class="d-flex flex-column">
+              <a class="text-gray-800 fs-6 mb-1">
+                {{note.fromUserName || 'Unknown user'}}
+              </a>
+
+              <span class="text-gray-400 fs-8">{{note.date}}</span>
+            </div>
+            <!-- #endregion Info -->
+          </div>
+          <!-- #endregion User -->
+
+          <!-- #region Type Note -->
+          <div class="my-0">
+            <div for="note-type" [class.text-muted]="!note.private"
+              class="user-select-none form-label text-primary fs-8 m-0">
+              {{note.private ? 'Private Note' : 'Public'}}
+            </div>
+          </div>
+          <!-- #endregion Type Note -->
+        </div>
+        <!-- #endregion Info -->
+
+        <!-- #region Text -->
+        <p class="text-gray-800 fw-normal">
+          {{note.description}}
+        </p>
+        <!-- #endregion Text -->
+        <!-- #region attached link -->
+        <div class="w-100 d-flex align-items-start" *ngIf="note.attachLink">
+          <div class="fw-bolder me-1 text-nowrap">Attached Link:</div>
+          <a [href]="'//' + note.attachLink" target="_blank" class="text-primary text-nowrap mw-100 overflow-hidden"
+            style="text-overflow: ellipsis;">
+            {{note.attachLink}}
+          </a>
+        </div>
+        <!-- #endregion attached link -->
+        <!-- #region attached file -->
+        <!-- <div class="w-100 d-flex align-items-start" *ngIf="note.fileId">
+          <div class="fw-bolder me-1">Attached File:</div>
+          <div class="text-primary cursor-pointer">Download</div>
+        </div> -->
+        <!-- #endregion attached file -->
+      </div>
+      <!-- #endregion card body -->
+
+      <!-- #region card footer -->
+      <div class="card-footer py-3 px-7" *ngIf="note.fromUserName == userName">
+        <button class="btn bg-hover-light-danger text-hover-danger btn-sm btn-icon"
+          (click)="onBtnDeleteNoteClick(note)">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </div>
+      <!-- #endregion card footer -->
+
+    </div>
+    <!-- #endregion Notes -->
+  </div>
+</div>
+<!-- #region attach link popover -->
+<ng-template #popAttachLink>
+
+  <input type="text" class="form-control form-control-sm" placeholder="Type a Link" [disabled]="submitSpnStatus"
+    [(ngModel)]="attachLink">
+
+</ng-template>
+<!-- #endregion attach link popover -->

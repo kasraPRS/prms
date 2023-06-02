@@ -1,0 +1,246 @@
+<!-- #region Administration -->
+<div class="menu-item menu-accordion" data-kt-menu-trigger="click" routerLinkActive="here show"
+  *ngIf="user.access.administration?.allowed">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/maps/map001.svg'">
+      </span>
+    </span>
+    <span class="menu-title" data-link="/activities">
+      <span>Administration</span>  
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.administration.title}"
+      ></ng-container>
+    </span>
+    <span class="menu-arrow"></span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngFor="let link of AdministrationLinks">
+      <a class="menu-link without-sub" routerLinkActive="active" [routerLink]="link.routerLink">
+        <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+        <span class="menu-title">
+          {{link.title}}
+          <ng-container 
+            [ngTemplateOutlet]="tooltip" 
+            [ngTemplateOutletContext]="{context:tooltips.management.title}"
+          ></ng-container>
+        </span></a>
+    </div>
+  </div>
+</div>
+<!-- #endregion Administration -->
+
+<!-- #region Management -->
+<div
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show"
+  *ngIf="user.access.management?.allowed"
+>
+  <span class="menu-link"
+    ><span class="menu-icon"
+      ><span
+        class="svg-icon svg-icon-2"
+        [inlineSVG]="'./assets/media/icons/duotune/general/gen025.svg'"
+      ></span></span
+    ><span class="menu-title" data-link="/management">
+      <span>Management</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.management.title}"
+      ></ng-container>
+    </span><span class="menu-arrow"></span
+  ></span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <ng-container *ngFor="let link of ManagementLinks">
+      <div class="menu-item" *ngIf="checkCondition(link.condition)">
+        <a class="menu-link without-sub" routerLinkActive="active" [routerLink]="link.routerLink"><span
+            class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
+            class="menu-title">
+            {{link.title}}
+            <ng-container 
+              [ngTemplateOutlet]="tooltip" 
+              [ngTemplateOutletContext]="{context:tooltips.management.title}"
+            ></ng-container>
+          </span></a>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<!-- #endregion Management -->
+
+<!-- #region Activities -->
+<div
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show"
+  *ngIf="user.access.activities?.allowed"
+>
+  <span class="menu-link"
+    ><span class="menu-icon"
+      ><span
+        class="svg-icon svg-icon-2"
+        [inlineSVG]="'./assets/media/icons/duotune/communication/com013.svg'"
+      ></span></span
+    ><span class="menu-title" data-link="/activities">
+      <span>Activities</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.activities.title}"
+      ></ng-container>
+    </span><span class="menu-arrow"></span
+  ></span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngFor="let link of ActivitiesLinks">
+      <a class="menu-link without-sub" routerLinkActive="active" [routerLink]="link.routerLink"><span
+          class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
+          class="menu-title">
+          {{link.title}}
+          <ng-container 
+            [ngTemplateOutlet]="tooltip" 
+            [ngTemplateOutletContext]="{context:tooltips.management.title}"
+          ></ng-container>
+        </span></a>
+    </div>
+  </div>
+</div>
+<!-- #endregion Activities -->
+
+<!-- #region Reports -->
+<div
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show"
+  *ngIf="user.access.reports?.allowed"
+>
+  <span class="menu-link"
+    ><span class="menu-icon"
+      ><span
+        class="svg-icon svg-icon-2"
+        [inlineSVG]="'./assets/media/icons/duotune/graphs/gra006.svg'"
+      ></span></span
+    ><span class="menu-title" data-link="/crafted/account">
+      <span>Reports</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.reports.title}"
+      ></ng-container>
+    </span><span class="menu-arrow"></span
+  ></span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngFor="let link of ReportsLinks">
+      <a class="menu-link without-sub" routerLinkActive="active" [routerLink]="link.routerLink"><span
+          class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
+          class="menu-title">
+          {{link.title}}
+          <ng-container 
+            [ngTemplateOutlet]="tooltip" 
+            [ngTemplateOutletContext]="{context:tooltips.management.title}"
+          ></ng-container>
+        </span></a>
+    </div>
+  </div>
+</div>
+<!-- #endregion Reports -->
+
+<!-- #region Analytics -->
+<div class="menu-item" *ngIf="user.access.analytics?.allowed">
+  <a class="menu-link without-sub" routerLink="/analytics" routerLinkActive="active"><span class="menu-icon">
+      <span [inlineSVG]="'./assets/media/icons/duotune/coding/cod001.svg'" class="svg-icon svg-icon-2"></span>
+    </span>
+    <span class="menu-title">
+      <span>Analytics</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.analytics.title}"
+      ></ng-container>
+    </span
+  ></a>
+</div>
+<!-- #endregion Analytics -->
+
+<!-- #region Tickets -->
+<div class="menu-item" *ngIf="user.access.tickets?.allowed">
+  <a class="menu-link without-sub" routerLink="/dashboard" routerLinkActive="active"><span class="menu-icon">
+      <span [inlineSVG]="'./assets/media/icons/duotune/communication/com002.svg'" class="svg-icon svg-icon-2"></span>
+    </span>
+    <span class="menu-title">
+      <span>Tickets</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.tickets.title}"
+      ></ng-container>
+    </span
+  ></a>
+</div>
+<!-- #endregion Tickets -->
+
+<!-- #region Tasks -->
+<div class="menu-item">
+  <a class="menu-link without-sub" routerLinkActive="active" (click)="toggleRightSidenav()"><span class="menu-icon">
+      <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-2"></span>
+    </span>
+    <span class="menu-title">
+      <span>Tasks</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.tasks.title}"
+      ></ng-container>
+    </span
+  ></a>
+</div>
+<!-- #endregion Tasks -->
+
+<!-- #region My Account -->
+<div
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show"
+  *ngIf="user.access.myAccount?.allowed"
+>
+  <a 
+    class="menu-link"
+    (click)="navigate(['/account/settings'])"
+    ><span class="menu-icon"
+      ><span
+        class="svg-icon svg-icon-2"
+        [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'"
+      ></span></span
+    ><span class="menu-title" data-link="/account">
+      <span>My Account</span>
+      <ng-container 
+        [ngTemplateOutlet]="tooltip" 
+        [ngTemplateOutletContext]="{context:tooltips.myAccount.title}"
+      ></ng-container>
+    </span
+  ></a>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngFor="let link of MyAccountLinks" [hidden]="true">
+      <a class="menu-link without-sub" routerLinkActive="active" [routerLink]="link.routerLink"><span
+          class="menu-bullet"><span class="bullet bullet-dot"></span></span><span
+          class="menu-title">
+          {{link.title}}
+          <ng-container 
+            [ngTemplateOutlet]="tooltip" 
+            [ngTemplateOutletContext]="{context:tooltips.management.title}"
+          ></ng-container>
+        </span></a>
+    </div>
+  </div>
+</div>
+<!-- #endregion My Account -->
+
+<ng-template 
+  #tooltip 
+  let-context="context"
+>
+  <span style="width: 13px; height: 13px;" class="
+    bg-white rounded-circle ms-3
+    d-flex align-items-center justify-content-center"
+    [ngbTooltip]="context" #tooltipsRef="ngbTooltip"
+    (click)="$event.stopPropagation();$event.preventDefault()"
+  >
+    <i class="fa-solid fa-question fs-8" [style.color]="questionColor"></i>
+  </span>
+</ng-template>

@@ -1,0 +1,67 @@
+<div class="reports-filter bg-light d-flex justify-content-between">
+
+    <!-- #region title -->
+    <div class="d-flex align-items-center py-2 me-8">
+        Reports Overview
+    </div>
+    <!-- #endregion title -->
+
+    <!-- #region location -->
+    <div class="d-flex align-items-center py-2 me-8">
+        <div class="text-muted me-3 fw-bolder">
+            Location
+        </div>
+        <div>
+            <select class="form-select form-select-sm w-150px me-2 text-primary fw-bolder">
+                <option value="1">All</option>
+                <option value="2">Successful</option>
+                <option value="2">Unsuccessful</option>
+            </select>
+        </div>
+    </div>
+    <!-- #endregion location -->
+
+    <!-- #region gender -->
+    <div class="d-flex align-items-center py-2 me-8">
+        <div class="text-muted me-3 fw-bolder">
+            Gender
+        </div>
+        <div>
+            <select class="form-select form-select-sm w-150px me-2 text-primary fw-bolder">
+                <option value="1">All</option>
+                <option value="2">Male</option>
+                <option value="2">Femail</option>
+            </select>
+        </div>
+    </div>
+    <!-- #endregion gender -->
+
+    <!-- #region marketers -->
+    <div class="d-flex align-items-center py-2 me-8">
+        <div class="text-muted me-3 fw-bolder">
+            Marketers
+        </div>
+        <div>
+            <select class="form-select form-select-sm w-150px me-2 text-primary fw-bolder">
+                <option value="1">All</option>
+                <option value="2">Successful</option>
+                <option value="2">Unsuccessful</option>
+            </select>
+        </div>
+    </div>
+    <!-- #endregion marketers -->
+
+    <!-- #region date range -->
+    <div class="d-flex align-items-center py-2">
+        <div class="text-muted me-3 fw-bolder">
+            Date Range
+        </div>
+        <div>
+            <input type="date" class="form-control" placeholder="Pick date rage" />
+        </div>
+    </div>
+    <!-- #endregion date range -->
+
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,126 @@
+<div class="card w-750px mw-100 mh-100">
+    <!-- #region Header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">
+                Link Banner
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close.emit()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region choosing banner -->
+    <form novalidate="" class="form" *ngIf="choosingBanner">
+        <!-- #region Body -->
+        <div class="card-body border-top p-9 mh-400px overflow-auto">
+
+            <h3 class="fw-bolder">Choose Template</h3>
+
+            <!-- #region templates -->
+            <div class="row">
+
+                <div class="col-md-3 p-2" *ngFor="let item of Banner_GetListAllDto">
+                    <div class="rounded-4 bg-secondary w-100 h-125px overflow-hidden cursor-pointer"
+                        (click)="onChoosingBannerBtnNextClick(item)">
+                        <img src="{{serverImageUrl}}{{item.url}}" alt="banner" class="w-100 h-100"
+                            style="object-fit: cover;">
+                    </div>
+                    <button type="button" class="btn btn-icon btn-sm btn-bg-light btn-active-color-primary fs-9 "
+                        (click)="onBtnRemoveBannerClick(item)">
+                        <i class="fa-solid fa-xmark fs-5"></i>
+                    </button>
+                </div>
+
+                <button class="btn btn-primary px-15" (click)="onUploadBtnClick()" [disabled]="submitting">
+                    <ng-container *ngIf="!submitting">Upload</ng-container>
+                    <ng-container *ngIf="submitting">Please wait...</ng-container>
+                    <input class="d-none" id="fileUploader" (change)="onFileUploadeChange($event.target.files)"
+                        type="file" accept=".png, .jpg, .jpeg" />
+                </button>
+
+            </div>
+            <!-- #endregion templates -->
+
+        </div>
+        <!-- #endregion Body -->
+
+        <!-- #region Card Footer -->
+        <div class="card-footer align-items-center py-4 px-9 text-end">
+
+            <!-- #region back -->
+            <button type="button" class="btn btn-primary btn-sm me-3" id="back" (click)="back.emit()">
+                Back
+            </button>
+            <!-- #endregion back -->
+
+            <!-- #region next -->
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="!submittingChoosedBanner">
+                <ng-container *ngIf="!submittingChoosedBanner">Next</ng-container>
+                <ng-container *ngIf="submittingChoosedBanner">
+                    <span clas="indicator-progress" [style.display]="'block'">
+                        Please Wait...{{ " " }}
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                </ng-container>
+            </button>
+            <!-- #endregion next -->
+
+        </div>
+        <!-- #endregion Card Footer -->
+    </form>
+    <!-- #endregion choosing banner -->
+
+    <!-- #region embed -->
+    <div *ngIf="!choosingBanner">
+        <!-- #region Body -->
+        <div class="card-body border-top p-9 mh-400px overflow-auto">
+
+            <!-- #region selected banner -->
+            <div>
+                <div class="rounded-4 bg-secondary w-200px h-125px overflow-hidden">
+                    <img src="{{serverImageUrl}}{{bannerObjDto.url}}" alt="banner" class="w-100 h-100"
+                        style="object-fit: cover;">
+                </div>
+            </div>
+            <!-- #endregion selected banner -->
+
+            <!-- #region embed -->
+            <div class="fs-5 fw-bolder mb-2 mt-5">Embed</div>
+            <div class="bg-light-dark rounded w-100 h-100 overflow-hidden p-2 d-flex flex-column">
+
+                <div class="h-100 overflow-auto">
+
+                    <code>{{code}}</code>
+
+                </div>
+
+                <div class="pt-1 text-end">
+                    <button class="btn btn-primary btn-sm py-1" (click)="onBtnCopyEmbedClick()">Copy</button>
+                </div>
+
+            </div>
+            <!-- #endregion embed -->
+
+        </div>
+        <!-- #endregion Body -->
+
+        <!-- #region Card Footer -->
+        <div class="card-footer align-items-center py-4 px-9 text-end">
+
+            <!-- #region next -->
+            <button type="button" class="btn btn-primary btn-sm" (click)="onEmbedSectionBtnNextClick()">
+                Next
+            </button>
+            <!-- #endregion next -->
+
+        </div>
+        <!-- #endregion Card Footer -->
+    </div>
+    <!-- #endregion embed -->
+
+</div>

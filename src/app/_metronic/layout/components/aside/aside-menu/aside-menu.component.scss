@@ -1,0 +1,3 @@
+.aside-hoverable:not(:hover) .menu .menu-item.show:not(.here)>.menu-link {
+  background-color: unset;
+}

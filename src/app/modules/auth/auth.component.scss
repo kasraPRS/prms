@@ -1,0 +1,9 @@
+$aside-grandient:  #008FFF, #87CBFF;
+
+:host {
+  height: 100%;
+}
+.bg-aside {
+  background: linear-gradient(45deg, $aside-grandient);
+  background: -webkit-linear-gradient(45deg, $aside-grandient);
+}

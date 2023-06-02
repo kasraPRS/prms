@@ -1,0 +1,49 @@
+<div class="card w-800px mw-100 mh-100">
+    <!-- card header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">Add Thierd-party perticipants</h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- card header -->
+    <!-- card body -->
+    <form class="form" [formGroup]="formData" (ngSubmit)="onSubmit()">
+        <div class="card-body border-top p-9 h-400px">
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Name</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" class="
+                                  form-control form-control-solid
+                                  text-dark mb-3 mb-lg-0
+                                " required placeholder="Enter The name of perticipant" formControlName="fullName" />
+                </div>
+            </div>
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">E-mail</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" 
+                        class="
+                            form-control form-control-solid
+                            text-dark mb-3 mb-lg-0
+                        "
+                        placeholder="Enter The E-mail of perticipant" formControlName="email" />
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-end ">
+                <button type="button" class="btn btn-secondary me-5" (click)="close()">Dismiss</button>
+                <button type="submit" class="btn btn-primary">Done</button>
+            </div>
+
+        </div>
+    </form>
+    <!-- card body -->
+</div>

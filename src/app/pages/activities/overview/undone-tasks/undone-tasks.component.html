@@ -1,0 +1,33 @@
+<!-- #region Header -->
+<div class="card-header border-0">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-normal fs-3">Undone Tasks</span>
+  </h3>
+  <div class="card-toolbar">
+    <a href="#" class="btn btn-light text-hover-primary">
+      View All
+    </a>
+  </div>
+</div>
+<!-- #endregion Header -->
+<!-- #region Body -->
+<div class="card-body py-2 overflow-auto"  style="max-height: calc(330px - var(--bs-gutter-y));">
+  <!-- #region Tasks List -->
+  <div>
+
+    <!-- #region Task -->
+    <label class="form-check form-check-custom form-check-solid mb-4" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <input type="checkbox" name="tasks-{{i}}" class="form-check-input me-1">
+      <span class="form-check-label d-flex flex-column align-items-start use-select-none">
+
+        <span class="fs-6 mb-0">Raise 1000 views</span>
+        <span class="text-muted fs-8">Due in 3 Days For Allen</span>
+
+      </span>
+    </label>
+    <!-- #endregion Task -->
+
+  </div>
+  <!-- #endregion Tasks List -->
+</div>
+<!-- #endregion Body -->

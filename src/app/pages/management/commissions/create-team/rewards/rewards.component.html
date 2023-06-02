@@ -1,0 +1,101 @@
+<!-- #region card -->
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header border-0">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1 d-flex align-items-center">
+                Rewards
+                <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+            </span>
+        </h3>
+        <!-- #endregion title -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body p-0">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px pt-0 px-6">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3 text-center text-nowrap">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="fw-normal bg-light">
+                        <th class="ps-4 rounded-start min-w-200px text-start">Title</th>
+                        <th class="min-w-125px">Action</th>
+                        <th class="min-w-125px">Rewarded Marketers</th>
+                        <th class="min-w-200px">Reward</th>
+                        <th class="min-w-100px">Total Reward</th>
+                        <th class="min-w-100px">Due Date</th>
+                        <th class="rounded-end"></th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let marketer of tableDataSource.items"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region marketer name -->
+                        <td class="min-w-200px py-6 text-start">
+                            <div class="mb-2">Reward Title</div>
+                            <div class="text-muted fs-7">by Nancy Clarkson</div>
+                        </td>
+                        <!-- #endregion marketer name -->
+                        <!-- #region state -->
+                        <td class="min-w-150px">
+                            <div class="mb-2">Reward Action</div>
+                            <div class="text-muted fs-7">Action needed Amount</div>
+                        </td>
+                        <!-- #endregion state -->
+                        <!-- #region successful link -->
+                        <td class="min-w-150px text-muted">
+                            <div class="mb-2">
+                                <span class="text-success">{{generateRandom(0,50)}}</span>
+                                <span>/{{generateRandom(0,100)}}</span>
+                                <span class="ms-3 fs-8">50%</span>
+                            </div>
+                            <div class="text-muted fs-7">Marketers</div>
+                        </td>
+                        <!-- #endregion successful link -->
+                        <!-- #region successful campaigns -->
+                        <td class="min-w-150px text-muted">
+                            <span class="text-success">{{generateRandom(0,40)}}</span>
+                        </td>
+                        <!-- #endregion successful campaigns -->
+                        <!-- #region subsets -->
+                        <td class="min-w-150px">
+                            <div class="text-success">{{generateRandom(0,50)}}</div>
+                        </td>
+                        <!-- #endregion subsets -->
+                        <!-- #region monthly income -->
+                        <td class="min-w-150px">
+                            <div class="mb-2">Due in 6 Days</div>
+                            <div class="text-muted fs-7">Created in 2/20/2022</div>
+                        </td>
+                        <!-- #endregion monthly income -->
+                        <!-- #region total income -->
+                        <td class="text-end">
+                            <button class="btn btn-light btn-sm btn-icon">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </td>
+                        <!-- #endregion total income -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <prms-table-pagination [model]="tableDataSource" (change)="getData()"></prms-table-pagination>
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

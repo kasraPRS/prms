@@ -1,0 +1,56 @@
+<div class="card">
+    <div class="row">
+        <form class="form mt-3">
+            <div class="mb-3 row">
+                <label class="col-sm-6 col-form-label text-muted">Date</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" name="date" [(ngModel)]="date" (change)="onChangeDate($event)">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-6 col-form-label text-muted">Assigned To</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
+                        name="assiegnedToId" [(ngModel)]="assiegnedToId" (change)="onChangeAssienedTo($event)">
+                        <option selected>Seletected</option>
+                        <option value="{{item.id}}" *ngFor="let item of assiegnedToDto">{{item.fullName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-6 col-form-label text-muted">Type</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="type"
+                    [(ngModel)]="type" (change)="onChangeType($event)">
+                        <option value="1">call</option>
+                        <option value="2">reminder</option>
+                        <option value="3">email</option>
+                        <option value="4">todo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-6 col-form-label text-muted">Priority</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="priority"
+                    [(ngModel)]="priority" (change)="onChangePriority($event)">
+                        <option value="1">level1</option>
+                        <option value="2">level2</option>
+                        <option value="3">level3</option>
+                        <option value="4">level4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-6 col-form-label text-muted">Status</label>
+                <div class="col-sm-6">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="state"
+                    [(ngModel)]="state" (change)="onChangeState($event)">
+                        <option value="1">open</option>
+                        <option value="2">dismiss</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

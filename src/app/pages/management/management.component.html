@@ -1,0 +1,175 @@
+<div class="card mb-5 mb-xl-7">
+  <div class="card-body pt-9 pb-0">
+    <!-- #region Total Info -->
+    <div class="d-flex flex-wrap">
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+        ">
+        <div class="d-flex align-items-center mb-2 justify-content-center">
+          <span [inlineSVG]="
+              './assets/media/icons/duotune/arrows/arr066.svg'
+            " class="svg-icon svg-icon-3 svg-icon-success"></span>
+          <div class="fs-2 fw-bold">83%</div>
+        </div>
+
+        <div class="fw-bold fs-8 text-gray-400">Successful Links</div>
+      </div>
+
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+        ">
+        <div class="d-flex align-items-center mb-2 justify-content-center">
+          <span [inlineSVG]="
+              './assets/media/icons/duotune/arrows/arr066.svg'
+            " class="svg-icon svg-icon-3 svg-icon-success"></span>
+          <div class="fs-2 fw-bold">45%</div>
+        </div>
+
+        <div class="fw-bold fs-8 text-gray-400">Successful Compaigns</div>
+      </div>
+
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+        ">
+        <div class="d-flex align-items-center mb-2 justify-content-center">
+          <div class="fs-2 fw-bold">12</div>
+        </div>
+        <div class="fw-bold fs-8 text-gray-400">Total Links</div>
+      </div>
+
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+        ">
+        <div class="d-flex align-items-center mb-2 justify-content-center">
+          <div class="fs-2 fw-bold">4</div>
+        </div>
+        <div class="fw-bold fs-8 text-gray-400">Total Compaigns</div>
+      </div>
+
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+        ">
+        <div class="d-flex align-items-center mb-2 justify-content-center">
+          <div class="fs-2 fw-bold">4</div>
+        </div>
+        <div class="fw-bold fs-8 text-gray-400">Total Subsets</div>
+      </div>
+
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+          justify-content-center
+        ">
+        <div class="d-flex align-items-center mb-2">
+          <div class="fs-2 fw-bold text-center text-success w-100">$ 2,458</div>
+        </div>
+
+        <div class="fw-bold fs-8 text-gray-400">Monthly Revenue</div>
+      </div>
+
+      <div class="
+          border border-gray-300 border-dashed
+          rounded
+          min-w-80px
+          py-3
+          px-4
+          me-3
+          mb-3
+          justify-content-center
+        ">
+        <div class="d-flex align-items-center mb-2">
+          <div class="fs-2 fw-bold text-center text-success w-100">$ 12.5K</div>
+        </div>
+
+        <div class="fw-bold fs-8 text-gray-400">Total Revenue</div>
+      </div>
+
+    </div>
+    <!-- #endregion Total Info -->
+
+    <!-- #region Tabs -->
+    <div class="d-flex overflow-auto h-45px">
+      <ul class="
+          nav nav-stretch nav-line-tabs nav-line-tabs-2x
+          border-transparent
+          fs-5
+          fw-bolder
+          flex-nowrap
+        ">
+        <li class="nav-item">
+          <a class="nav-link text-gray-800 text-active-primary me-6" routerLink="/management/overview"
+            routerLinkActive="active">
+            Overview
+            <prms-tool-tip [context]="tooltips.overview.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-gray-800 text-active-primary me-6" routerLink="/management/marketers"
+            routerLinkActive="active">
+            Marketers
+            <prms-tool-tip [context]="tooltips.marketers.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-gray-800 text-active-primary me-6" routerLink="/management/links-campaigns"
+            routerLinkActive="active">
+            Links and Campaigns
+            <prms-tool-tip [context]="tooltips.linksAndCampaigns.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="user.access.management?.rewards?.allowed">
+          <a class="nav-link text-gray-800 text-active-primary me-6" routerLink="/management/rewards"
+            routerLinkActive="active">
+            Rewards
+            <prms-tool-tip [context]="tooltips.rewards.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="user.access.management?.commissions?.allowed">
+          <a class="nav-link text-gray-800 text-active-primary me-6" routerLink="/management/commissions"
+            routerLinkActive="active">
+            Commissions
+            <prms-tool-tip [context]="tooltips.commissions.title" class="ms-1"></prms-tool-tip>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- #endregion Tabs -->
+  </div>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,108 @@
+<div class="card overflow-hidden w-800px mw-100 mh-100" *ngIf="true">
+  <!-- #region Header -->
+  <div class="card-header">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Reward Title By Nancy Brown</h3>
+    </div>
+    <div class="card-toolbar">
+      <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div class="card-body border-top p-9 h-400px">
+    <!-- #region Reward Amount -->
+    <div class="row mb-8">
+      <div class="col-lg-4 fw-bold fs-6">Reward Amount</div>
+      <div class="col-lg-8 fw-bold fv-row">
+        <div class="text-success fs-6">$2,000</div>
+      </div>
+    </div>
+    <!-- #endregion Reward Amount -->
+
+    <!-- #region Reward Action -->
+    <div class="row mb-8">
+      <div class="col-lg-4 fw-bold fs-6">Reward Action</div>
+      <div class="col-lg-8 fw-bold fv-row">
+        <div class="fs-6">Action</div>
+      </div>
+    </div>
+    <!-- #endregion Reward Action -->
+
+    <!-- #region Action Amount -->
+    <div class="row mb-8">
+      <div class="col-lg-4 fw-bold fs-6">Action Amount</div>
+      <div class="col-lg-8 fw-bold fv-row">
+        <div class="fs-6">Amount</div>
+      </div>
+    </div>
+    <!-- #endregion Action Amount -->
+
+    <!-- #region Due Date -->
+    <div class="row mb-8">
+      <div class="col-lg-4 fw-bold fs-6">Due Date</div>
+      <div class="col-lg-8 fv-row">
+        <div class="text-primary fs-6">2/2/2022</div>
+      </div>
+    </div>
+    <!-- #endregion Due Date -->
+
+    <!-- #region Rewarded Marketers -->
+    <div class="row align-items-center mb-8">
+      <div class="col-lg-4 fw-bold fs-6">Rewarded Marketers</div>
+      <div class="col-lg-8 fv-row">
+        <div class="symbol-group symbol-hover ms-8">
+          <!-- #region Marketers -->
+          <div class="symbol symbol-50px symbol-circle border-4 ms-n8">
+            <img alt="Pic" src="./assets/media/avatars/300-5.jpg">
+          </div>
+          <!-- #endregion Marketers -->
+        </div>
+      </div>
+    </div>
+    <!-- #endregion Rewarded Marketers -->
+
+    <!-- #region Total Marketers -->
+    <div class="row align-items-center mb-8">
+      <div class="col-lg-4 fw-bold fs-6">Total Marketers</div>
+      <div class="col-lg-8 d-flex align-items-center fv-row">
+        <!-- #region Marketers -->
+        <div class="symbol-group symbol-hover ms-8">
+          <div class="symbol symbol-50px symbol-circle border-4 ms-n8" *ngFor="let item of [1,2,3]">
+            <img alt="Pic" src="./assets/media/avatars/300-2.jpg">
+          </div>
+        </div>
+        <!-- #endregion Marketers -->
+
+        <!-- #region More -->
+        <button 
+          type="button"
+          class="btn text-muted text-hover-primary ms-10 fs-5"
+          (click)="showMarketers()">
+          +8 more
+        </button>
+        <!--#endregion More -->
+      </div>
+    </div>
+    <!-- #endregion Total Marketers -->
+  
+  </div>
+  <!-- #endregion Body -->
+
+  <!-- #region Card Footer -->
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      
+      <!-- #region Done -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="close()"
+      >Done</button>
+      <!-- #endregion Done -->
+
+    </div>
+    <!-- #endregion Card Footer -->
+</div>

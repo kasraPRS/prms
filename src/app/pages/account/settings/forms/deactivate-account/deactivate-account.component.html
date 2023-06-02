@@ -1,0 +1,86 @@
+<div class="card">
+  <!-- #region Header -->
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#kt_account_deactivate"
+    aria-expanded="true"
+    aria-controls="kt_account_deactivate"
+  >
+    <div class="card-title m-0">
+      <h3 class="fw-normal m-0">Settings</h3>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div id="kt_account_deactivate" class="collapse show">
+    <form id="kt_account_deactivate_form" class="form">
+      <div class="card-body border-top p-9 pb-6">
+
+        <!-- #region Title -->
+        <h3 class="fw-normal mb-8">Deactivate My Account</h3>
+        <!-- #endregion Title -->
+
+        <!-- #region Alert -->
+        <div
+          class="
+            notice
+            d-flex
+            bg-light-warning
+            rounded
+            border-warning border border-dashed
+            mb-7
+            p-6
+          "
+        >
+          <span 
+            class="svg-icon svg-icon-3tx svg-icon-warning me-3"
+            [inlineSVG]="'assets/media/icons/duotune/general/gen045.svg'"
+          ></span>
+          <div class="d-flex flex-stack flex-grow-1">
+            <div class="fw-bold">
+              <h4 class="text-gray-800 fw-bolder">
+                You Are Deactivating Your Account
+              </h4>
+              <div class="fs-6 text-gray-600">
+                For extra security, this requires you to confirm your email or
+                phone number when you reset yousignr password.<br />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- #endregion Alert -->
+
+        <!-- #region Confirm -->
+        <div class="form-check form-check-solid fv-row">
+          <input
+            id="deactivate"
+            class="form-check-input"
+            type="checkbox"
+            name="confirm"
+            value="false"
+          /><label class="form-check-label fw-bold ps-2 fs-6" for="deactivate"
+            >I confirm my account deactivation</label
+          >
+        </div>
+        <!-- #endregion Confirm -->
+      </div>
+
+      <!-- #region Actions -->
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button
+          id="kt_account_deactivate_account_submit"
+          type="button"
+          class="btn btn-danger fw-bold"
+          (click)="deactivateAccount()"
+        >
+          Deactivate Account
+        </button>
+      </div>
+      <!-- #endregion Actions -->
+    </form>
+  </div>
+  <!-- #endregion Body -->
+</div>

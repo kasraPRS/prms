@@ -1,0 +1,91 @@
+<!-- #region name -->
+<div class="card">
+
+    <!-- #region body -->
+    <div class="card-body d-flex justify-content-between align-items-center">
+
+        <div class="d-flex align-items-center">
+
+            <div class="me-3 fw-bolder">
+                Role Name
+            </div>
+
+            <div>
+                <input type="text" class="form-control form-control-solid text-dark mb-3 mb-lg-0" placeholder="name"
+                    name="Name" value="" />
+            </div>
+
+            <div>
+            </div>
+
+        </div>
+        <div>
+            <button class="btn btn-primary">
+                Done
+            </button>
+        </div>
+
+    </div>
+    <!-- #endregion body -->
+
+</div>
+<!-- #endregion name -->
+
+<!-- #region  -->
+<div class="row">
+
+    <!-- #region access level category -->
+    <div class="col-md-4 my-5" *ngFor="let category of [1,1,1]">
+
+        <!-- #region card -->
+        <div class="card">
+
+            <!-- #region body -->
+            <div class="card-body p-0">
+                <!-- #region Table container -->
+                <div class="table-responsive mh-400px pt-0">
+                    <!-- #region Table -->
+                    <table class="table align-middle mb-0 gx-3">
+
+                        <!-- #region Table head -->
+                        <thead class="border-bottom">
+                            <tr class="fw-normal">
+                                <th>Access Level Category</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <!-- #endregion Table head -->
+
+                        <!-- #region Table body -->
+                        <tbody>
+                            <tr *ngFor="let access of [1,1,1,1,1,1,1,1]"
+                                class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                                <!-- #region access name -->
+                                <td>
+                                    Marketer Sign Up Link Creation
+                                </td>
+                                <!-- #endregion access name-->
+                                <!-- #region action -->
+                                <td>
+                                    <input class="form-check-input ms-auto" type="checkbox" value=""
+                                        defaultChecked="{true}" />
+                                </td>
+                                <!-- #endregion action -->
+
+                            </tr>
+                        </tbody>
+                        <!-- #endregion Table body -->
+                    </table>
+                    <!-- #endregion Table -->
+                </div>
+                <!-- #endregion Table container -->
+            </div>
+            <!-- #endregion body -->
+        </div>
+        <!-- #endregion card -->
+
+    </div>
+    <!-- #endregion access level category -->
+
+</div>

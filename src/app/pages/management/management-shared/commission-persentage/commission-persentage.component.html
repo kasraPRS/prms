@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-between">
+    <div class="boxing rounded  border border-2 p-5 me-10">
+        <p class="mb-1 fs-6 text-success text-center">20%</p>
+        <span class="text-gray-400 d-block fs-8 text-center"> Total
+        </span>
+    </div>
+    <div class="boxing rounded d-flex justify-content-center flex-column border border-2 p-5 me-5"
+        *ngFor="let per of percentage">
+        <p class="mb-1 fs-6 text-primary text-center"> {{per}}</p>
+        <span class="text-gray-400 d-block fs-8 text-center"> RM
+        </span>
+    </div>
+</div>

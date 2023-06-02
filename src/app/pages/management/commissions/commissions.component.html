@@ -1,0 +1,20 @@
+<!-- #region Hierarchy -->
+<div class="row g-5 g-xxl-8">
+
+    <!-- #region Default commission percentage for each level -->
+    <div class="col-xl-12">
+        <prms-default-commission-percentage-for-each-level [hasCustomCommissions$]="hasCustomCommissions$">
+        </prms-default-commission-percentage-for-each-level>
+    </div>
+    <!--prms-branchs #endregion Default commission percentage for each level -->
+
+
+    <!-- #region branchs -->
+    <div class="col-xl-12">
+        <prms-branchs [hasCustomCommissions$]="hasCustomCommissions$">
+        </prms-branchs>
+    </div>
+    <!-- #endregion branchs -->
+
+</div>
+<!-- #endregion Hierarchy -->

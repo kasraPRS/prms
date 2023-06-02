@@ -1,0 +1,91 @@
+<!-- #region card -->
+<div class="card mt-3">
+    <!-- #region Header -->
+    <div class="card-header border-0">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1">Recurring Report</span>
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+            <!-- #region create -->
+            <button class="btn btn-primary btn-sm" (click)="onBtnCreateClick()">
+                Create New Recurring Report
+            </button>
+            <!-- #endregion create -->
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body p-0">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px pt-0 px-6">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3 text-center">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="fw-normal bg-light">
+                        <th class="ps-4 rounded-start text-start">Report Title</th>
+                        <th>Schedule</th>
+                        <th>Email</th>
+                        <th class="min-w-200px text-end">Creation Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let marketer of [1,1,1,1,1,1,1,1,1]"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region report title -->
+                        <td class="py-6 text-start">
+                            Active Marketers
+                        </td>
+                        <!-- #endregion report title -->
+                        <!-- #region Schedule -->
+                        <td>
+                            Every Monday
+                        </td>
+                        <!-- #endregion Schedule -->
+                        <!-- #region Email -->
+                        <td>
+                            helpahand@gmail.com
+                        </td>
+                        <!-- #endregion Email -->
+                        <!-- #region Creation Date -->
+                        <td class="text-end">
+                            3/12/2022
+                        </td>
+                        <!-- #endregion Creation Date -->
+                        <!-- #region actions -->
+                        <td>
+                            <button class="btn btn-light btn-sm btn-icon">
+                                <i class="bi bi-pencil-fill fs-7"></i>
+                            </button>
+                            <button class="btn btn-light btn-sm btn-icon">
+                                <i class="bi bi-x fs-2"></i>
+                            </button>
+                        </td>
+                        <!-- #endregion actions -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- <prms-table-pagination [model]="tableDataSource" (change)="getMarketersList()"></prms-table-pagination> -->
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

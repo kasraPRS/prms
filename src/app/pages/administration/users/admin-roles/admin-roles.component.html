@@ -1,0 +1,82 @@
+<!-- #region card -->
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header border-0">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1 d-flex align-items-center">
+                Admin roles
+                <prms-tool-tip [context]="tooltips.title" class="ms-1"></prms-tool-tip>
+            </span>
+            <span class="text-muted fw-normal fs-6">10 Roles</span>
+        </h3>
+        <!-- #endregion title -->
+
+        <!-- #region toolbar -->
+        <div class="card-toolbar">
+            <!-- #region new admin role -->
+            <a routerLink="/administration/users/access-levels" class="btn btn-sm btn-primary">
+                Create New Admin Role
+            </a>
+            <!-- #endregion new admin role -->
+        </div>
+        <!-- #endregion toolbar -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body p-0">
+        <!-- #region Table container -->
+        <div class="table-responsive mh-400px pt-0 px-6">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="fw-normal bg-light">
+                        <th class="ps-4 rounded-start">Role name</th>
+                        <th class="text-center">Users</th>
+                        <th class="text-center rounded-end">Actions</th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let marketer of [1,1,1,1,1,1,1,1]"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region role name -->
+                        <td>
+                            <div>Role #1</div>
+                        </td>
+                        <!-- #endregion role name-->
+                        <!-- #region users -->
+                        <td class="text-center">
+                            ???
+                        </td>
+                        <!-- #endregion users -->
+                        <!-- #region actions -->
+                        <td class="text-center">
+                            <button class="btn btn-light btn-sm btn-icon">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="btn bg-light btn-sm btn-icon">
+                                <i class="bi bi-x fs-1"></i>
+                            </button>
+                        </td>
+                        <!-- #endregion actions -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

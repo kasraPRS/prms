@@ -1,0 +1,52 @@
+<div class="card w-700px mw-100 mh-100">
+    <!-- #region Header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">
+                Link Banner
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region choose template -->
+    <form novalidate="" class="form">
+        <!-- #region Body -->
+        <div class="card-body border-top p-0 mh-400px overflow-auto">
+
+            <div class="d-flex">
+                <div class="rounded bg-secondary w-250px overflow-hidden me-3" *ngFor="let item of bannerDto">
+                    <img src="./assets/media/stock/1600x800/img-4.jpg" alt="banner" class="w-100 h-100"
+                        style="object-fit: cover;">
+                </div>
+            </div>
+
+        </div>
+        <!-- #endregion Body -->
+
+        <!-- #region Card Footer -->
+        <div class="card-footer d-flex align-items-center py-4 px-9">
+
+            <!-- #region back -->
+            <button type="button" class="btn btn-primary me-3 btn-sm">
+                Back
+            </button>
+            <!-- #endregion back -->
+
+            <!-- #region back -->
+            <button type="button" class="btn btn-primary me-3 btn-sm">
+                Next
+            </button>
+            <!-- #endregion back -->
+
+        </div>
+        <!-- #endregion Card Footer -->
+    </form>
+    <!-- #region choose template -->
+
+</div>

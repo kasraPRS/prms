@@ -1,0 +1,87 @@
+<!-- #region card -->
+<div class="card">
+
+    <!-- #region body -->
+    <div class="card-body p-0">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px pt-0 px-6">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="text-muted fw-bold border-bottom fs-5" style="vertical-align: middle;">
+                        <th class="ps-4 rounded-start min-w-150px">Feature</th>
+                        <th class="text-center">RM</th>
+                        <th class="text-center">DM</th>
+                        <th class="text-center">Level 3</th>
+                        <th class="text-center">Level 4</th>
+                        <th class="text-center">Level 5</th>
+                        <th class="rounded-end text-end">
+                            <button class="btn btn-primary">
+                                Save Changes
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let item of list" class="border-bottom fs-5">
+
+                        <!-- #region feature -->
+                        <td class="min-w-100px py-6">
+                            <div>{{item.feature}}</div>
+                        </td>
+                        <!-- #endregion feature-->
+                        <!-- #region rm -->
+                        <td>
+                            <div class="form-check form-check-solid d-flex justify-content-center">
+                                <input class="form-check-input " type="checkbox" [(ngModel)]="item.rm">
+                            </div>
+                        </td>
+                        <!-- #endregion rm -->
+                        <!-- #region dm -->
+                        <td>
+                            <div class="form-check form-check-solid d-flex justify-content-center">
+                                <input class="form-check-input " type="checkbox" [(ngModel)]="item.dm">
+                            </div>
+                        </td>
+                        <!-- #endregion dm -->
+                        <!-- #region level3 -->
+                        <td>
+                            <div class="form-check form-check-solid d-flex justify-content-center">
+                                <input class="form-check-input " type="checkbox" [(ngModel)]="item.level3">
+                            </div>
+                        </td>
+                        <!-- #endregion level3 -->
+                        <!-- #region level4 -->
+                        <td>
+                            <div class="form-check form-check-solid d-flex justify-content-center">
+                                <input class="form-check-input " type="checkbox" [(ngModel)]="item.level4">
+                            </div>
+                        </td>
+                        <!-- #endregion level4 -->
+                        <!-- #region level5 -->
+                        <td>
+                            <div class="form-check form-check-solid d-flex justify-content-center">
+                                <input class="form-check-input " type="checkbox" [(ngModel)]="item.level5">
+                            </div>
+                        </td>
+                        <!-- #endregion level5 -->
+                        <!-- #region action -->
+                        <td></td>
+                        <!-- #endregion action -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

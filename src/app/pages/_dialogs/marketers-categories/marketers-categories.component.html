@@ -1,0 +1,36 @@
+<div class="card overflow-hidden w-800px mw-100 mh-100" *ngIf="true">
+  <!-- #region Header -->
+  <div class="card-header">
+    <div class="card-title d-flex flex-column m-0">
+      <h3 class="fw-bolder m-0">Marketers Categories</h3>
+      <span class="text-muted fs-8">9 Categories</span>
+    </div>
+    <div class="card-toolbar">
+      <button type="button" class="btn btn-sm btn-primary w-100px me-2">Add</button>
+      <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div class="card-body border-top p-9 h-400px">
+  
+  </div>
+  <!-- #endregion Body -->
+
+  <!-- #region Card Footer -->
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      
+      <!-- #region Done -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="close()"
+      >Done</button>
+      <!-- #endregion Done -->
+
+    </div>
+    <!-- #endregion Card Footer -->
+</div>

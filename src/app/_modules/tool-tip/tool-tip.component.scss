@@ -1,0 +1,13 @@
+.tool-tip {
+    width: 13px;
+    height: 13px;
+    position: relative;
+    border-radius: 13px;
+    i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffffff!important;
+    }
+}

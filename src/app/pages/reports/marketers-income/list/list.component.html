@@ -1,0 +1,124 @@
+<!-- #region card -->
+<div class="card mt-3">
+    <!-- #region Header -->
+    <div class="card-header border-0">
+
+        <!-- #region title -->
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1">List</span>
+        </h3>
+        <!-- #endregion title -->
+
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region body -->
+    <div class="card-body p-0">
+        <!-- #region Table container -->
+        <div class="table-responsive mah-400px pt-0 px-6">
+            <!-- #region Table -->
+            <table class="table align-middle mb-0 gx-3 text-center">
+
+                <!-- #region Table head -->
+                <thead>
+                    <tr class="fw-normal bg-light">
+                        <th class="ps-4 rounded-start min-w-300px text-start">Marketer name</th>
+                        <th class="min-w-125px">State</th>
+                        <th class="min-w-125px">Successful links</th>
+                        <th class="min-w-200px">Successful Campaigns</th>
+                        <th class="min-w-100px">Subsets</th>
+                        <th class="min-w-200px">Total Funds Raised</th>
+                        <th class="min-w-200px">Total Income</th>
+                        <th class="min-w-200px rounded-end">Helphand Revenue</th>
+                    </tr>
+                </thead>
+                <!-- #endregion Table head -->
+
+                <!-- #region Table body -->
+                <tbody>
+                    <tr *ngFor="let marketer of [1,2,3,4,5,6]"
+                        class="border-gray-200 border-bottom-dashed border-bottom-1 fs-5">
+
+                        <!-- #region marketer name -->
+                        <td class="min-w-350px py-6 text-start">
+                            <div class="d-flex align-items-center flex-grow-1">
+                                <div class="symbol symbol-60px me-4">
+                                    <!-- <img src="./assets/media/avatars/300-23.jpg" alt="user image"
+                                    [hidden]="marketer.profileImageUrl == 'No Profile'" /> -->
+                                    <div class="symbol-label fs-2 fw-bold text-primary">
+                                        J
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <a class="text-gray-800 mb-1 mb-2 fw-bolder">
+                                        Johnny Test
+                                        <span class="badge bg-primary rounded-circle badge-sm ms-2">
+                                            {{RM}}
+                                        </span>
+                                    </a>
+                                    <span class="text-muted fs-7 fw-bolder">Joined by John</span>
+                                </div>
+                            </div>
+                        </td>
+                        <!-- #endregion marketer name -->
+                        <!-- #region state -->
+                        <td class="min-w-150px">
+                            <div class="mb-2">Nevada</div>
+                            <div class="text-muted fs-7">cat1</div>
+                        </td>
+                        <!-- #endregion state -->
+                        <!-- #region successful link -->
+                        <td class="min-w-150px text-muted">
+                            <div class="mb-2">
+                                <span class="text-success">{{generateRandom(0,50)}}</span>
+                                <span>/{{generateRandom(0,100)}}</span>
+                            </div>
+                            <div class="text-muted fs-7">Successful links</div>
+                        </td>
+                        <!-- #endregion successful link -->
+                        <!-- #region successful campaigns -->
+                        <td class="min-w-150px text-muted">
+                            <div class="mb-2">
+                                <span class="text-success">{{generateRandom(0,40)}}</span>
+                                <span>/{{generateRandom(0,50)}}</span>
+                            </div>
+                            <div class="text-muted fs-7">Successful Campaigns</div>
+                        </td>
+                        <!-- #endregion successful campaigns -->
+                        <!-- #region subsets -->
+                        <td class="min-w-150px">
+                            <div class="mb-2">{{generateRandom(0,50)}}</div>
+                            <div class="text-muted fs-7">Subsets</div>
+                        </td>
+                        <!-- #endregion subsets -->
+                        <!-- #region total funds raised -->
+                        <td class="min-w-150px">
+                            <div class="text-success mb-2">${{ generateRandom(1000,10000) | number }}</div>
+                            <div class="text-muted fs-7">Monthly Income</div>
+                        </td>
+                        <!-- #endregion total funds raised -->
+                        <!-- #region total income -->
+                        <td class="min-w-150px">
+                            <div class="text-success mb-2">${{ generateRandom(3000,10000) | number }}</div>
+                            <div class="text-muted fs-7">Total Income</div>
+                        </td>
+                        <!-- #endregion total income -->
+                        <!-- #region Helphand Revenue -->
+                        <td class="min-w-150px">
+                            <div class="text-success mb-2">${{ generateRandom(5000,10000) | number }}</div>
+                            <div class="text-muted fs-7">Total Revenue</div>
+                        </td>
+                        <!-- #endregion Helphand Revenue -->
+
+                    </tr>
+                </tbody>
+                <!-- #endregion Table body -->
+            </table>
+            <!-- #endregion Table -->
+        </div>
+        <!-- <prms-table-pagination [model]="tableDataSource" (change)="getMarketersList()"></prms-table-pagination> -->
+        <!-- #endregion Table container -->
+    </div>
+    <!-- #endregion body -->
+</div>
+<!-- #endregion card -->

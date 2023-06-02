@@ -1,0 +1,61 @@
+<div class="card overflow-hidden w-800px mw-100 mh-100">
+  <!-- #region Header -->
+  <div class="card-header">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Marketers</h3>
+    </div>
+    <div class="card-toolbar">
+      <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+        <i class="bi bi-x-lg text-dark fs-4"></i>
+      </button>
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div class="card-body scroll-y border-top p-9 h-400px">
+    <!-- #region Marketers -->
+    <div *ngFor="let i of [1,2,3,4,5,6,7,8,9]">
+      <div class="d-flex align-items-center">
+
+        <div class="d-flex align-items-center flex-grow-1">
+          <!-- #region Avatar -->
+          <div class="symbol symbol-60px me-4">
+            <img src="./assets/media/avatars/300-23.jpg" alt="" />
+          </div>
+          <!-- #endregion Avatar -->
+
+          <!-- #region Info -->
+          <div class="d-flex flex-column">
+            <div class="d-flex align-items-center">
+              <a class="text-gray-800 fs-6 mb-1">Nick Logan</a>
+              <span class="badge badge-primary badge-circle badge-sm fs-7 mx-2">3</span>
+            </div>
+
+            <span class="text-gray-400 fs-8">3 notes on this profile</span>
+          </div>
+          <!-- #endregion Info -->
+        </div>
+
+        <button type="button" class="btn btn-sm btn-light-danger">Delete</button>
+      </div>    
+      <div class="separator separator-dashed separator-gray-400 my-5" [hidden]="i == 9"></div>
+    </div>
+    <!-- #endregion Marketers -->
+  </div>
+  <!-- #endregion Body -->
+
+  <!-- #region Card Footer -->
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      
+      <!-- #region Done -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="close()"
+      >Done</button>
+      <!-- #endregion Done -->
+
+    </div>
+    <!-- #endregion Card Footer -->
+</div>

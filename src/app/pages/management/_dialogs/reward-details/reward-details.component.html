@@ -1,0 +1,84 @@
+<div class="card w-800px mw-100 mh-100">
+
+    <!-- #region Header -->
+    <div class="card-header">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">
+                <span class="fw-bolder">
+                    Reward Title
+                </span>
+                By
+                <span>
+                    Nancy Brown
+                </span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <form novalidate="" class="form">
+        <!-- #region Body -->
+        <div class="card-body border-top p-9">
+            <!-- #region reward amount -->
+            <div class="row mb-6">
+                <label class="col-lg-4  fw-bold fs-6">Reward Amount</label>
+                <div class="col-lg-8 fv-row text-success">
+                    ${{ 2000 | number }}
+                </div>
+            </div>
+            <!-- #endregion  reward amount -->
+
+            <!-- #region reward action -->
+            <div class="row mb-6">
+                <label class="col-lg-4  fw-bold fs-6">Reward Action</label>
+                <div class="col-lg-8 fv-row fw-bold">
+                    Action
+                </div>
+            </div>
+            <!-- #endregion reward action -->
+
+            <!-- #region action amount -->
+            <div class="row mb-6">
+                <label class="col-lg-4  fw-bold fs-6">Action Amount</label>
+                <div class="col-lg-8 fv-row fw-bold">
+                    Amount
+                </div>
+            </div>
+            <!-- #endregion action amount -->
+
+            <!-- #region due date -->
+            <div class="row mb-6">
+                <label class="col-lg-4  fw-bold fs-6">Due Date</label>
+                <div class="col-lg-8 fv-row text-primary">
+                    2/6/2022
+                </div>
+            </div>
+            <!-- #endregion due date -->
+
+        </div>
+        <!-- #endregion Body -->
+
+        <!-- #region Card Footer -->
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+            <!-- #region Done -->
+            <button type="button" class="btn btn-primary me-3" [disabled]="isLoading" (click)="onBtnDoneClick()">
+                <ng-container *ngIf="!isLoading">Done</ng-container>
+                <ng-container *ngIf="isLoading">
+                    <span clas="indicator-progress" [style.display]="'block'">
+                        Please Wait...{{ " " }}
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                </ng-container>
+            </button>
+            <!-- #endregion Done -->
+
+        </div>
+        <!-- #endregion Card Footer -->
+    </form>
+</div>

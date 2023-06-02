@@ -1,0 +1,91 @@
+<!-- #region card -->
+<div class="card">
+  <!-- #region Header -->
+  <div class="card-header border-0">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-normal fs-3 mb-1">Contract List</span>
+    </h3>
+    <div class="card-toolbar">
+      <!-- #region New Link -->
+      <a class="btn btn-sm btn-primary" (click)="onBtnCreateNewContractClick()">
+        Create New Contract
+      </a>
+      <!-- #endregion New Link -->
+    </div>
+  </div>
+  <!-- #endregion Header -->
+
+  <!-- #region Body -->
+  <div class="card-body p-0">
+    <!-- #region Table container -->
+    <div class="table-responsive mah-400px pt-0 px-6">
+      <!-- #region Table -->
+      <table class="table align-middle mb-0 gx-3 text-center">
+        <!-- #region Table head -->
+        <thead>
+          <tr class="fw-normal bg-light">
+            <th class="ps-4 min-w-200px rounded-start text-start">Name</th>
+            <th class="min-w-125px">Created Date</th>
+            <th class="min-w-125px">End Date</th>
+            <th class="min-w-200px">Status</th>
+            <th class="min-w-150px text-end rounded-end"></th>
+          </tr>
+        </thead>
+        <!-- #endregion Table head -->
+        <!-- #region Table body -->
+        <tbody>
+          <tr *ngFor="let item of tableDataSource.items" class="border-gray-200 border-bottom-dashed border-bottom-1">
+            <td class="min-w-200px py-6 text-start">
+              <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-start flex-column">
+                  <a class="text-success fw-bolder mb-1 fs-6">
+                    {{item.name}}
+                  </a>
+                </div>
+              </div>
+            </td>
+
+            <td class="min-w-100px">
+              <a class="text-muted fw-bolder d-block mb-1 fs-6">
+                {{item.startDate}}
+              </a>
+            </td>
+
+            <td class="min-w-150px">
+              <span class="text-muted fw-bolder d-block mb-1 fs-6">
+                {{item.endDate}}
+              </span>
+            </td>
+
+            <td class="min-w-100px">
+              <span class="text-success fw-bolder d-block mb-1 fs-6">
+                {{item.status}}
+              </span>
+            </td>
+
+            <td class="text-end min-w-150px">
+              <a (click)="onBtnViewClick(item)" class="
+                  btn btn-sm btn-light btn-active-color-primary py-2 px-5
+                ">
+                View
+              </a>
+              <button class="btn btn-sm btn-light-danger py-2 px-5" (click)="onBtnDeleteClick(item)">
+                Delete
+              </button>
+              <button class="btn btn-sm btn-light-primary mx-3 py-2 px-5" (click)="onBtnEditClick(item.id)" [disabled]="item.status === 'active' ">
+                Edit
+              </button>
+            </td>
+
+          </tr>
+        </tbody>
+        <!-- #endregion Table body -->
+      </table>
+      <!-- #endregion Table -->
+    </div>
+    <!-- #endregion Table container -->
+    <prms-table-pagination [model]="tableDataSource" (change)="onGetListPagination()"></prms-table-pagination>
+  </div>
+  <!-- #endregion Body -->
+</div>
+<!-- #endregion card -->

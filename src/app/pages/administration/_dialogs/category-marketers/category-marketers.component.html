@@ -1,0 +1,71 @@
+<div class="card w-800px mw-100 mh-100">
+    <!-- #region Header -->
+    <div class="card-header">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-normal fs-3 mb-1">Marketers</span>
+        </h3>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-icon btn-sm text-hover-danger" (click)="ref.close()">
+                <i class="bi bi-x-lg text-dark fs-4"></i>
+            </button>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body border-top p-9 h-400px overflow-auto">
+
+        <div>
+
+            <div class="d-flex align-items-center justify-content-between border-bottom border-bottom-dashed py-5"
+                *ngFor="let item of usersList; index as i"
+                [ngClass]="{'pt-0' : i == 0, 'border-bottom-0' : i == usersList.length - 1}">
+
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="symbol symbol-60px me-4">
+                        <img [src]="item.profileImageUrl" alt="user image" [hidden]="!item.profileImageUrl" />
+                        <div class="symbol-label fs-2 fw-bold text-primary" [hidden]="item.profileImageUrl">
+                            {{item.fullName.substring(0,1)}}
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a class="text-gray-800 mb-1 mb-2 fw-bolder" routerLink="/activities/contracts">
+                            {{item.fullName}}
+                            <span class="badge bg-primary rounded-circle badge-sm ms-2">
+                                4
+                            </span>
+                        </a>
+                        <span class="text-muted fs-7">Joined by Harley Davidson</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-light-danger w-100px" (click)="onDeleteBtnClick(item)">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- #endregion Body -->
+
+    <!-- #region footer -->
+    <div class="card-footer d-flex align-items-center justify-content-between py-5">
+
+        <!-- #region add marketer button -->
+        <button class="btn btn-primary btn-sm" (click)="onBtnAddMerketerClick()">
+            Add Marketer
+        </button>
+        <!-- #endregion add marketer button -->
+
+        <!-- #region done button -->
+        <button class="btn btn-primary btn-sm" (click)="onBtnDoneClick()">
+            Done
+        </button>
+        <!-- #endregion done button -->
+
+    </div>
+    <!-- #endregion footer -->
+
+</div>

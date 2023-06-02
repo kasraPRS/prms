@@ -1,0 +1,185 @@
+<div class="card mb-5 mb-xl-10">
+
+    <!-- #region Header -->
+    <div class="card-header border-0">
+        <div class="card-title m-0">
+            <h3 class="fw-bolder m-0">Create New marketer</h3>
+        </div>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <form novalidate="" class="form">
+
+        <div class="card-body border-top p-9">
+
+            <!-- #region Avatar -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label text-gray-400 fw-bold fs-6">Avatar</label>
+                <div class="col-lg-8">
+                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                        [style.background-image]="'url(./assets/media/avatars/blank.png)!important'">
+                        <!-- #region image -->
+                        <div class="image-input-wrapper w-125px h-125px"
+                            [style.background-image]="'url(./assets/media/avatars/300-1.jpg)'">
+                        </div>
+                        <!-- #endregion image -->
+
+                        <!--#region Edit button-->
+                        <label
+                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="change">
+                            <i class="bi bi-pencil-fill fs-7"></i>
+
+                            <!--#region Inputs-->
+                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+                            <input type="hidden" name="avatar_remove" />
+                            <!--#region Inputs-->
+                        </label>
+                        <!--#endregion Edit button-->
+
+                        <!--#region Remove button-->
+                        <span
+                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
+                            data-kt-image-input-action="remove">
+                            <i class="bi bi-x fs-2"></i>
+                        </span>
+                        <!--#endregion Remove button-->
+                    </div>
+                    <div class="form-text">
+                        Allowed File Types: png, jpg, jpeg.
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion Avatar -->
+
+            <!-- #region Full Name -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Full Name</label>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 fv-row">
+                            <input type="text"
+                                class="form-control form-control-lg form-control-solid text-dark mb-3 mb-lg-0"
+                                placeholder="First Name" name="fName" value="Jordan" />
+                        </div>
+                        <div class="col-lg-6 fv-row">
+                            <input type="text" class="form-control form-control-lg form-control-solid text-dark"
+                                placeholder="Last Name" name="lName" value="Scott" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion Full Name -->
+
+            <!-- #region Level -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Level</label>
+                <div class="col-lg-4 fv-row">
+                    <select class="form-select form-select-solid form-select-lg fw-bold text-dark" name="job">
+                        <option value="">RM</option>
+                    </select>
+                </div>
+            </div>
+            <!-- #endregion Level -->
+
+            <!-- #region Contact Phone -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Contact Phone</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="tel" class="form-control form-control-lg form-control-solid text-dark"
+                        placeholder="Phone Number" name="contactPhone" value="+1 456 454 905" />
+                </div>
+            </div>
+            <!-- #endregion Contact Phone -->
+
+            <!-- #region Secondary Contact Phone -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                    <span class="">Secondary Contact Phone</span>
+                </label>
+                <div class="col-lg-8 fv-row">
+                    <input type="tel" class="form-control form-control-lg form-control-solid text-dark"
+                        placeholder="Phone Number" name="secondaryContactPhone" value="+1 456 454 935" />
+                </div>
+            </div>
+            <!-- #endregion Secondary Contact Phone -->
+
+            <!-- #region Job -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="">Job</span></label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" class="form-control form-control-lg form-control-solid text-dark"
+                        placeholder="Phone Number" name="job" value="Marketing" />
+                </div>
+            </div>
+            <!-- #endregion Job -->
+
+            <!-- #region State -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">State</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" class="form-control form-control-lg form-control-solid text-dark"
+                        placeholder="Phone Number" name="state" value="New York" />
+                </div>
+            </div>
+            <!-- #endregion State -->
+
+            <!-- #region Address -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Address</label>
+                <div class="col-lg-8 fv-row">
+                    <input type="text" class="form-control form-control-lg form-control-solid text-dark"
+                        placeholder="Address" name="address" value="" />
+                </div>
+            </div>
+            <!-- #endregion Address -->
+
+            <!-- #region Email -->
+            <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6">Email</label>
+                <div class="col-lg-8 fv-row">
+                    <input email type="text" class="form-control form-control-lg form-control-solid text-dark"
+                        placeholder="Email" name="email" value="" />
+                    <div class="fv-plugins-message-container mx-2">
+                        <div class="fv-help-block">Email is Invalid</div>
+                    </div>
+                </div>
+            </div>
+            <!-- #endregion -->
+
+        </div>
+
+        <!-- #region Actions -->
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+
+            <!-- #region Add Additional Phone -->
+            <button type="button" class="btn btn-light text-hover-primary me-2" [disabled]="isLoading">
+                Add Additional Phone
+            </button>
+            <!-- #endregion Add Additional Phone -->
+
+            <!-- #region Add Additional Address -->
+            <button type="button" class="btn btn-light text-hover-primary me-2" [disabled]="isLoading">
+                Add Additional Address
+            </button>
+            <!-- #endregion Add Additional Address -->
+
+            <!-- #region Create -->
+            <button type="button" class="btn btn-primary" [disabled]="isLoading" (click)="saveSettings()">
+                <ng-container *ngIf="!isLoading">Create</ng-container>
+                <ng-container *ngIf="isLoading">
+                    <span clas="indicator-progress" [style.display]="'block'">
+                        Please Wait...{{ " " }}
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                    </span>
+                </ng-container>
+            </button>
+            <!-- #endregion Create -->
+
+        </div>
+        <!-- #endregion Actions -->
+
+    </form>
+    <!-- #endregion Body -->
+</div>

@@ -1,0 +1,65 @@
+<div class="card">
+    <!-- #region Header -->
+    <div class="card-header min-h-50px border-0">
+        <h3 class="card-title">
+            Quick Review
+        </h3>
+    </div>
+    <!-- #endregion Header -->
+
+    <!-- #region Body -->
+    <div class="card-body pt-0 h-300px overflow-auto">
+
+        <div class="m-0">
+            <!--begin::Timeline-->
+            <div class="timeline ms-n1">
+
+                <!--begin::Timeline item-->
+                <div class="timeline-item align-items-center py-5" *ngFor="let marketer of parentUsers">
+                    <!--begin::Timeline line-->
+                    <div class="mb-n14 mt-9 timeline-line ms-4 w-20px"></div>
+                    <!--end::Timeline line-->
+                    <!--begin::Timeline icon-->
+                    <div class="timeline-icon m-0 pt-1">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen015.svg-->
+                        <div class="symbol symbol-45px me-4">
+                            <img [src]="marketer.profileImageUrl" alt="image" [hidden]="!marketer.profileImageUrl" />
+                            <div class="symbol-label fs-2 fw-bold text-primary" [hidden]="marketer.profileImageUrl">
+                                {{marketer.fullName.substring(0,1)}}
+                            </div>
+                        </div>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Timeline icon-->
+                    <!--begin::Timeline content-->
+                    <div class="timeline-content d-flex justify-content-between align-items-center m-0">
+
+                        <div class="d-flex flex-column">
+                            <a class="text-primary fs-6 mb-1 d-flex align-items-center"
+                                [routerLink]="(marketer.id != userId) ? ['/activities'] : []"
+                                [queryParams]="(marketer.id != userId) ? {i: marketer.id} : null"
+                                [ngClass]="{'text-gray-800 ': marketer.id != userId}" target="_blank">
+                                {{marketer.fullName}}
+                                <span class="badge badge-primary badge-sm rounded-pill ms-2">
+                                    {{marketer.marketerTypeTitle | roleConverter}}
+                                </span>
+                            </a>
+                        </div>
+
+                        <a class="btn btn-light btn-sm" routerLink="/activities" [queryParams]="{i: marketer.id}" target="_blank"
+                            *ngIf="marketer.id != userId">
+                            View Profile
+                        </a>
+
+                    </div>
+                    <!--end::Timeline content-->
+                </div>
+                <!--end::Timeline item-->
+
+            </div>
+            <!--end::Timeline-->
+        </div>
+
+    </div>
+    <!-- #endregion Body -->
+</div>
